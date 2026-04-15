@@ -1,5 +1,6 @@
 ---
 import NowIntro from '@/components/home/now-intro.astro'
+import NowListening from '@/components/home/now-listening'
 import NowPosts from '@/components/home/now-posts.astro'
 import PageHead from '@/components/page-head.astro'
 import Layout from '@/layouts/layout.astro'
@@ -9,4 +10,5 @@ import Layout from '@/layouts/layout.astro'
   <PageHead slot="head" title="Home" />
   <NowIntro />
   <NowPosts />
+  <NowListening client:load />
 </Layout>
