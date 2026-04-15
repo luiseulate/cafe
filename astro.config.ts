@@ -17,16 +17,31 @@ import { pluginCollapsibleSections } from '@expressive-code/plugin-collapsible-s
 import { pluginLineNumbers } from '@expressive-code/plugin-line-numbers'
 import tailwindcss from '@tailwindcss/vite'
 
+import vercel from '@astrojs/vercel'
+
 export default defineConfig({
-  site: 'https://astro-erudite.vercel.app',
+  site: 'https://cafe.vercel.app',
   integrations: [mdx(), react(), sitemap(), icon()],
+  output: 'static',
+  adapter: vercel({
+    imagesConfig: {
+      sizes: [320, 640, 1280],
+    },
+    imageService: true,
+    devImageService: 'sharp',
+    isr: {
+      exclude: ['/api/now-listening'],
+    },
+  }),
   vite: {
     plugins: [tailwindcss()],
   },
+
   server: {
     port: 1234,
     host: true,
   },
+
   devToolbar: {
     enabled: false,
   },
@@ -51,43 +66,11 @@ export default defineConfig({
 
   env: {
     schema: {
-      GOODREADS_USERNAME: envField.string({
-        context: 'server',
-        access: 'secret',
-      }),
-      IGDB_CLIENT_ID: envField.string({
-        context: 'server',
-        access: 'secret',
-      }),
-      IGDB_CLIENT_SECRET: envField.string({
-        context: 'server',
-        access: 'secret',
-      }),
       LASTFM_API_KEY: envField.string({
         context: 'server',
         access: 'secret',
       }),
       LASTFM_USERNAME: envField.string({
-        context: 'server',
-        access: 'secret',
-      }),
-      STEAM_USER_ID: envField.string({
-        context: 'server',
-        access: 'secret',
-      }),
-      STEAM_API_KEY: envField.string({
-        context: 'server',
-        access: 'secret',
-      }),
-      STRAVA_CLIENT_ID: envField.string({
-        context: 'server',
-        access: 'secret',
-      }),
-      STRAVA_CLIENT_SECRET: envField.string({
-        context: 'server',
-        access: 'secret',
-      }),
-      STRAVA_REFRESH_TOKEN: envField.string({
         context: 'server',
         access: 'secret',
       }),
