@@ -1,0 +1,61 @@
+---
+import BlogCard from '@/components/blog-card.astro'
+import Link from '@/components/link.astro'
+import PageHead from '@/components/page-head.astro'
+import PaginationComponent from '@/components/ui/pagination'
+import { SITE } from '@/consts'
+import Layout from '@/layouts/layout.astro'
+import { getAllPosts, groupPostsByYear } from '@/lib/data-utils'
+import type { PaginateFunction } from 'astro'
+import { Icon } from 'astro-icon/components'
+
+export async function getStaticPaths({
+  paginate,
+}: {
+  paginate: PaginateFunction
+}) {
+  const allPosts = await getAllPosts()
+  return paginate(allPosts, { pageSize: SITE.postsPerPage })
+}
+
+const { page } = Astro.props
+
+const postsByYear = groupPostsByYear(page.data)
+const years = Object.keys(postsByYear).sort((a, b) => parseInt(b) - parseInt(a))
+---
+
+<Layout class="max-w-xl">
+  <PageHead slot="head" title="Blog" />
+
+  <Link
+    href="/"
+    class="text-muted-foreground/40 hover:text-muted-foreground/80 flex items-center gap-1 text-sm"
+  >
+    <Icon name="lucide:chevron-left" class="size-4" />
+    Inicio
+  </Link>
+
+  <div class="flex grow flex-col gap-y-12">
+    {
+      years.map((year) => (
+        <section class="flex flex-col gap-y-4">
+          <h2>{year}</h2>
+          <ul class="flex flex-col">
+            {postsByYear[year].map((post) => (
+              <li>
+                <BlogCard entry={post} />
+              </li>
+            ))}
+          </ul>
+        </section>
+      ))
+    }
+  </div>
+
+  <PaginationComponent
+    currentPage={page.currentPage}
+    totalPages={page.lastPage}
+    baseUrl="/blog/"
+    client:load
+  />
+</Layout>

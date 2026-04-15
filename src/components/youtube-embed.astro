@@ -1,0 +1,27 @@
+---
+import { YouTube } from 'astro-embed'
+
+interface Props {
+  src: string
+  caption?: string
+}
+
+const { src, caption } = Astro.props
+---
+
+<figure>
+  <YouTube
+    id={src}
+    posterQuality="max"
+    playlabel="Ver en Youtube"
+    params="color=white&disablekb=1&hl=es&iv_load_policy=3&rel=0"
+    class="bg-muted mx-auto aspect-video w-full max-w-3xl rounded-xl object-cover"
+  />
+  {
+    caption && (
+      <figcaption class="text-muted-foreground/60 pt-2.5 text-center text-xs font-medium italic">
+        {caption}
+      </figcaption>
+    )
+  }
+</figure>

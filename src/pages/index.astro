@@ -1,0 +1,12 @@
+---
+import NowIntro from '@/components/home/now-intro.astro'
+import NowPosts from '@/components/home/now-posts.astro'
+import PageHead from '@/components/page-head.astro'
+import Layout from '@/layouts/layout.astro'
+---
+
+<Layout class="max-w-xl">
+  <PageHead slot="head" title="Home" />
+  <NowIntro />
+  <NowPosts />
+</Layout>

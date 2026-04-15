@@ -1,0 +1,27 @@
+---
+import Link from '@/components/link.astro'
+import PageHead from '@/components/page-head.astro'
+import { buttonVariants } from '@/components/ui/button'
+import Layout from '@/layouts/layout.astro'
+import { cn } from '@/lib/utils'
+---
+
+<Layout class="max-w-xl">
+  <PageHead slot="head" title="404" />
+
+  <section
+    class="flex flex-col items-center justify-center gap-y-4 text-center"
+  >
+    <div class="max-w-md">
+      <h1 class="mb-4 text-3xl font-medium">404: Página no encontrada</h1>
+      <p class="prose">¡Vaya! La página que estás buscando no existe.</p>
+    </div>
+    <Link
+      href="/"
+      class={cn(buttonVariants({ variant: 'outline' }), 'flex gap-x-1.5 group')}
+    >
+      <span class="transition-transform group-hover:-translate-x-1">&larr;</span
+      > Ir a la página de inicio
+    </Link>
+  </section>
+</Layout>

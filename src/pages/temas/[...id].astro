@@ -1,0 +1,60 @@
+---
+import BlogCard from '@/components/blog-card.astro'
+import Link from '@/components/link.astro'
+import PageHead from '@/components/page-head.astro'
+import Layout from '@/layouts/layout.astro'
+import { getAllTags, getPostsByTag } from '@/lib/data-utils'
+import { Icon } from 'astro-icon/components'
+
+export async function getStaticPaths() {
+  const tagMap = await getAllTags()
+  const uniqueTags = Array.from(tagMap.keys())
+
+  return Promise.all(
+    uniqueTags.map(async (tag) => {
+      const posts = await getPostsByTag(tag)
+      return {
+        params: { id: tag },
+        props: {
+          tag,
+          posts,
+        },
+      }
+    }),
+  )
+}
+
+const { tag, posts } = Astro.props
+---
+
+<Layout class="max-w-xl">
+  <PageHead
+    slot="head"
+    title={`Artículos sobre "${tag}"`}
+    description={`Una colección de artículos etiquetados con ${tag}.`}
+    noindex
+  />
+
+  <Link
+    href="/temas"
+    class="text-muted-foreground/40 hover:text-muted-foreground/80 flex items-center gap-1 text-sm"
+  >
+    <Icon name="lucide:chevron-left" class="size-4" />
+    Temas
+  </Link>
+
+  <div class="flex flex-col gap-y-4">
+    <h2 class="first-letter:capitalize">{tag}</h2>
+    {
+      (
+        <ul class="flex flex-col">
+          {posts.map((post) => (
+            <li>
+              <BlogCard entry={post} />
+            </li>
+          ))}
+        </ul>
+      )
+    }
+  </div>
+</Layout>

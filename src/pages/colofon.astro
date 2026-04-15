@@ -1,0 +1,48 @@
+---
+import Link from '@/components/link.astro'
+import PageHead from '@/components/page-head.astro'
+import Layout from '@/layouts/layout.astro'
+import { Icon } from 'astro-icon/components'
+---
+
+<Layout class="max-w-xl">
+  <PageHead slot="head" title="Colofón" />
+
+  <Link
+    href="/"
+    class="text-muted-foreground/40 hover:text-muted-foreground/80 flex items-center gap-1 text-sm"
+  >
+    <Icon name="lucide:chevron-left" class="size-4" />
+    Inicio
+  </Link>
+
+  <section>
+    <div class="min-w-full">
+      <div class="prose">
+        <p>
+          astro-cafe es un tema construido con <Link
+            href="https://astro.build"
+            class="text-foreground"
+            external
+            underline>Astro</Link
+          >, <Link
+            href="https://tailwindcss.com"
+            class="text-foreground"
+            external
+            underline>Tailwind</Link
+          > y <Link
+            href="https://ui.shadcn.com"
+            class="text-foreground"
+            external
+            underline>shadcn/ui</Link
+          >. Basado en el tema <Link
+            href="https://github.com/jktrn/astro-erudite"
+            class="text-foreground"
+            underline
+            external>astro-erudite</Link
+          >.
+        </p>
+      </div>
+    </div>
+  </section>
+</Layout>

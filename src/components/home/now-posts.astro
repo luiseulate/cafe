@@ -1,0 +1,19 @@
+---
+import BlogCard from '@/components/blog-card.astro'
+import { SITE } from '@/consts'
+import { getRecentPosts } from '@/lib/data-utils'
+
+const blog = await getRecentPosts(SITE.featuredPostCount)
+---
+
+<section>
+  <ul class="flex flex-col">
+    {
+      blog.map((post) => (
+        <li>
+          <BlogCard entry={post} />
+        </li>
+      ))
+    }
+  </ul>
+</section>

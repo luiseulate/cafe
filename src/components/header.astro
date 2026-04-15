@@ -1,0 +1,45 @@
+---
+import Link from '@/components/link.astro'
+import { buttonVariants } from '@/components/ui/button'
+import { NAV_LINKS } from '@/consts'
+import { Icon } from 'astro-icon/components'
+import { Astronav, MenuIcon, MenuItems } from 'astro-navbar'
+---
+
+<Astronav>
+  <div class="w-full">
+    <div
+      class="mx-auto flex max-w-xl flex-wrap items-center justify-between gap-4 p-4"
+    >
+      <Link href="/" class="shrink-0">
+        <Icon name="lucide:coffee" class="size-5" />
+      </Link>
+      <MenuIcon class="size-5 cursor-pointer" />
+      <MenuItems class="hidden w-full">
+        <ul class="grid grid-cols-2 gap-2 sm:grid-cols-3">
+          {
+            NAV_LINKS.map((item) => (
+              <li>
+                <Link
+                  href={item.href}
+                  class={
+                    buttonVariants({ variant: 'outline' }) +
+                    ' w-full capitalize'
+                  }
+                >
+                  {item.icon && (
+                    <Icon
+                      name={item.icon}
+                      class="text-muted-foreground/40 size-3.5"
+                    />
+                  )}
+                  {item.label}
+                </Link>
+              </li>
+            ))
+          }
+        </ul>
+      </MenuItems>
+    </div>
+  </div>
+</Astronav>
