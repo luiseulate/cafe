@@ -35,22 +35,26 @@ const years = Object.keys(postsByYear).sort((a, b) => parseInt(b) - parseInt(a))
     Inicio
   </Link>
 
-  <div class="flex grow flex-col gap-y-12">
-    {
-      years.map((year) => (
-        <section class="flex flex-col gap-y-4">
-          <h2>{year}</h2>
-          <ul class="flex flex-col">
-            {postsByYear[year].map((post) => (
-              <li>
+  <section class="flex grow flex-col gap-2">
+    <h2>Blog</h2>
+
+    <div class="group/posts">
+      {
+        years.map((year) => (
+          <div class="relative overflow-hidden border-t">
+            <span class="text-muted-foreground pointer-events-none absolute top-3 text-sm tabular-nums select-none">
+              {year}
+            </span>
+            <div>
+              {postsByYear[year].map((post) => (
                 <BlogCard entry={post} />
-              </li>
-            ))}
-          </ul>
-        </section>
-      ))
-    }
-  </div>
+              ))}
+            </div>
+          </div>
+        ))
+      }
+    </div>
+  </section>
 
   <PaginationComponent
     currentPage={page.currentPage}

@@ -3,7 +3,7 @@ import BlogCard from '@/components/blog-card.astro'
 import Link from '@/components/link.astro'
 import PageHead from '@/components/page-head.astro'
 import Layout from '@/layouts/layout.astro'
-import { getAllTags, getPostsByTag } from '@/lib/data-utils'
+import { getAllTags, getPostsByTag, groupPostsByYear } from '@/lib/data-utils'
 import { Icon } from 'astro-icon/components'
 
 export async function getStaticPaths() {
@@ -25,6 +25,9 @@ export async function getStaticPaths() {
 }
 
 const { tag, posts } = Astro.props
+
+const postsByYear = groupPostsByYear(posts)
+const years = Object.keys(postsByYear).sort((a, b) => parseInt(b) - parseInt(a))
 ---
 
 <Layout class="max-w-xl">
@@ -43,18 +46,24 @@ const { tag, posts } = Astro.props
     Temas
   </Link>
 
-  <div class="flex flex-col gap-y-4">
+  <section class="flex flex-col gap-2">
     <h2 class="first-letter:capitalize">{tag}</h2>
-    {
-      (
-        <ul class="flex flex-col">
-          {posts.map((post) => (
-            <li>
-              <BlogCard entry={post} />
-            </li>
-          ))}
-        </ul>
-      )
-    }
-  </div>
+
+    <div class="group/posts">
+      {
+        years.map((year) => (
+          <div class="relative overflow-hidden border-t">
+            <span class="text-muted-foreground pointer-events-none absolute top-3 text-sm tabular-nums select-none">
+              {year}
+            </span>
+            <div>
+              {postsByYear[year].map((post) => (
+                <BlogCard entry={post} />
+              ))}
+            </div>
+          </div>
+        ))
+      }
+    </div>
+  </section>
 </Layout>

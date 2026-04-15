@@ -1,19 +1,30 @@
 ---
 import BlogCard from '@/components/blog-card.astro'
 import { SITE } from '@/consts'
-import { getRecentPosts } from '@/lib/data-utils'
+import { getRecentPosts, groupPostsByYear } from '@/lib/data-utils'
 
-const blog = await getRecentPosts(SITE.featuredPostCount)
+const posts = await getRecentPosts(SITE.featuredPostCount)
+const postsByYear = groupPostsByYear(posts)
+const years = Object.keys(postsByYear).sort((a, b) => Number(b) - Number(a))
 ---
 
-<section>
-  <ul class="flex flex-col">
+<section class="flex flex-col gap-2">
+  <h2>Blog</h2>
+
+  <div class="group/posts">
     {
-      blog.map((post) => (
-        <li>
-          <BlogCard entry={post} />
-        </li>
+      years.map((year) => (
+        <div class="relative overflow-hidden border-t">
+          <span class="text-muted-foreground pointer-events-none absolute top-3 text-sm tabular-nums select-none">
+            {year}
+          </span>
+          <div>
+            {postsByYear[year].map((post) => (
+              <BlogCard entry={post} />
+            ))}
+          </div>
+        </div>
       ))
     }
-  </ul>
+  </div>
 </section>
