@@ -10,14 +10,14 @@ type State =
 
 function GameCard({ game }: { game: NowCollectionData }) {
   return (
-    <div className="relative ml-12 flex flex-wrap items-center justify-between border-b py-3 last:border-b-0">
+    <div className="relative ml-12 flex items-center justify-between gap-x-4 border-b py-3 last:border-b-0">
       <div className="flex flex-wrap items-center gap-x-2 text-sm">
         <span>{game.name}</span>
         {game.developer && (
           <span className="text-muted-foreground/80">{game.developer}</span>
         )}
       </div>
-      <span className="text-muted-foreground/40 shrink-0 text-sm tabular-nums">
+      <span className="text-muted-foreground/40 shrink-0 self-start text-sm tabular-nums">
         {formatDateShort(game.releaseDate)}
       </span>
     </div>
@@ -39,7 +39,7 @@ function GameList({ state }: { state: State }) {
     return (
       <div className={wrapper}>
         <p className="text-muted-foreground py-3 text-sm">
-          Error al cargar la colección
+          No hay juegos para mostrar
         </p>
       </div>
     )

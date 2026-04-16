@@ -25,7 +25,7 @@ export default function GamepadAnimation({ playing }: Props) {
             <animate
               attributeName="fill-opacity"
               calcMode="discrete"
-              dur="3.2s"
+              dur="19.2s"
               repeatCount="indefinite"
               values="0;1;0;0;1;0"
             />
@@ -37,7 +37,7 @@ export default function GamepadAnimation({ playing }: Props) {
             <animate
               attributeName="fill-opacity"
               calcMode="discrete"
-              dur="2.6s"
+              dur="15.6s"
               repeatCount="indefinite"
               values="1;0;1;0;0;1"
             />
@@ -49,7 +49,7 @@ export default function GamepadAnimation({ playing }: Props) {
             <animate
               attributeName="fill-opacity"
               calcMode="discrete"
-              dur="2.8s"
+              dur="16.8s"
               repeatCount="indefinite"
               values="0;0;1;0;1;0"
             />
@@ -61,7 +61,7 @@ export default function GamepadAnimation({ playing }: Props) {
             <animate
               attributeName="fill-opacity"
               calcMode="discrete"
-              dur="2.4s"
+              dur="14.4s"
               repeatCount="indefinite"
               values="1;0;0;1;0;1"
             />

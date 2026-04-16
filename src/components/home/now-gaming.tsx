@@ -10,7 +10,7 @@ type State =
 
 function GamingCard({ state }: { state: State }) {
   const wrapper =
-    'relative ml-12 flex items-center justify-between border-b py-3 last:border-b-0'
+    'relative ml-12 flex items-center gap-x-4 justify-between border-b py-3 last:border-b-0'
 
   if (state.status === 'loading') {
     return (
@@ -36,12 +36,10 @@ function GamingCard({ state }: { state: State }) {
     <div className={wrapper}>
       <div className="flex flex-wrap items-center gap-x-2 text-sm">
         <span>{game}</span>
-        {!isPlaying && (
-          <span className="text-muted-foreground/80">{developer}</span>
-        )}
+        <span className="text-muted-foreground/80">{developer}</span>
       </div>
-      <span className="text-muted-foreground/40 shrink-0 text-sm tabular-nums">
-        {isPlaying ? developer : formatDateShort(playedAt)}
+      <span className="text-muted-foreground/40 shrink-0 self-start text-sm tabular-nums">
+        {isPlaying ? 'Ahora' : formatDateShort(playedAt)}
       </span>
     </div>
   )
