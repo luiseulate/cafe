@@ -16,19 +16,6 @@ export function formatDateShort(date: Date | string | null) {
   return format(new Date(date), 'dd/MM', { locale: es })
 }
 
-export function calculateWordCountFromHtml(
-  html: string | null | undefined,
-): number {
-  if (!html) return 0
-  const textOnly = html.replace(/<[^>]+>/g, '')
-  return textOnly.split(/\s+/).filter(Boolean).length
-}
-
-export function readingTime(wordCount: number): string {
-  const readingTimeMinutes = Math.max(1, Math.round(wordCount / 200))
-  return `${readingTimeMinutes} min`
-}
-
 export function getHeadingMargin(depth: number): string {
   const margins: Record<number, string> = {
     3: 'ml-4',

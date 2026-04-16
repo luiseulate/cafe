@@ -1,5 +1,4 @@
 import { getCollection, render, type CollectionEntry } from 'astro:content'
-import { readingTime, calculateWordCountFromHtml } from '@/lib/utils'
 
 export async function getAllPosts(): Promise<CollectionEntry<'blog'>[]> {
   const posts = await getCollection('blog')
@@ -190,30 +189,6 @@ export async function getPostById(
 export async function getSubpostCount(parentId: string): Promise<number> {
   const subposts = await getSubpostsForParent(parentId)
   return subposts.length
-}
-
-export async function getCombinedReadingTime(postId: string): Promise<string> {
-  const post = await getPostById(postId)
-  if (!post) return readingTime(0)
-
-  let totalWords = calculateWordCountFromHtml(post.body)
-
-  if (!isSubpost(postId)) {
-    const subposts = await getSubpostsForParent(postId)
-    for (const subpost of subposts) {
-      totalWords += calculateWordCountFromHtml(subpost.body)
-    }
-  }
-
-  return readingTime(totalWords)
-}
-
-export async function getPostReadingTime(postId: string): Promise<string> {
-  const post = await getPostById(postId)
-  if (!post) return readingTime(0)
-
-  const wordCount = calculateWordCountFromHtml(post.body)
-  return readingTime(wordCount)
 }
 
 export type TOCHeading = {
