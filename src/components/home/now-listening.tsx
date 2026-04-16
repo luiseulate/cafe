@@ -1,7 +1,6 @@
 import { useState, useEffect } from 'react'
 import AudioLines from '@/components/audio-lines'
 import { formatDateShort } from '@/lib/utils'
-import { Separator } from '@/components/ui/separator'
 
 interface NowListeningData {
   isPlaying: boolean
@@ -44,10 +43,7 @@ function Row({ state }: { state: State }) {
       <div className="flex flex-wrap items-center gap-x-2 text-sm">
         <span>{track}</span>
         {!isPlaying && (
-          <>
-            <Separator orientation="vertical" className="h-3!" />
-            <span className="text-muted-foreground">{artist}</span>
-          </>
+          <span className="text-muted-foreground/40">{artist}</span>
         )}
       </div>
       <span className="text-muted-foreground/40 shrink-0 text-sm tabular-nums">
@@ -89,7 +85,7 @@ export default function NowListening() {
 
       <div className="group/posts">
         <div className="relative overflow-hidden border-t">
-          <span className="text-muted-foreground pointer-events-none absolute top-3 text-sm tabular-nums select-none">
+          <span className="text-muted-foreground pointer-events-none absolute top-3 select-none">
             <AudioLines playing={isPlaying} />
           </span>
           <Row state={state} />
