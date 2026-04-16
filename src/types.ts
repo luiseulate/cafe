@@ -21,5 +21,5 @@ export type IconMap = {
 }
 
 export type GameIDs = {
-  switch: { id: number[] }
+  switch: { ids: number[] }
 }

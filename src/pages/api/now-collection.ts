@@ -58,10 +58,10 @@ async function getAccessToken(): Promise<string> {
 }
 
 async function fetchFromIgdb(): Promise<Game[]> {
-  const ids = IGDB_GAMES.flatMap((g) => g.switch.id)
+  const gameIDs = IGDB_GAMES.flatMap((g) => g.switch.ids)
   const accessToken = await getAccessToken()
 
-  const body = `fields name,first_release_date,involved_companies.developer,involved_companies.company.name; where id = (${ids.join(',')}); limit ${ids.length};`
+  const body = `fields name,first_release_date,involved_companies.developer,involved_companies.company.name; where id = (${gameIDs.join(',')}); limit ${gameIDs.length};`
 
   const res = await fetch('https://api.igdb.com/v4/games', {
     method: 'POST',
