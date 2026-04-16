@@ -23,7 +23,7 @@ import {
   hasSubposts,
   isSubpost,
 } from '@/lib/data-utils'
-import { formatDate } from '@/lib/utils'
+import { formatDateLong } from '@/lib/utils'
 import { Icon } from 'astro-icon/components'
 import { render } from 'astro:content'
 
@@ -102,7 +102,7 @@ const tocSections = await getTOCSections(currentPostId)
           <div
             class="flex w-full items-center justify-center gap-2 py-2 sm:w-fit sm:px-2 sm:py-0 first:sm:pl-0 last:sm:pr-0"
           >
-            <span>{formatDate(post.data.date)}</span>
+            <span>{formatDateLong(post.data.date)}</span>
           </div>
 
           <div

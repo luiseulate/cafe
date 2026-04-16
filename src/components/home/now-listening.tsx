@@ -1,4 +1,6 @@
 import { useState, useEffect } from 'react'
+import AudioLines from '@/components/audio-lines'
+import { formatDateShort } from '@/lib/utils'
 
 interface NowListeningData {
   isPlaying: boolean
@@ -14,7 +16,7 @@ type State =
 
 function Row({ state }: { state: State }) {
   const base =
-    'relative ml-16 flex flex-wrap items-center justify-between border-b py-3 last:border-b-0'
+    'relative ml-16 flex items-center justify-between border-b py-3 last:border-b-0'
 
   if (state.status === 'loading') {
     return (
@@ -36,12 +38,9 @@ function Row({ state }: { state: State }) {
 
   return (
     <div className={base}>
-      <p className="text-sm">
-        {isPlaying && 'Escuchando: '} {track}{' '}
-        <span className="text-muted-foreground">hace {playedAt}</span>
-      </p>
+      <p className="text-sm">{track}</p>
       <span className="text-muted-foreground/40 shrink-0 text-sm tabular-nums">
-        {artist}
+        {isPlaying ? artist : formatDateShort(playedAt)}
       </span>
     </div>
   )
@@ -71,17 +70,16 @@ export default function NowListening() {
     }
   }, [])
 
+  const isPlaying = state.status === 'success' && state.data.isPlaying
+
   return (
     <section className="flex flex-col gap-2">
       <h2>Música</h2>
 
       <div className="group/posts">
         <div className="relative overflow-hidden border-t">
-          <span
-            className="pointer-events-none absolute top-3 text-sm select-none"
-            aria-hidden="true"
-          >
-            🎵
+          <span className="text-muted-foreground pointer-events-none absolute top-3 text-sm tabular-nums select-none">
+            <AudioLines playing={isPlaying} />
           </span>
           <Row state={state} />
         </div>
