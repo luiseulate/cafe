@@ -1,6 +1,7 @@
 import { useState, useEffect } from 'react'
 import { formatDateShort } from '@/lib/utils'
 import type { Game } from '@/pages/api/now-collection'
+import { IGDB_GAMES } from '@/consts'
 
 type State =
   | { status: 'loading' }
@@ -98,7 +99,12 @@ export default function NowCollection() {
 
   return (
     <section className="flex flex-col gap-2">
-      <h2>Colección</h2>
+      <h2>
+        Nintendo Switch{' '}
+        <span className="text-muted-foreground/40">
+          ({IGDB_GAMES[0].switch.ids.length})
+        </span>
+      </h2>
       <div className="group/posts">
         <GameList state={state} />
       </div>
