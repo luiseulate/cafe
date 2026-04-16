@@ -1,4 +1,4 @@
-import type { SocialLink, Site } from '@/types'
+import type { SocialLink, Site, GameIDs } from '@/types'
 
 export const SITE: Site = {
   title: 'astro-cafe',
@@ -15,24 +15,30 @@ export const SITE: Site = {
 
 export const NAV_LINKS: SocialLink[] = [
   {
-    href: '/acerca',
-    label: 'acerca',
-    icon: 'lucide:user',
-  },
-  {
     href: '/blog',
     label: 'blog',
     icon: 'lucide:library-big',
   },
   {
-    href: '/temas',
-    label: 'temas',
-    icon: 'lucide:tag',
+    href: '/videojuegos',
+    label: 'videojuegos',
+    icon: 'lucide:gamepad-2',
   },
-
   {
     href: '/colofon',
     label: 'colofon',
     icon: 'lucide:palette',
+  },
+]
+
+export const IGDB_GAMES: GameIDs[] = [
+  {
+    switch: {
+      id: [
+        119402, 119388, 7346, 14593, 9643, 26758, 138227, 135243, 254339, 37001,
+        26226, 7344, 7342, 23733, 9061, 94873, 36911, 121760, 125587, 36952,
+        1331, 9174, 22917, 262529,
+      ],
+    },
   },
 ]

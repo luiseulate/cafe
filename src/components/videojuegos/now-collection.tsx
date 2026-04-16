@@ -1,0 +1,107 @@
+import { useState, useEffect } from 'react'
+import { formatDateShort } from '@/lib/utils'
+import type { Game } from '@/pages/api/now-collection'
+
+type State =
+  | { status: 'loading' }
+  | { status: 'success'; data: Game[] }
+  | { status: 'error' }
+
+function GameCard({ game }: { game: Game }) {
+  return (
+    <div className="relative ml-12 flex flex-wrap items-center justify-between border-b py-3 last:border-b-0">
+      <div className="flex flex-wrap items-center gap-x-2 text-sm">
+        <span>{game.name}</span>
+        {game.developer && (
+          <span className="text-muted-foreground/80">{game.developer}</span>
+        )}
+      </div>
+      <span className="text-muted-foreground/40 shrink-0 text-sm tabular-nums">
+        {formatDateShort(game.releaseDate)}
+      </span>
+    </div>
+  )
+}
+
+function GameList({ state }: { state: State }) {
+  const wrapper = 'relative overflow-hidden border-t'
+
+  if (state.status === 'loading') {
+    return (
+      <div className={wrapper}>
+        <p className="text-muted-foreground py-3 text-sm">Cargando…</p>
+      </div>
+    )
+  }
+
+  if (state.status === 'error') {
+    return (
+      <div className={wrapper}>
+        <p className="text-muted-foreground py-3 text-sm">
+          Error al cargar la colección
+        </p>
+      </div>
+    )
+  }
+
+  const gamesByYear: Record<string, Game[]> = {}
+  for (const game of state.data) {
+    const year = game.releaseDate
+      ? new Date(game.releaseDate).getFullYear().toString()
+      : 'Desconocido'
+    if (!gamesByYear[year]) gamesByYear[year] = []
+    gamesByYear[year].push(game)
+  }
+  const years = Object.keys(gamesByYear).sort((a, b) => Number(b) - Number(a))
+
+  return (
+    <>
+      {years.map((year) => (
+        <div key={year} className={wrapper}>
+          <span className="text-muted-foreground pointer-events-none absolute top-3 text-sm tabular-nums select-none">
+            {year}
+          </span>
+          <div>
+            {gamesByYear[year].map((game) => (
+              <GameCard key={game.id} game={game} />
+            ))}
+          </div>
+        </div>
+      ))}
+    </>
+  )
+}
+
+export default function NowCollection() {
+  const [state, setState] = useState<State>({ status: 'loading' })
+
+  useEffect(() => {
+    let cancelled = false
+
+    async function load() {
+      try {
+        const res = await fetch('/api/now-collection')
+        if (!res.ok) throw new Error(`HTTP ${res.status}`)
+        const data: Game[] = await res.json()
+        if (!cancelled) setState({ status: 'success', data })
+      } catch {
+        if (!cancelled) setState({ status: 'error' })
+      }
+    }
+
+    load()
+
+    return () => {
+      cancelled = true
+    }
+  }, [])
+
+  return (
+    <section className="flex flex-col gap-2">
+      <h2>Colección</h2>
+      <div className="group/posts">
+        <GameList state={state} />
+      </div>
+    </section>
+  )
+}

@@ -11,7 +11,7 @@ const { entry } = Astro.props
 
 <a
   href={`/${entry.collection}/${entry.id}`}
-  class="relative ml-16 flex items-center justify-between border-b py-3 transition-[opacity,border-color] duration-500 group-hover/posts:opacity-40 last:border-b-0 hover:opacity-100!"
+  class="relative ml-12 flex items-center justify-between border-b py-3 transition-[opacity,border-color] duration-500 group-hover/posts:opacity-40 last:border-b-0 hover:opacity-100!"
 >
   <p class="text-sm">{entry.data.title}</p>
   <span class="text-muted-foreground/40 shrink-0 text-sm tabular-nums"

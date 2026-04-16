@@ -19,3 +19,7 @@ export type SocialLink = {
 export type IconMap = {
   [key: string]: string
 }
+
+export type GameIDs = {
+  switch: { id: number[] }
+}

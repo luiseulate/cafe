@@ -1,0 +1,35 @@
+---
+import Link from '@/components/link.astro'
+import PageHead from '@/components/page-head.astro'
+import NowCollection from '@/components/videojuegos/now-collection'
+import Layout from '@/layouts/layout.astro'
+import { Icon } from 'astro-icon/components'
+---
+
+<Layout class="max-w-xl">
+  <PageHead slot="head" title="Videojuegos" />
+
+  <Link
+    href="/"
+    class="text-muted-foreground/40 hover:text-muted-foreground/80 flex items-center gap-1 text-sm"
+  >
+    <Icon name="lucide:chevron-left" class="size-4" />
+    Inicio
+  </Link>
+
+  <section>
+    <div class="min-w-full">
+      <div class="prose">
+        <p>
+          Mi colección de videojuegos. No es muy grande, pero cada uno tiene un
+          significado especial para mí. Desde aventuras épicas hasta juegos
+          indie únicos, cada título ha dejado una marca en mi vida de alguna
+          manera. Aquí comparto algunos de mis favoritos y las historias detrás
+          de ellos.
+        </p>
+      </div>
+    </div>
+  </section>
+
+  <NowCollection client:load />
+</Layout>

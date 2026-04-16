@@ -30,7 +30,7 @@ export default defineConfig({
     imageService: true,
     devImageService: 'sharp',
     isr: {
-      exclude: ['/api/now-listening'],
+      exclude: ['/api/now-listening', '/api/now-collection'],
     },
   }),
   vite: {
@@ -79,6 +79,14 @@ export default defineConfig({
         access: 'secret',
       }),
       STEAM_API_KEY: envField.string({
+        context: 'server',
+        access: 'secret',
+      }),
+      IGDB_CLIENT_ID: envField.string({
+        context: 'server',
+        access: 'secret',
+      }),
+      IGDB_CLIENT_SECRET: envField.string({
         context: 'server',
         access: 'secret',
       }),

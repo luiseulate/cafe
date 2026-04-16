@@ -14,13 +14,13 @@ type State =
   | { status: 'success'; data: NowListeningData }
   | { status: 'error' }
 
-function Row({ state }: { state: State }) {
-  const base =
-    'relative ml-16 flex items-center justify-between border-b py-3 last:border-b-0'
+function MusicCard({ state }: { state: State }) {
+  const wrapper =
+    'relative ml-12 flex items-center justify-between border-b py-3 last:border-b-0'
 
   if (state.status === 'loading') {
     return (
-      <div className={base}>
+      <div className={wrapper}>
         <p className="text-muted-foreground text-sm">Cargando…</p>
       </div>
     )
@@ -28,7 +28,7 @@ function Row({ state }: { state: State }) {
 
   if (state.status === 'error' || !state.data.track) {
     return (
-      <div className={base}>
+      <div className={wrapper}>
         <p className="text-muted-foreground text-sm">
           No hay canciones para mostrar
         </p>
@@ -39,11 +39,11 @@ function Row({ state }: { state: State }) {
   const { track, artist, isPlaying, playedAt } = state.data
 
   return (
-    <div className={base}>
+    <div className={wrapper}>
       <div className="flex flex-wrap items-center gap-x-2 text-sm">
         <span>{track}</span>
         {!isPlaying && (
-          <span className="text-muted-foreground/40">{artist}</span>
+          <span className="text-muted-foreground/80">{artist}</span>
         )}
       </div>
       <span className="text-muted-foreground/40 shrink-0 text-sm tabular-nums">
@@ -88,7 +88,7 @@ export default function NowListening() {
           <span className="text-muted-foreground pointer-events-none absolute top-3 select-none">
             <AudioLines playing={isPlaying} />
           </span>
-          <Row state={state} />
+          <MusicCard state={state} />
         </div>
       </div>
     </section>
