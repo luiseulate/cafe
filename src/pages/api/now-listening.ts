@@ -3,7 +3,7 @@ import { LASTFM_API_KEY, LASTFM_USERNAME } from 'astro:env/server'
 
 export const prerender = false
 
-interface NowListeningResponse {
+export interface NowListeningData {
   isPlaying: boolean
   track: string
   artist: string
@@ -33,7 +33,7 @@ type LastFmResponse = LastFmSuccess | LastFmError
 const CACHE_TTL_MS = 30_000 // 30 seconds
 
 interface CacheEntry {
-  data: NowListeningResponse
+  data: NowListeningData
   timestamp: number
 }
 
@@ -43,7 +43,7 @@ function isCacheValid(): boolean {
   return cache !== null && Date.now() - cache.timestamp < CACHE_TTL_MS
 }
 
-async function fetchFromLastFm(): Promise<NowListeningResponse> {
+async function fetchFromLastFm(): Promise<NowListeningData> {
   const url = new URL('https://ws.audioscrobbler.com/2.0/')
   url.searchParams.set('method', 'user.getrecenttracks')
   url.searchParams.set('user', LASTFM_USERNAME)
@@ -91,7 +91,7 @@ async function fetchFromLastFm(): Promise<NowListeningResponse> {
 }
 
 function jsonResponse(
-  body: NowListeningResponse | { error: string },
+  body: NowListeningData | { error: string },
   status: number,
   extraHeaders?: Record<string, string>,
 ): Response {

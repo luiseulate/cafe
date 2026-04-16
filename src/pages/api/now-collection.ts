@@ -4,7 +4,7 @@ import { IGDB_GAMES } from '@/consts'
 
 export const prerender = false
 
-export interface Game {
+export interface NowCollectionData {
   id: number
   name: string
   developer: string | null
@@ -29,7 +29,7 @@ interface TokenResponse {
 const CACHE_TTL_MS = 60 * 60 * 1000 // 1 hour
 
 interface CacheEntry {
-  data: Game[]
+  data: NowCollectionData[]
   timestamp: number
 }
 
@@ -45,38 +45,43 @@ async function getAccessToken(): Promise<string> {
   url.searchParams.set('client_secret', IGDB_CLIENT_SECRET)
   url.searchParams.set('grant_type', 'client_credentials')
 
-  const res = await fetch(url.toString(), {
+  const response = await fetch(url.toString(), {
     method: 'POST',
+    headers: { 'User-Agent': 'astro-cafe' },
     signal: AbortSignal.timeout(5_000),
   })
 
-  if (!res.ok)
-    throw new Error(`Twitch auth HTTP ${res.status}: ${res.statusText}`)
+  if (!response.ok)
+    throw new Error(
+      `Twitch auth HTTP ${response.status}: ${response.statusText}`,
+    )
 
-  const data: TokenResponse = await res.json()
+  const data: TokenResponse = await response.json()
   return data.access_token
 }
 
-async function fetchFromIgdb(): Promise<Game[]> {
+async function fetchFromIgdb(): Promise<NowCollectionData[]> {
   const gameIDs = IGDB_GAMES.flatMap((g) => g.switch.ids)
   const accessToken = await getAccessToken()
 
   const body = `fields name,first_release_date,involved_companies.developer,involved_companies.company.name; where id = (${gameIDs.join(',')}); limit ${gameIDs.length};`
 
-  const res = await fetch('https://api.igdb.com/v4/games', {
+  const response = await fetch('https://api.igdb.com/v4/games', {
     method: 'POST',
     headers: {
       'Client-ID': IGDB_CLIENT_ID,
       Authorization: `Bearer ${accessToken}`,
       'Content-Type': 'text/plain',
+      'User-Agent': 'astro-cafe',
     },
     body,
     signal: AbortSignal.timeout(5_000),
   })
 
-  if (!res.ok) throw new Error(`IGDB HTTP ${res.status}: ${res.statusText}`)
+  if (!response.ok)
+    throw new Error(`IGDB HTTP ${response.status}: ${response.statusText}`)
 
-  const games: IgdbGame[] = await res.json()
+  const games: IgdbGame[] = await response.json()
 
   return games
     .map((game) => {
@@ -100,7 +105,7 @@ async function fetchFromIgdb(): Promise<Game[]> {
 }
 
 function jsonResponse(
-  body: Game[] | { error: string },
+  body: NowCollectionData[] | { error: string },
   status: number,
   extraHeaders?: Record<string, string>,
 ): Response {

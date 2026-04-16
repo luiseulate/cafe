@@ -30,7 +30,7 @@ interface AppDetailsEntry {
   data?: AppDetailsData
 }
 
-const CACHE_TTL_MS = 30_000
+const CACHE_TTL_MS = 30_000 // 30 seconds
 
 interface CacheEntry {
   data: NowGamingData
@@ -46,12 +46,17 @@ function isCacheValid(): boolean {
 async function getGameDetails(
   appId: string | number,
 ): Promise<{ name: string | null; developer: string | null }> {
-  const res = await fetch(
-    `https://store.steampowered.com/api/appdetails?appids=${appId}&cc=es&l=spanish`,
-    { signal: AbortSignal.timeout(5_000) },
-  )
-  if (!res.ok) return { name: null, developer: null }
-  const data: Record<string, AppDetailsEntry> = await res.json()
+  const url = new URL('https://store.steampowered.com/api/appdetails')
+  url.searchParams.set('appids', String(appId))
+  url.searchParams.set('cc', 'es')
+  url.searchParams.set('l', 'spanish')
+
+  const response = await fetch(url.toString(), {
+    headers: { 'User-Agent': 'astro-cafe' },
+    signal: AbortSignal.timeout(5_000),
+  })
+  if (!response.ok) return { name: null, developer: null }
+  const data: Record<string, AppDetailsEntry> = await response.json()
   const entry = data[String(appId)]
   if (!entry?.success || !entry.data) return { name: null, developer: null }
   return {
@@ -61,10 +66,16 @@ async function getGameDetails(
 }
 
 async function fetchFromSteam(): Promise<NowGamingData> {
-  const summaryRes = await fetch(
-    `https://api.steampowered.com/ISteamUser/GetPlayerSummaries/v0002/?key=${STEAM_API_KEY}&steamids=${STEAM_ID}`,
-    { signal: AbortSignal.timeout(5_000) },
+  const summaryUrl = new URL(
+    'https://api.steampowered.com/ISteamUser/GetPlayerSummaries/v0002/',
   )
+  summaryUrl.searchParams.set('key', STEAM_API_KEY)
+  summaryUrl.searchParams.set('steamids', STEAM_ID)
+
+  const summaryRes = await fetch(summaryUrl.toString(), {
+    headers: { 'User-Agent': 'astro-cafe' },
+    signal: AbortSignal.timeout(5_000),
+  })
   if (!summaryRes.ok) {
     throw new Error(`Steam summaries HTTP ${summaryRes.status}`)
   }
@@ -86,10 +97,18 @@ async function fetchFromSteam(): Promise<NowGamingData> {
     }
   }
 
-  const ownedRes = await fetch(
-    `https://api.steampowered.com/IPlayerService/GetOwnedGames/v0001/?key=${STEAM_API_KEY}&steamid=${STEAM_ID}&include_appinfo=true&include_played_free_games=true`,
-    { signal: AbortSignal.timeout(5_000) },
+  const ownedUrl = new URL(
+    'https://api.steampowered.com/IPlayerService/GetOwnedGames/v0001/',
   )
+  ownedUrl.searchParams.set('key', STEAM_API_KEY)
+  ownedUrl.searchParams.set('steamid', STEAM_ID)
+  ownedUrl.searchParams.set('include_appinfo', 'true')
+  ownedUrl.searchParams.set('include_played_free_games', 'true')
+
+  const ownedRes = await fetch(ownedUrl.toString(), {
+    headers: { 'User-Agent': 'astro-cafe' },
+    signal: AbortSignal.timeout(5_000),
+  })
   if (!ownedRes.ok) {
     throw new Error(`Steam owned games HTTP ${ownedRes.status}`)
   }

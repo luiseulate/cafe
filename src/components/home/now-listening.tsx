@@ -1,13 +1,7 @@
 import { useState, useEffect } from 'react'
 import AudioAnimation from '@/components/audio-animation'
+import type { NowListeningData } from '@/pages/api/now-listening'
 import { formatDateShort } from '@/lib/utils'
-
-interface NowListeningData {
-  isPlaying: boolean
-  track: string
-  artist: string
-  playedAt: string | null
-}
 
 type State =
   | { status: 'loading' }
@@ -61,9 +55,9 @@ export default function NowListening() {
 
     async function load() {
       try {
-        const res = await fetch('/api/now-listening')
-        if (!res.ok) throw new Error(`HTTP ${res.status}`)
-        const data: NowListeningData = await res.json()
+        const response = await fetch('/api/now-listening')
+        if (!response.ok) throw new Error(`HTTP ${response.status}`)
+        const data: NowListeningData = await response.json()
         if (!cancelled) setState({ status: 'success', data })
       } catch {
         if (!cancelled) setState({ status: 'error' })

@@ -1,14 +1,14 @@
 import { useState, useEffect } from 'react'
 import { formatDateShort } from '@/lib/utils'
-import type { Game } from '@/pages/api/now-collection'
+import type { NowCollectionData } from '@/pages/api/now-collection'
 import { IGDB_GAMES } from '@/consts'
 
 type State =
   | { status: 'loading' }
-  | { status: 'success'; data: Game[] }
+  | { status: 'success'; data: NowCollectionData[] }
   | { status: 'error' }
 
-function GameCard({ game }: { game: Game }) {
+function GameCard({ game }: { game: NowCollectionData }) {
   return (
     <div className="relative ml-12 flex flex-wrap items-center justify-between border-b py-3 last:border-b-0">
       <div className="flex flex-wrap items-center gap-x-2 text-sm">
@@ -45,7 +45,7 @@ function GameList({ state }: { state: State }) {
     )
   }
 
-  const gamesByYear: Record<string, Game[]> = {}
+  const gamesByYear: Record<string, NowCollectionData[]> = {}
   for (const game of state.data) {
     const year = game.releaseDate
       ? new Date(game.releaseDate).getFullYear().toString()
@@ -81,9 +81,9 @@ export default function NowCollection() {
 
     async function load() {
       try {
-        const res = await fetch('/api/now-collection')
-        if (!res.ok) throw new Error(`HTTP ${res.status}`)
-        const data: Game[] = await res.json()
+        const response = await fetch('/api/now-collection')
+        if (!response.ok) throw new Error(`HTTP ${response.status}`)
+        const data: NowCollectionData[] = await response.json()
         if (!cancelled) setState({ status: 'success', data })
       } catch {
         if (!cancelled) setState({ status: 'error' })

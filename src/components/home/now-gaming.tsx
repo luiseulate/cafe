@@ -55,9 +55,9 @@ export default function NowGaming() {
 
     async function load() {
       try {
-        const res = await fetch('/api/now-gaming')
-        if (!res.ok) throw new Error(`HTTP ${res.status}`)
-        const data: NowGamingData = await res.json()
+        const response = await fetch('/api/now-gaming')
+        if (!response.ok) throw new Error(`HTTP ${response.status}`)
+        const data: NowGamingData = await response.json()
         if (!cancelled) setState({ status: 'success', data })
       } catch {
         if (!cancelled) setState({ status: 'error' })
