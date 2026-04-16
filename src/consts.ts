@@ -20,6 +20,11 @@ export const NAV_LINKS: SocialLink[] = [
     icon: 'lucide:library-big',
   },
   {
+    href: '/acerca',
+    label: 'acerca',
+    icon: 'lucide:user',
+  },
+  {
     href: '/videojuegos',
     label: 'videojuegos',
     icon: 'lucide:gamepad-2',
