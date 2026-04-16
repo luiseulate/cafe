@@ -30,7 +30,7 @@ export default defineConfig({
     imageService: true,
     devImageService: 'sharp',
     isr: {
-      exclude: ['/api/now-listening', '/api/now-collection'],
+      exclude: ['/api/now-listening', '/api/now-collection', '/api/now-gaming'],
     },
   }),
   vite: {
@@ -44,24 +44,6 @@ export default defineConfig({
 
   devToolbar: {
     enabled: false,
-  },
-
-  image: {
-    layout: 'constrained',
-    objectFit: 'cover',
-    domains: [
-      'lastfm.freetls.fastly.net',
-      'i.gr-assets.com',
-      'a.ltrbxd.com',
-      'steamcdn-a.akamaihd.net',
-      'images.igdb.com',
-      'avatars.githubusercontent.com',
-    ],
-    remotePatterns: [
-      {
-        protocol: 'https',
-      },
-    ],
   },
 
   env: {

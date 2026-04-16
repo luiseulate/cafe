@@ -1,4 +1,5 @@
 ---
+import NowGaming from '@/components/home/now-gaming'
 import NowIntro from '@/components/home/now-intro.astro'
 import NowListening from '@/components/home/now-listening'
 import NowPosts from '@/components/home/now-posts.astro'
@@ -11,4 +12,5 @@ import Layout from '@/layouts/layout.astro'
   <NowIntro />
   <NowPosts />
   <NowListening client:load />
+  <NowGaming client:load />
 </Layout>

@@ -1,20 +1,14 @@
 import { useState, useEffect } from 'react'
-import AudioAnimation from '@/components/audio-animation'
 import { formatDateShort } from '@/lib/utils'
-
-interface NowListeningData {
-  isPlaying: boolean
-  track: string
-  artist: string
-  playedAt: string | null
-}
+import type { NowGamingData } from '@/pages/api/now-gaming'
+import GamepadAnimation from '@/components/gamepad-animation'
 
 type State =
   | { status: 'loading' }
-  | { status: 'success'; data: NowListeningData }
+  | { status: 'success'; data: NowGamingData }
   | { status: 'error' }
 
-function MusicCard({ state }: { state: State }) {
+function GamingCard({ state }: { state: State }) {
   const wrapper =
     'relative ml-12 flex items-center justify-between border-b py-3 last:border-b-0'
 
@@ -26,34 +20,34 @@ function MusicCard({ state }: { state: State }) {
     )
   }
 
-  if (state.status === 'error' || !state.data.track) {
+  if (state.status === 'error' || !state.data.game) {
     return (
       <div className={wrapper}>
         <p className="text-muted-foreground text-sm">
-          No hay canciones para mostrar
+          No hay juegos para mostrar
         </p>
       </div>
     )
   }
 
-  const { track, artist, isPlaying, playedAt } = state.data
+  const { game, developer, isPlaying, playedAt } = state.data
 
   return (
     <div className={wrapper}>
       <div className="flex flex-wrap items-center gap-x-2 text-sm">
-        <span>{track}</span>
+        <span>{game}</span>
         {!isPlaying && (
-          <span className="text-muted-foreground/80">{artist}</span>
+          <span className="text-muted-foreground/80">{developer}</span>
         )}
       </div>
       <span className="text-muted-foreground/40 shrink-0 text-sm tabular-nums">
-        {isPlaying ? artist : formatDateShort(playedAt)}
+        {isPlaying ? developer : formatDateShort(playedAt)}
       </span>
     </div>
   )
 }
 
-export default function NowListening() {
+export default function NowGaming() {
   const [state, setState] = useState<State>({ status: 'loading' })
 
   useEffect(() => {
@@ -61,9 +55,9 @@ export default function NowListening() {
 
     async function load() {
       try {
-        const res = await fetch('/api/now-listening')
+        const res = await fetch('/api/now-gaming')
         if (!res.ok) throw new Error(`HTTP ${res.status}`)
-        const data: NowListeningData = await res.json()
+        const data: NowGamingData = await res.json()
         if (!cancelled) setState({ status: 'success', data })
       } catch {
         if (!cancelled) setState({ status: 'error' })
@@ -81,14 +75,14 @@ export default function NowListening() {
 
   return (
     <section className="flex flex-col gap-2">
-      <h2>Música</h2>
+      <h2>Videojuegos</h2>
 
       <div className="group/posts">
         <div className="relative overflow-hidden border-t">
           <span className="text-muted-foreground pointer-events-none absolute top-3 select-none">
-            <AudioAnimation playing={isPlaying} />
+            <GamepadAnimation playing={isPlaying} />
           </span>
-          <MusicCard state={state} />
+          <GamingCard state={state} />
         </div>
       </div>
     </section>

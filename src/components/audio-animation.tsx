@@ -2,15 +2,15 @@ interface Props {
   playing: boolean
 }
 
-export default function AudioLines({ playing }: Props) {
+export default function AudioAnimation({ playing }: Props) {
   return (
     <svg
       className="flex-none will-change-transform"
+      xmlns="http://www.w3.org/2000/svg"
       fill="currentColor"
       height="20"
       role="presentation"
       width="20"
-      xmlns="http://www.w3.org/2000/svg"
     >
       {playing ? (
         <>
