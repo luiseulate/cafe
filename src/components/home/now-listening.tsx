@@ -30,7 +30,9 @@ function Row({ state }: { state: State }) {
   if (state.status === 'error' || !state.data.track) {
     return (
       <div className={base}>
-        <p className="text-muted-foreground text-sm">Nada por ahora</p>
+        <p className="text-muted-foreground text-sm">
+          No hay canciones para mostrar
+        </p>
       </div>
     )
   }
