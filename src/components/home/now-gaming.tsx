@@ -9,8 +9,7 @@ type State =
   | { status: 'error' }
 
 function GamingCard({ state }: { state: State }) {
-  const wrapper =
-    'relative ml-12 flex items-center gap-x-4 justify-between border-b py-3 last:border-b-0'
+  const wrapper = 'ml-12 flex items-center gap-x-4 justify-between py-3'
 
   if (state.status === 'loading') {
     return (
@@ -72,17 +71,11 @@ export default function NowGaming() {
   const isPlaying = state.status === 'success' && state.data.isPlaying
 
   return (
-    <section className="flex flex-col gap-2">
-      <h2>Videojuegos</h2>
-
-      <div className="group/posts">
-        <div className="relative overflow-hidden border-t">
-          <span className="text-muted-foreground pointer-events-none absolute top-3 select-none">
-            <GamepadAnimation playing={isPlaying} />
-          </span>
-          <GamingCard state={state} />
-        </div>
-      </div>
-    </section>
+    <div className="relative overflow-hidden border-t">
+      <span className="text-muted-foreground pointer-events-none absolute top-3 select-none">
+        <GamepadAnimation playing={isPlaying} />
+      </span>
+      <GamingCard state={state} />
+    </div>
   )
 }
