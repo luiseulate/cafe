@@ -30,7 +30,12 @@ export default defineConfig({
     imageService: true,
     devImageService: 'sharp',
     isr: {
-      exclude: ['/api/now-listening', '/api/now-collection', '/api/now-gaming'],
+      exclude: [
+        '/api/now-listening',
+        '/api/now-collection',
+        '/api/now-gaming',
+        '/api/now-reading',
+      ],
     },
   }),
   vite: {
@@ -69,6 +74,10 @@ export default defineConfig({
         access: 'secret',
       }),
       IGDB_CLIENT_SECRET: envField.string({
+        context: 'server',
+        access: 'secret',
+      }),
+      GOODREADS_USER_ID: envField.string({
         context: 'server',
         access: 'secret',
       }),
