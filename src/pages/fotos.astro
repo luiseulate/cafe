@@ -1,15 +1,12 @@
 ---
 import Link from '@/components/link.astro'
 import PageHead from '@/components/page-head.astro'
-import AvatarComponent from '@/components/ui/avatar'
-import Birthday from '@/components/ui/birthday'
-import { SITE } from '@/consts'
 import Layout from '@/layouts/layout.astro'
 import { Icon } from 'astro-icon/components'
 ---
 
 <Layout class="max-w-xl">
-  <PageHead slot="head" title="Autores/as" />
+  <PageHead slot="head" title="Fotos" />
 
   <Link
     href="/"
@@ -33,27 +30,6 @@ import { Icon } from 'astro-icon/components'
           sit amet, consectetur adipiscing elit.
         </p>
       </div>
-    </div>
-  </section>
-
-  <section>
-    <div
-      class="hover:bg-muted/50 -mx-4 rounded-xl p-4 transition-colors duration-300 ease-in-out"
-    >
-      <Link href="/blog" class="flex grow flex-wrap items-center gap-4">
-        <AvatarComponent
-          client:load
-          src={SITE.avatar}
-          alt={SITE.author}
-          fallback="⌛"
-          className={`size-22 rounded-md *:data-[slot="avatar-fallback"]:rounded-md`}
-        />
-
-        <div class="flex flex-col gap-1">
-          <p class="font-medium">{SITE.author}</p>
-          <Birthday client:load birthday={SITE.birthday} />
-        </div>
-      </Link>
     </div>
   </section>
 </Layout>

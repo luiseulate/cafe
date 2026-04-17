@@ -5,8 +5,8 @@ export const SITE: Site = {
   description:
     'astro-cafe es un tema construido con Astro, Tailwind y shadcn/ui.',
   href: 'https://astro-cafe.vercel.app',
-  author: 'astro-cafe',
-  avatar: 'https://github.com/github.png',
+  author: 'Luis',
+  avatar: 'https://github.com/luiseulate.png',
   birthday: new Date('1985-06-21'),
   locale: 'es-ES',
   featuredPostCount: 6,
@@ -20,19 +20,14 @@ export const NAV_LINKS: SocialLink[] = [
     icon: 'lucide:library-big',
   },
   {
-    href: '/acerca',
-    label: 'acerca',
-    icon: 'lucide:user',
-  },
-  {
     href: '/videojuegos',
     label: 'videojuegos',
     icon: 'lucide:gamepad-2',
   },
   {
-    href: '/colofon',
-    label: 'colofon',
-    icon: 'lucide:palette',
+    href: '/fotos',
+    label: 'fotos',
+    icon: 'lucide:aperture',
   },
 ]
 
