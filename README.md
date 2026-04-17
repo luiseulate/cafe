@@ -30,7 +30,6 @@ Sitio personal construido con [Astro](https://astro.build/), [Tailwind CSS](http
 - **RSS** — feed en `/rss.xml` generado automáticamente.
 - **Sitemap** — generado automáticamente por `@astrojs/sitemap`.
 - **View Transitions** — navegación fluida entre páginas con la API nativa de Astro.
-- **Modo claro/oscuro** — tema automático con variables OKLCH y convenciones de shadcn/ui.
 
 ---
 
@@ -40,7 +39,7 @@ Sitio personal construido con [Astro](https://astro.build/), [Tailwind CSS](http
 | -------------- | ---------------------------------------------- |
 | `/`            | Inicio con presentación, posts recientes y log |
 | `/blog`        | Listado paginado de posts                      |
-| `/blog/[id]`   | Entrada de blog individual con TOC sidebar     |
+| `/blog/[id]`   | Entrada de blog individual                     |
 | `/temas`       | Índice de etiquetas                            |
 | `/temas/[id]`  | Posts filtrados por etiqueta                   |
 | `/acerca`      | Página del autor                               |
