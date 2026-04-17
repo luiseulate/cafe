@@ -43,7 +43,7 @@
 
     /* Don't use an <h1> in your posts, one is already generated in blog/[...id].astro */
     :where(h1):not(:where(.not-prose, .not-prose *)) {
-      @apply mt-0 mb-6 text-3xl;
+      @apply mt-0 mb-6 text-2xl;
     }
 
     :where(h2):not(:where(.not-prose, .not-prose *)) {
