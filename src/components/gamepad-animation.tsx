@@ -20,7 +20,7 @@ export default function GamepadAnimation({ playing }: Props) {
           <animateTransform
             attributeName="transform"
             type="rotate"
-            values="0 12 12; -5 12 12; 0 12 12; 5 12 12; 0 12 12; 0 12 12; 0 12 12"
+            values="0 12 12; -12 12 12; 0 12 12; 12 12 12; 0 12 12; 0 12 12; 0 12 12"
             keyTimes="0; 0.12; 0.25; 0.37; 0.5; 0.75; 1"
             dur="4s"
             repeatCount="indefinite"
