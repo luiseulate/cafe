@@ -35,6 +35,7 @@ export default defineConfig({
         '/api/now-collection',
         '/api/now-gaming',
         '/api/now-reading',
+        '/api/now-watching',
       ],
     },
   }),
@@ -78,6 +79,10 @@ export default defineConfig({
         access: 'secret',
       }),
       GOODREADS_USER_ID: envField.string({
+        context: 'server',
+        access: 'secret',
+      }),
+      LETTERBOXD_USER_ID: envField.string({
         context: 'server',
         access: 'secret',
       }),

@@ -3,6 +3,7 @@ import NowGaming from '@/components/home/now-gaming'
 import NowListening from '@/components/home/now-listening'
 import NowPosts from '@/components/home/now-posts.astro'
 import NowReading from '@/components/home/now-reading'
+import NowWatching from '@/components/home/now-watching'
 import Link from '@/components/link.astro'
 import PageHead from '@/components/page-head.astro'
 import AvatarComponent from '@/components/ui/avatar'
@@ -71,6 +72,7 @@ import Layout from '@/layouts/layout.astro'
     <div class="group/posts">
       <NowListening client:load />
       <NowGaming client:load />
+      <NowWatching client:load />
       <NowReading client:load />
     </div>
   </section>

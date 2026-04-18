@@ -1,0 +1,79 @@
+import { useState, useEffect } from 'react'
+import { Clapperboard } from 'lucide-react'
+import type { NowWatchingData } from '@/pages/api/now-watching'
+import { formatDateShort } from '@/lib/utils'
+
+type State =
+  | { status: 'loading' }
+  | { status: 'success'; data: NowWatchingData }
+  | { status: 'error' }
+
+function WatchingCard({ state }: { state: State }) {
+  const wrapper = 'ml-12 flex items-center gap-x-4 justify-between py-3'
+
+  if (state.status === 'loading') {
+    return (
+      <div className={wrapper}>
+        <p className="text-muted-foreground text-sm">Cargando…</p>
+      </div>
+    )
+  }
+
+  if (state.status === 'error' || !state.data.film) {
+    return (
+      <div className={wrapper}>
+        <p className="text-muted-foreground text-sm">
+          No hay películas para mostrar
+        </p>
+      </div>
+    )
+  }
+
+  const { film, year, watchedAt } = state.data
+
+  return (
+    <div className={wrapper}>
+      <div className="flex flex-wrap items-center gap-x-2 text-sm">
+        <span>{film}</span>
+        {year && <span className="text-muted-foreground/80">{year}</span>}
+      </div>
+      <span className="text-muted-foreground/40 shrink-0 self-start text-sm tabular-nums">
+        {formatDateShort(watchedAt)}
+      </span>
+    </div>
+  )
+}
+
+export default function NowWatching() {
+  const [state, setState] = useState<State>({ status: 'loading' })
+
+  useEffect(() => {
+    let cancelled = false
+
+    async function load() {
+      try {
+        const response = await fetch('/api/now-watching')
+        if (!response.ok) throw new Error(`HTTP ${response.status}`)
+        const data: NowWatchingData = await response.json()
+        if (!cancelled) setState({ status: 'success', data })
+      } catch {
+        if (!cancelled) setState({ status: 'error' })
+      }
+    }
+
+    load()
+
+    return () => {
+      cancelled = true
+    }
+  }, [])
+
+  return (
+    <div className="relative overflow-hidden border-t">
+      <span className="text-muted-foreground pointer-events-none absolute top-3 select-none">
+        <Clapperboard className="size-5" strokeWidth={1.5} />
+      </span>
+      <WatchingCard state={state} />
+    </div>
+  )
+}
