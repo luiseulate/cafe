@@ -1,8 +1,7 @@
 ---
 import Link from '@/components/link.astro'
 import PageHead from '@/components/page-head.astro'
-import NowPCCollection from '@/components/videojuegos/now-pc-collection'
-import NowSwitchCollection from '@/components/videojuegos/now-switch-collection'
+import NowCollection from '@/components/videojuegos/now-collection'
 import Layout from '@/layouts/layout.astro'
 import { Icon } from 'astro-icon/components'
 ---
@@ -34,18 +33,5 @@ import { Icon } from 'astro-icon/components'
     </div>
   </section>
 
-  <NowSwitchCollection client:load />
-
-  <section>
-    <div class="min-w-full">
-      <div class="prose">
-        <p>
-          En PC, suelo comprar juegos en ofertas o bundles, por lo que tengo una
-          gran cantidad de juegos pendientes.
-        </p>
-      </div>
-    </div>
-  </section>
-
-  <NowPCCollection client:load />
+  <NowCollection client:load />
 </Layout>

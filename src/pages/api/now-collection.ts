@@ -26,8 +26,6 @@ interface TokenResponse {
   expires_in: number
 }
 
-export type Platform = 'switch' | 'pc'
-
 const CACHE_TTL_MS = 60 * 60 * 1000 // 1 hour
 
 interface CacheEntry {
@@ -35,11 +33,10 @@ interface CacheEntry {
   timestamp: number
 }
 
-const cache: Partial<Record<Platform, CacheEntry>> = {}
+let cache: CacheEntry | null = null
 
-function isCacheValid(platform: Platform): boolean {
-  const entry = cache[platform]
-  return entry !== undefined && Date.now() - entry.timestamp < CACHE_TTL_MS
+function isCacheValid(): boolean {
+  return cache !== null && Date.now() - cache.timestamp < CACHE_TTL_MS
 }
 
 async function getAccessToken(): Promise<string> {
@@ -63,8 +60,8 @@ async function getAccessToken(): Promise<string> {
   return data.access_token
 }
 
-async function fetchFromIgdb(platform: Platform): Promise<NowCollectionData[]> {
-  const gameIDs = IGDB_GAMES.flatMap((g) => g[platform].ids)
+async function fetchFromIgdb(): Promise<NowCollectionData[]> {
+  const gameIDs = IGDB_GAMES.flatMap((g) => g.switch.ids)
   const accessToken = await getAccessToken()
 
   const body = `fields name,first_release_date,involved_companies.developer,involved_companies.company.name; where id = (${gameIDs.join(',')}); limit ${gameIDs.length};`
@@ -121,24 +118,17 @@ function jsonResponse(
   })
 }
 
-export const GET: APIRoute = async ({ request }) => {
-  const url = new URL(request.url)
-  const platformParam = url.searchParams.get('platform')
-  const platform: Platform =
-    platformParam === 'pc' || platformParam === 'switch'
-      ? platformParam
-      : 'switch'
-
-  if (isCacheValid(platform)) {
-    return jsonResponse(cache[platform]!.data, 200, {
+export const GET: APIRoute = async () => {
+  if (isCacheValid()) {
+    return jsonResponse(cache!.data, 200, {
       'Cache-Control': 'public, max-age=3600, stale-while-revalidate=7200',
       'X-Cache': 'HIT',
     })
   }
 
   try {
-    const data = await fetchFromIgdb(platform)
-    cache[platform] = { data, timestamp: Date.now() }
+    const data = await fetchFromIgdb()
+    cache = { data, timestamp: Date.now() }
 
     return jsonResponse(data, 200, {
       'Cache-Control': 'public, max-age=3600, stale-while-revalidate=7200',
@@ -148,8 +138,8 @@ export const GET: APIRoute = async ({ request }) => {
     const message = error instanceof Error ? error.message : 'Unknown error'
     console.error('[now-collection]', message)
 
-    if (cache[platform]) {
-      return jsonResponse(cache[platform]!.data, 200, {
+    if (cache) {
+      return jsonResponse(cache.data, 200, {
         'Cache-Control': 'public, max-age=300',
         'X-Cache': 'STALE',
       })

@@ -73,7 +73,7 @@ function GameList({ state }: { state: State }) {
   )
 }
 
-export default function NowSwitchCollection() {
+export default function NowCollection() {
   const [state, setState] = useState<State>({ status: 'loading' })
 
   useEffect(() => {
@@ -81,7 +81,7 @@ export default function NowSwitchCollection() {
 
     async function load() {
       try {
-        const response = await fetch('/api/now-collection?platform=switch')
+        const response = await fetch('/api/now-collection')
         if (!response.ok) throw new Error(`HTTP ${response.status}`)
         const data: NowCollectionData[] = await response.json()
         if (!cancelled) setState({ status: 'success', data })

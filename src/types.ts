@@ -22,5 +22,4 @@ export type IconMap = {
 
 export type GameIDs = {
   switch: { ids: number[] }
-  pc: { ids: number[] }
 }
