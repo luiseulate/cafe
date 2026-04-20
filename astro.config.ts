@@ -39,6 +39,10 @@ export default defineConfig({
       ],
     },
   }),
+  image: {
+    domains: ['avatars.githubusercontent.com'],
+    remotePatterns: [{ protocol: 'https' }],
+  },
   vite: {
     plugins: [tailwindcss()],
   },

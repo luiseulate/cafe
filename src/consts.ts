@@ -6,7 +6,7 @@ export const SITE: Site = {
     'astro-cafe es un tema construido con Astro, Tailwind y shadcn/ui.',
   href: 'https://astro-cafe.vercel.app',
   author: 'Luis',
-  avatar: 'https://github.com/luiseulate.png',
+  avatar: 'https://avatars.githubusercontent.com/luiseulate',
   birthday: new Date('1985-06-21'),
   locale: 'es-ES',
   featuredPostCount: 6,
