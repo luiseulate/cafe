@@ -16,7 +16,7 @@ const { entry } = Astro.props
   <div class="flex flex-wrap items-center gap-x-2 text-sm">
     <span>{entry.data.title}</span>
     <span class="text-muted-foreground/80 first-letter:capitalize"
-      >{entry.data.tags}</span
+      >{entry.data.tags?.[0]}</span
     >
   </div>
   <span
