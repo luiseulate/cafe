@@ -13,7 +13,12 @@ const { entry } = Astro.props
   href={`/${entry.collection}/${entry.id}`}
   class="relative ml-12 flex items-center justify-between gap-x-4 border-b py-3 transition-[opacity,border-color] duration-500 group-hover/posts:opacity-40 last:border-b-0 hover:opacity-100!"
 >
-  <p class="text-sm">{entry.data.title}</p>
+  <div class="flex flex-wrap items-center gap-x-2 text-sm">
+    <span>{entry.data.title}</span>
+    <span class="text-muted-foreground/80 first-letter:capitalize"
+      >{entry.data.tags}</span
+    >
+  </div>
   <span
     class="text-muted-foreground/40 shrink-0 self-start text-sm tabular-nums"
     >{formatDateShort(entry.data.date)}</span

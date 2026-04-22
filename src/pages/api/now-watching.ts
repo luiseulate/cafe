@@ -1,23 +1,37 @@
 import type { APIRoute } from 'astro'
 import { LETTERBOXD_USER_ID } from 'astro:env/server'
 import { XMLParser } from 'fast-xml-parser'
+import { decode } from 'html-entities'
 
 export const prerender = false
 
+interface XMLParserDocument<T> {
+  rss: T
+}
+
 export interface NowWatchingData {
-  film: string
-  year: string | null
-  watchedAt: string | null
+  title: string
+  rating: number
+  date: string
+  rewatch: boolean
 }
 
 interface LetterboxdItem {
-  'letterboxd:filmTitle'?: string | number
-  'letterboxd:filmYear'?: string | number
-  'letterboxd:watchedDate'?: string
+  guid: string
+  'letterboxd:filmTitle': string
+  'letterboxd:memberRating': number
+  'letterboxd:rewatch': 'No' | 'Yes'
+  'letterboxd:watchedDate': string
+  title: string
 }
 
-interface LetterboxdChannel {
-  item?: LetterboxdItem | LetterboxdItem[]
+interface LetterboxdResponse {
+  channel: {
+    description: string
+    item: LetterboxdItem[]
+    link: string
+    title: string
+  }
 }
 
 const CACHE_TTL_MS = 5 * 60 * 1000 // 5 minutes
@@ -33,6 +47,15 @@ function isCacheValid(): boolean {
   return cache !== null && Date.now() - cache.timestamp < CACHE_TTL_MS
 }
 
+function formatFilm(entry: LetterboxdItem): NowWatchingData {
+  return {
+    title: decode(entry['letterboxd:filmTitle']),
+    rating: entry['letterboxd:memberRating'],
+    date: entry['letterboxd:watchedDate'],
+    rewatch: entry['letterboxd:rewatch'] === 'Yes',
+  }
+}
+
 async function fetchFromLetterboxd(): Promise<NowWatchingData> {
   const url = `https://letterboxd.com/${LETTERBOXD_USER_ID}/rss/`
   const response = await fetch(url, {
@@ -46,37 +69,17 @@ async function fetchFromLetterboxd(): Promise<NowWatchingData> {
     )
   }
 
-  const xml = await response.text()
   const parser = new XMLParser()
-  const parsed: { rss?: { channel?: LetterboxdChannel } } = parser.parse(xml)
-  const raw = parsed?.rss?.channel?.item
+  const { rss }: XMLParserDocument<LetterboxdResponse> = parser.parse(
+    await response.text(),
+  )
+  const films = rss.channel.item
+    .filter((item): item is LetterboxdItem => 'letterboxd:watchedDate' in item)
+    .sort((a, b) =>
+      b['letterboxd:watchedDate'].localeCompare(a['letterboxd:watchedDate']),
+    )
 
-  if (!raw) {
-    return { film: '', year: null, watchedAt: null }
-  }
-
-  const items = Array.isArray(raw) ? raw : [raw]
-  const item = items[0]
-
-  const filmTitle = item['letterboxd:filmTitle']
-    ? String(item['letterboxd:filmTitle'])
-    : ''
-
-  const filmYear = item['letterboxd:filmYear']
-    ? String(item['letterboxd:filmYear'])
-    : null
-
-  const rawDate = item['letterboxd:watchedDate']
-  const watchedAt =
-    rawDate && String(rawDate).trim()
-      ? new Date(String(rawDate)).toISOString()
-      : null
-
-  return {
-    film: filmTitle,
-    year: filmYear,
-    watchedAt,
-  }
+  return formatFilm(films[0])
 }
 
 function jsonResponse(

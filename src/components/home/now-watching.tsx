@@ -1,5 +1,6 @@
 import { useState, useEffect } from 'react'
 import { Clapperboard } from 'lucide-react'
+import { StarsRating } from '@/components/ui/rating'
 import type { NowWatchingData } from '@/pages/api/now-watching'
 import { formatDateShort } from '@/lib/utils'
 
@@ -19,7 +20,7 @@ function WatchingCard({ state }: { state: State }) {
     )
   }
 
-  if (state.status === 'error' || !state.data.film) {
+  if (state.status === 'error' || !state.data) {
     return (
       <div className={wrapper}>
         <p className="text-muted-foreground text-sm">
@@ -29,16 +30,16 @@ function WatchingCard({ state }: { state: State }) {
     )
   }
 
-  const { film, year, watchedAt } = state.data
+  const { title, date, rating } = state.data
 
   return (
     <div className={wrapper}>
       <div className="flex flex-wrap items-center gap-x-2 text-sm">
-        <span>{film}</span>
-        {year && <span className="text-muted-foreground/80">{year}</span>}
+        <span>{title}</span>
+        <StarsRating rating={rating} />
       </div>
       <span className="text-muted-foreground/40 shrink-0 self-start text-sm tabular-nums">
-        {formatDateShort(watchedAt)}
+        {formatDateShort(date)}
       </span>
     </div>
   )
