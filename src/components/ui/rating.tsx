@@ -4,15 +4,16 @@ type RatingProps = {
 
 function HeartsRating({ rating }: RatingProps) {
   return (
-    <div className="flex items-center">
+    <div className="inline-flex items-center align-middle leading-none">
       <div
         aria-label={`${rating} de 5`}
-        className="relative -ml-px h-[19px] w-[96px]"
+        className="relative -ml-px inline-block h-[19px] w-[96px] align-middle"
         role="img"
         title={`${rating} de 5`}
+        style={{ width: 96, height: 19, minWidth: 96, minHeight: 19 }}
       >
         <svg
-          className="text-muted-foreground/20 absolute"
+          className="text-muted-foreground/40 absolute"
           width="96"
           height="19"
           viewBox="0 0 120 24"
@@ -46,7 +47,7 @@ function HeartsRating({ rating }: RatingProps) {
         </svg>
 
         <svg
-          className="text-muted-foreground/60 absolute"
+          className="text-muted-foreground/80 absolute"
           width="96"
           height="19"
           viewBox="0 0 120 24"
@@ -90,14 +91,14 @@ function StarsRating({ rating }: RatingProps) {
   return (
     <div className="inline-flex items-center align-middle leading-none">
       <div
-        aria-label={`${rating ?? 0} out of 5`}
+        aria-label={`${rating ?? 0} de 5`}
         className="relative -ml-px inline-block h-[14px] w-[72px] align-middle"
         role="img"
-        title={`${rating ?? 0} out of 5`}
+        title={`${rating ?? 0} de 5`}
         style={{ width: 72, height: 14, minWidth: 72, minHeight: 14 }}
       >
         <svg
-          className="text-muted-foreground/20 absolute"
+          className="text-muted-foreground/40 absolute"
           height="14"
           role="presentation"
           width="72"
@@ -110,7 +111,7 @@ function StarsRating({ rating }: RatingProps) {
           />
         </svg>
         <svg
-          className="text-muted-foreground/60 absolute"
+          className="text-muted-foreground/80 absolute"
           height="14"
           role="presentation"
           style={{
