@@ -1,8 +1,8 @@
 ---
-import NowGaming from '@/components/home/now-gaming'
 import NowListening from '@/components/home/now-listening'
 import NowPosts from '@/components/home/now-posts.astro'
 import NowReading from '@/components/home/now-reading'
+import NowRetroGaming from '@/components/home/now-retro-gaming'
 import NowWatching from '@/components/home/now-watching'
 import Link from '@/components/link.astro'
 import PageHead from '@/components/page-head.astro'
@@ -20,8 +20,7 @@ import { Image } from 'astro:assets'
       <div class="prose">
         <p>
           Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nullam quis
-          ligula lacinia, viverra nisl iaculis, maximus dui. Lorem ipsum dolor
-          sit amet, consectetur adipiscing elit.
+          ligula lacinia, viverra nisl iaculis, maximus dui.
         </p>
       </div>
     </div>
@@ -47,7 +46,8 @@ import { Image } from 'astro:assets'
       <div class="prose">
         <p>
           Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nullam quis
-          ligula lacinia, viverra nisl iaculis, maximus dui.
+          ligula lacinia, viverra nisl iaculis, maximus dui. Lorem ipsum dolor
+          sit amet, consectetur adipiscing elit.
         </p>
       </div>
     </div>
@@ -71,7 +71,7 @@ import { Image } from 'astro:assets'
 
     <div class="group/posts">
       <NowListening client:load />
-      <NowGaming client:load />
+      <NowRetroGaming client:load />
       <NowWatching client:load />
       <NowReading client:load />
     </div>

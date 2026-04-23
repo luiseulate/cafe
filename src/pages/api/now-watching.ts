@@ -58,6 +58,7 @@ function formatFilm(entry: LetterboxdItem): NowWatchingData {
 
 async function fetchFromLetterboxd(): Promise<NowWatchingData> {
   const url = `https://letterboxd.com/${LETTERBOXD_USER_ID}/rss/`
+
   const response = await fetch(url, {
     headers: { 'User-Agent': 'astro-cafe' },
     signal: AbortSignal.timeout(5_000),

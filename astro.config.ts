@@ -34,6 +34,7 @@ export default defineConfig({
         '/api/now-listening',
         '/api/now-collection',
         '/api/now-gaming',
+        '/api/now-retro-gaming',
         '/api/now-reading',
         '/api/now-watching',
       ],
@@ -87,6 +88,14 @@ export default defineConfig({
         access: 'secret',
       }),
       LETTERBOXD_USER_ID: envField.string({
+        context: 'server',
+        access: 'secret',
+      }),
+      RA_USER_ID: envField.string({
+        context: 'server',
+        access: 'secret',
+      }),
+      RA_API_KEY: envField.string({
         context: 'server',
         access: 'secret',
       }),
