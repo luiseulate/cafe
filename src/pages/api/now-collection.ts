@@ -26,7 +26,7 @@ interface TokenResponse {
   expires_in: number
 }
 
-const CACHE_TTL_MS = 60 * 60 * 1000 // 1 hour
+const CACHE_TTL_MS = 24 * 60 * 60 * 1000 // 24 hours
 
 interface CacheEntry {
   data: NowCollectionData[]
@@ -140,7 +140,7 @@ export const GET: APIRoute = async () => {
 
     if (cache) {
       return jsonResponse(cache.data, 200, {
-        'Cache-Control': 'public, max-age=300',
+        'Cache-Control': 'public, max-age=3600, stale-while-revalidate=7200',
         'X-Cache': 'STALE',
       })
     }
