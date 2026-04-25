@@ -70,8 +70,8 @@ export default function NowRetroGaming() {
 
   return (
     <div className="relative overflow-hidden border-t">
-      <span className="text-muted-foreground pointer-events-none absolute top-3 select-none">
-        <Gamepad2 className="size-5" strokeWidth={1.5} />
+      <span className="text-muted-foreground pointer-events-none absolute top-3.5 select-none">
+        <Gamepad2 className="size-4" strokeWidth={1.5} />
       </span>
       <RetroGamingCard state={state} />
     </div>

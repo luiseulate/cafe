@@ -71,8 +71,8 @@ export default function NowWatching() {
 
   return (
     <div className="relative overflow-hidden border-t">
-      <span className="text-muted-foreground pointer-events-none absolute top-3 select-none">
-        <Clapperboard className="size-5" strokeWidth={1.5} />
+      <span className="text-muted-foreground pointer-events-none absolute top-3.5 select-none">
+        <Clapperboard className="size-4" strokeWidth={1.5} />
       </span>
       <WatchingCard state={state} />
     </div>

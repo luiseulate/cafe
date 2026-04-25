@@ -68,8 +68,8 @@ export default function NowRunning() {
 
   return (
     <div className="relative overflow-hidden border-t">
-      <span className="text-muted-foreground pointer-events-none absolute top-3 select-none">
-        <Heart className="size-5" strokeWidth={1.5} />
+      <span className="text-muted-foreground pointer-events-none absolute top-3.5 select-none">
+        <Heart className="size-4" strokeWidth={1.5} />
       </span>
       <RunningCard state={state} />
     </div>

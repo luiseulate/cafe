@@ -72,7 +72,7 @@ export default function NowGaming() {
 
   return (
     <div className="relative overflow-hidden border-t">
-      <span className="text-muted-foreground pointer-events-none absolute top-3 select-none">
+      <span className="text-muted-foreground pointer-events-none absolute top-3.5 select-none">
         <GamepadAnimation playing={isPlaying} />
       </span>
       <GamingCard state={state} />

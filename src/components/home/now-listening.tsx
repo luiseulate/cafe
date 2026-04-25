@@ -72,7 +72,7 @@ export default function NowListening() {
 
   return (
     <div className="relative overflow-hidden border-t">
-      <span className="text-muted-foreground pointer-events-none absolute top-3 select-none">
+      <span className="text-muted-foreground pointer-events-none absolute top-3.5 select-none">
         <AudioAnimation playing={isPlaying} />
       </span>
       <MusicCard state={state} />
