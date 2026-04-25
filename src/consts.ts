@@ -9,7 +9,7 @@ export const SITE: Site = {
   avatar: 'https://avatars.githubusercontent.com/luiseulate',
   birthday: new Date('1985-06-21'),
   locale: 'es-ES',
-  featuredPostCount: 6,
+  featuredPostCount: 9,
   postsPerPage: 12,
 }
 

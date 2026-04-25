@@ -37,6 +37,7 @@ export default defineConfig({
         '/api/now-retro-gaming',
         '/api/now-reading',
         '/api/now-watching',
+        '/api/now-running',
       ],
     },
   }),
@@ -96,6 +97,18 @@ export default defineConfig({
         access: 'secret',
       }),
       RA_API_KEY: envField.string({
+        context: 'server',
+        access: 'secret',
+      }),
+      STRAVA_CLIENT_ID: envField.string({
+        context: 'server',
+        access: 'secret',
+      }),
+      STRAVA_CLIENT_SECRET: envField.string({
+        context: 'server',
+        access: 'secret',
+      }),
+      STRAVA_REFRESH_TOKEN: envField.string({
         context: 'server',
         access: 'secret',
       }),

@@ -84,12 +84,14 @@ export const GET: APIRoute = async () => {
   } catch (error) {
     const message = error instanceof Error ? error.message : 'Unknown error'
     console.error('[now-retro-gaming]', message)
-    if (cache && cache.data) {
+
+    if (cache) {
       return jsonResponse(cache.data, 200, {
         'Cache-Control': 'public, max-age=10',
         'X-Cache': 'STALE',
       })
     }
+
     return jsonResponse({ error: 'Failed to fetch retro gaming data' }, 502)
   }
 }

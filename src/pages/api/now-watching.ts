@@ -110,9 +110,19 @@ export const GET: APIRoute = async () => {
     cache = { data, timestamp: Date.now() }
     return jsonResponse(data, 200, {
       'Cache-Control': 'public, max-age=300, stale-while-revalidate=600',
+      'X-Cache': 'MISS',
     })
   } catch (error) {
     const message = error instanceof Error ? error.message : 'Unknown error'
-    return jsonResponse({ error: message }, 500)
+    console.error('[now-watching]', message)
+
+    if (cache?.data) {
+      return jsonResponse(cache.data, 200, {
+        'Cache-Control': 'public, max-age=300, stale-while-revalidate=600',
+        'X-Cache': 'STALE',
+      })
+    }
+
+    return jsonResponse({ error: 'No se pudo obtener película' }, 502)
   }
 }

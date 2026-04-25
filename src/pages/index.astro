@@ -3,6 +3,7 @@ import NowListening from '@/components/home/now-listening'
 import NowPosts from '@/components/home/now-posts.astro'
 import NowReading from '@/components/home/now-reading'
 import NowRetroGaming from '@/components/home/now-retro-gaming'
+import NowRunning from '@/components/home/now-running'
 import NowWatching from '@/components/home/now-watching'
 import Link from '@/components/link.astro'
 import PageHead from '@/components/page-head.astro'
@@ -67,13 +68,14 @@ import { Image } from 'astro:assets'
   </section>
 
   <section class="flex flex-col gap-2">
-    <h2>Log</h2>
+    <h2>Changelog</h2>
 
     <div class="group/posts">
       <NowListening client:load />
-      <NowRetroGaming client:load />
       <NowWatching client:load />
       <NowReading client:load />
+      <NowRetroGaming client:load />
+      <NowRunning client:load />
     </div>
   </section>
 </Layout>
