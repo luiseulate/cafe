@@ -9,11 +9,16 @@ export const SITE: Site = {
   avatar: 'https://avatars.githubusercontent.com/luiseulate',
   birthday: new Date('1985-06-21'),
   locale: 'es-ES',
-  featuredPostCount: 9,
+  featuredPostCount: 6,
   postsPerPage: 12,
 }
 
 export const NAV_LINKS: SocialLink[] = [
+  {
+    href: '/bio',
+    label: 'bio',
+    icon: 'lucide:user',
+  },
   {
     href: '/blog',
     label: 'blog',

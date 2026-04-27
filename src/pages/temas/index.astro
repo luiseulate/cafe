@@ -31,7 +31,7 @@ const sortedTags = await getSortedTags()
             'origin-center hover:scale-105',
           )}
         >
-          {tag}
+          <span class="first-letter:uppercase">{tag}</span>
           <span class="text-muted-foreground">({count})</span>
         </Link>
       ))
