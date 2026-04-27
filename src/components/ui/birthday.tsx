@@ -79,7 +79,7 @@ export default function Birthday({ birthday }: BirthdayInfoProps) {
 
   return (
     <div className="flex flex-col gap-y-1">
-      <div className="text-muted-foreground flex flex-wrap items-center gap-2 text-sm">
+      <div className="text-foreground/80 flex flex-wrap items-center gap-2 text-sm">
         <span className="tabular-nums">Lv. {age}</span>
         <Separator orientation="vertical" className="h-4!" />
         <span className="tabular-nums">Exp. {dayOf365}/365</span>

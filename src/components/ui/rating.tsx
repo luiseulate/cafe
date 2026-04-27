@@ -13,7 +13,7 @@ function HeartsRating({ rating }: RatingProps) {
         style={{ width: 96, height: 19, minWidth: 96, minHeight: 19 }}
       >
         <svg
-          className="text-muted-foreground/40 absolute"
+          className="text-muted-foreground/20 absolute"
           width="96"
           height="19"
           viewBox="0 0 120 24"
@@ -47,7 +47,7 @@ function HeartsRating({ rating }: RatingProps) {
         </svg>
 
         <svg
-          className="text-muted-foreground/80 absolute"
+          className="text-muted-foreground/40 absolute"
           width="96"
           height="19"
           viewBox="0 0 120 24"
@@ -98,7 +98,7 @@ function StarsRating({ rating }: RatingProps) {
         style={{ width: 72, height: 14, minWidth: 72, minHeight: 14 }}
       >
         <svg
-          className="text-muted-foreground/40 absolute"
+          className="text-muted-foreground/20 absolute"
           height="14"
           role="presentation"
           width="72"
@@ -111,7 +111,7 @@ function StarsRating({ rating }: RatingProps) {
           />
         </svg>
         <svg
-          className="text-muted-foreground/80 absolute"
+          className="text-muted-foreground/40 absolute"
           height="14"
           role="presentation"
           style={{

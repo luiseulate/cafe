@@ -35,7 +35,7 @@ function GamingCard({ state }: { state: State }) {
     <div className={wrapper}>
       <div className="flex flex-wrap items-center gap-x-2 text-sm">
         <span>{game}</span>
-        <span className="text-muted-foreground/80">{developer}</span>
+        <span className="text-muted-foreground/40">{developer}</span>
       </div>
       <span className="text-muted-foreground/40 shrink-0 self-start text-sm tabular-nums">
         {isPlaying ? 'Ahora' : formatDateShort(playedAt)}

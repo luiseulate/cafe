@@ -35,7 +35,7 @@ function ReadingCard({ state }: { state: State }) {
     <div className={wrapper}>
       <div className="flex flex-wrap items-center gap-x-2 text-sm">
         <span>{book}</span>
-        <span className="text-muted-foreground/80">{author}</span>
+        <span className="text-muted-foreground/40">{author}</span>
       </div>
       <span className="text-muted-foreground/40 shrink-0 self-start text-sm tabular-nums">
         {isReading ? 'Ahora' : formatDateShort(readAt)}

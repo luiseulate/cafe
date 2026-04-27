@@ -14,7 +14,7 @@ function GameCard({ game }: { game: NowCollectionData }) {
       <div className="flex flex-wrap items-center gap-x-2 text-sm">
         <span>{game.name}</span>
         {game.developer && (
-          <span className="text-muted-foreground/80">{game.developer}</span>
+          <span className="text-muted-foreground/40">{game.developer}</span>
         )}
       </div>
       <span className="text-muted-foreground/40 shrink-0 self-start text-sm tabular-nums">
