@@ -9,22 +9,13 @@ import PageHead from '@/components/page-head.astro'
 import Birthday from '@/components/ui/birthday'
 import { SITE } from '@/consts'
 import Layout from '@/layouts/layout.astro'
-import { Icon } from 'astro-icon/components'
 import { Image } from 'astro:assets'
 ---
 
 <Layout class="max-w-xl">
   <PageHead slot="head" title="Bio" />
 
-  <Link
-    href="/"
-    class="text-muted-foreground/40 hover:text-muted-foreground/80 flex items-center gap-1 text-sm"
-  >
-    <Icon name="lucide:chevron-left" class="size-4" />
-    Inicio
-  </Link>
-
-  <section class="flex flex-col gap-y-6">
+  <section class="flex flex-col gap-y-4">
     <Link href="/blog" class="group flex grow flex-wrap items-center gap-4">
       <Image
         src={SITE.avatar}

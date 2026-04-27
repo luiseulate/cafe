@@ -1,10 +1,8 @@
 ---
 import BlogCard from '@/components/blog-card.astro'
-import Link from '@/components/link.astro'
 import PageHead from '@/components/page-head.astro'
 import Layout from '@/layouts/layout.astro'
 import { getAllTags, getPostsByTag, groupPostsByYear } from '@/lib/data-utils'
-import { Icon } from 'astro-icon/components'
 
 export async function getStaticPaths() {
   const tagMap = await getAllTags()
@@ -37,14 +35,6 @@ const years = Object.keys(postsByYear).sort((a, b) => parseInt(b) - parseInt(a))
     description={`Una colección de artículos etiquetados con ${tag}.`}
     noindex
   />
-
-  <Link
-    href="/temas"
-    class="text-muted-foreground/40 hover:text-muted-foreground/80 flex items-center gap-1 text-sm"
-  >
-    <Icon name="lucide:chevron-left" class="size-4" />
-    Temas
-  </Link>
 
   <section class="flex flex-col gap-2">
     <h2 class="first-letter:uppercase">{tag}</h2>

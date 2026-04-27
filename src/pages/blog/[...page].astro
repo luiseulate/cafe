@@ -1,13 +1,11 @@
 ---
 import BlogCard from '@/components/blog-card.astro'
-import Link from '@/components/link.astro'
 import PageHead from '@/components/page-head.astro'
 import PaginationComponent from '@/components/ui/pagination'
 import { SITE } from '@/consts'
 import Layout from '@/layouts/layout.astro'
 import { getAllPosts, groupPostsByYear } from '@/lib/data-utils'
 import type { PaginateFunction } from 'astro'
-import { Icon } from 'astro-icon/components'
 
 export async function getStaticPaths({
   paginate,
@@ -26,14 +24,6 @@ const years = Object.keys(postsByYear).sort((a, b) => parseInt(b) - parseInt(a))
 
 <Layout class="max-w-xl">
   <PageHead slot="head" title="Blog" />
-
-  <Link
-    href="/"
-    class="text-muted-foreground/40 hover:text-muted-foreground/80 flex items-center gap-1 text-sm"
-  >
-    <Icon name="lucide:chevron-left" class="size-4" />
-    Inicio
-  </Link>
 
   <section class="flex grow flex-col gap-2">
     <h2>Blog</h2>

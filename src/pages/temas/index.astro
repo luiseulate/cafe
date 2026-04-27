@@ -5,21 +5,12 @@ import { badgeVariants } from '@/components/ui/badge'
 import Layout from '@/layouts/layout.astro'
 import { getSortedTags } from '@/lib/data-utils'
 import { cn } from '@/lib/utils'
-import { Icon } from 'astro-icon/components'
 
 const sortedTags = await getSortedTags()
 ---
 
 <Layout class="max-w-xl">
   <PageHead slot="head" title="Temas" />
-
-  <Link
-    href="/blog"
-    class="text-muted-foreground/40 hover:text-muted-foreground/80 flex items-center gap-1 text-sm"
-  >
-    <Icon name="lucide:chevron-left" class="size-4" />
-    Blog
-  </Link>
 
   <div class="flex flex-wrap gap-2">
     {
