@@ -1,6 +1,6 @@
 import { useState, useEffect } from 'react'
 import type { NowRunningData } from '@/pages/api/now-running'
-import { Heart } from 'lucide-react'
+import { Activity } from 'lucide-react'
 import { formatDateShort } from '@/lib/utils'
 
 type State =
@@ -69,7 +69,7 @@ export default function NowRunning() {
   return (
     <div className="relative overflow-hidden border-t">
       <span className="text-muted-foreground pointer-events-none absolute top-3.5 select-none">
-        <Heart className="size-4" strokeWidth={1.5} />
+        <Activity className="size-4" strokeWidth={1.5} />
       </span>
       <RunningCard state={state} />
     </div>
