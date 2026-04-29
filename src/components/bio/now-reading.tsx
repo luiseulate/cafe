@@ -19,7 +19,7 @@ function ReadingCard({ state }: { state: State }) {
     )
   }
 
-  if (state.status === 'error' || !state.data.book) {
+  if (state.status === 'error' || !state.data) {
     return (
       <div className={wrapper}>
         <p className="text-muted-foreground text-sm">
