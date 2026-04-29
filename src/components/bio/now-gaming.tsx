@@ -1,7 +1,7 @@
 import { useState, useEffect } from 'react'
 import { formatDateShort } from '@/lib/utils'
 import type { NowGamingData } from '@/pages/api/now-gaming'
-import GamepadAnimation from '@/components/gamepad-animation'
+import { GamepadAnimation } from '@/components/icon-animations'
 
 type State =
   | { status: 'loading' }

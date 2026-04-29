@@ -1,5 +1,5 @@
 import { useState, useEffect } from 'react'
-import AudioAnimation from '@/components/audio-animation'
+import { AudioAnimation } from '@/components/icon-animations'
 import type { NowListeningData } from '@/pages/api/now-listening'
 import { formatDateShort } from '@/lib/utils'
 

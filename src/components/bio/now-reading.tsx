@@ -1,5 +1,5 @@
 import { useState, useEffect } from 'react'
-import BookAnimation from '@/components/book-animation'
+import { BookAnimation } from '@/components/icon-animations'
 import type { NowReadingData } from '@/pages/api/now-reading'
 import { formatDateShort } from '@/lib/utils'
 
@@ -73,7 +73,7 @@ export default function NowReading() {
   return (
     <div className="relative overflow-hidden border-t">
       <span className="text-muted-foreground pointer-events-none absolute top-3.5 select-none">
-        <BookAnimation reading={isReading} />
+        <BookAnimation playing={isReading} />
       </span>
       <ReadingCard state={state} />
     </div>
