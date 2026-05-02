@@ -1,10 +1,9 @@
 ---
+import NowGaming from '@/components/bio/now-gaming'
 import NowListening from '@/components/bio/now-listening'
 import NowReading from '@/components/bio/now-reading'
-import NowRetroGaming from '@/components/bio/now-retro-gaming'
 import NowRunning from '@/components/bio/now-running'
 import NowWatching from '@/components/bio/now-watching'
-import Link from '@/components/link.astro'
 import PageHead from '@/components/page-head.astro'
 import Birthday from '@/components/ui/birthday'
 import { SITE } from '@/consts'
@@ -16,22 +15,20 @@ import { Image } from 'astro:assets'
   <PageHead slot="head" title="Bio" />
 
   <section class="flex flex-col gap-y-4">
-    <Link href="/blog" class="group flex grow flex-wrap items-center gap-4">
+    <div class="flex grow flex-wrap items-center gap-4">
       <Image
         src={SITE.avatar}
         alt={SITE.author}
         width={80}
         height={80}
-        class="bg-primary/10 rounded-md object-cover transition-transform duration-300 group-hover:scale-105"
+        class="bg-primary/10 pointer-events-none rounded-md object-cover select-none"
       />
 
-      <div
-        class="flex flex-col gap-0.5 transition-transform duration-300 group-hover:translate-x-0.5"
-      >
+      <div class="flex flex-col gap-0.5">
         <p class="font-medium">{SITE.author}</p>
         <Birthday client:load birthday={SITE.birthday} />
       </div>
-    </Link>
+    </div>
     <div class="min-w-full">
       <div class="prose">
         <p>
@@ -50,7 +47,7 @@ import { Image } from 'astro:assets'
       <NowListening client:load />
       <NowWatching client:load />
       <NowReading client:load />
-      <NowRetroGaming client:load />
+      <NowGaming client:load />
       <NowRunning client:load />
     </div>
   </section>

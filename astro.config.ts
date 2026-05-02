@@ -34,7 +34,6 @@ export default defineConfig({
         '/api/now-listening',
         '/api/now-collection',
         '/api/now-gaming',
-        '/api/now-retro-gaming',
         '/api/now-reading',
         '/api/now-watching',
         '/api/now-running',
