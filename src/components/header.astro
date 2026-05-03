@@ -16,22 +16,25 @@ import { Astronav, MenuIcon, MenuItems } from 'astro-navbar'
         <Icon name="lucide:coffee" class="size-5" />
       </Link>
       <MenuIcon class="size-5 cursor-pointer sm:hidden" />
-      <MenuItems class="hidden w-full sm:hidden">
-        <ul class="grid grid-cols-2 gap-2">
+      <MenuItems
+        class="hidden w-full sm:flex sm:w-auto sm:items-center sm:text-sm"
+      >
+        <ul class="grid grid-cols-2 gap-2 sm:contents">
           {
             NAV_LINKS.map((item) => (
-              <li>
+              <li class="sm:contents">
                 <Link
                   href={item.href}
                   class={cn(
                     buttonVariants({ variant: 'outline' }),
                     'text-foreground/60 hover:text-foreground w-full capitalize transition-colors duration-300',
+                    'sm:h-auto sm:w-auto sm:border-0 sm:hover:bg-transparent',
                   )}
                 >
                   {item.icon && (
                     <Icon
                       name={item.icon}
-                      class="text-muted-foreground/20 size-3.5"
+                      class="text-muted-foreground/20 size-3.5 sm:hidden"
                     />
                   )}
                   {item.label}
@@ -41,18 +44,6 @@ import { Astronav, MenuIcon, MenuItems } from 'astro-navbar'
           }
         </ul>
       </MenuItems>
-      <nav class="hidden items-center gap-4 text-sm sm:flex sm:gap-6">
-        {
-          NAV_LINKS.map((item) => (
-            <Link
-              href={item.href}
-              class="text-foreground/60 hover:text-foreground font-medium capitalize transition-colors duration-300"
-            >
-              {item.label}
-            </Link>
-          ))
-        }
-      </nav>
     </div>
   </div>
 </Astronav>

@@ -2,15 +2,11 @@
 import BlogCard from '@/components/blog-card.astro'
 import Link from '@/components/link.astro'
 import PageHead from '@/components/page-head.astro'
-import { badgeVariants } from '@/components/ui/badge'
 import PaginationComponent from '@/components/ui/pagination'
 import { SITE } from '@/consts'
 import Layout from '@/layouts/layout.astro'
-import { getAllPosts, getSortedTags, groupPostsByYear } from '@/lib/data-utils'
-import { cn } from '@/lib/utils'
+import { getAllPosts, groupPostsByYear } from '@/lib/data-utils'
 import type { PaginateFunction } from 'astro'
-
-const sortedTags = await getSortedTags()
 
 export async function getStaticPaths({
   paginate,
@@ -36,28 +32,15 @@ const years = Object.keys(postsByYear).sort((a, b) => parseInt(b) - parseInt(a))
         <p>
           Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nullam quis
           ligula lacinia, viverra nisl iaculis, maximus dui. Lorem ipsum dolor
-          sit amet, consectetur adipiscing elit.
+          sit amet, consectetur adipiscing <Link
+            href="/temas"
+            class="text-foreground"
+            underline>temas</Link
+          >.
         </p>
       </div>
     </div>
   </section>
-
-  <div class="flex flex-wrap gap-2">
-    {
-      sortedTags.map(({ tag, count }) => (
-        <Link
-          href={`/temas/${tag}`}
-          class={cn(
-            badgeVariants({ variant: 'muted' }),
-            'origin-center hover:scale-105',
-          )}
-        >
-          <span class="first-letter:uppercase">{tag}</span>
-          <span class="text-muted-foreground">({count})</span>
-        </Link>
-      ))
-    }
-  </div>
 
   <section class="flex grow flex-col gap-2">
     <h2>Blog</h2>

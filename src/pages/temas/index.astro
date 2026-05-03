@@ -12,6 +12,25 @@ const sortedTags = await getSortedTags()
 <Layout class="max-w-xl">
   <PageHead slot="head" title="Temas" />
 
+  <section>
+    <div class="min-w-full">
+      <div class="prose">
+        <p>
+          Aqui podrás encontrar artículos relacionados con diferentes temas.
+          Cada tema agrupa una colección de artículos que comparten una etiqueta
+          común.
+        </p>
+        <p>
+          Si quieres explorar todos los artículos, visita la página de <Link
+            href="/blog"
+            class="text-foreground"
+            underline>blog</Link
+          >.
+        </p>
+      </div>
+    </div>
+  </section>
+
   <div class="flex flex-wrap gap-2">
     {
       sortedTags.map(({ tag, count }) => (
