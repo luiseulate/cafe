@@ -2,24 +2,11 @@
 import BlogCard from '@/components/blog-card.astro'
 import Link from '@/components/link.astro'
 import PageHead from '@/components/page-head.astro'
-import PaginationComponent from '@/components/ui/pagination'
-import { SITE } from '@/consts'
 import Layout from '@/layouts/layout.astro'
 import { getAllPosts, groupPostsByYear } from '@/lib/data-utils'
-import type { PaginateFunction } from 'astro'
 
-export async function getStaticPaths({
-  paginate,
-}: {
-  paginate: PaginateFunction
-}) {
-  const allPosts = await getAllPosts()
-  return paginate(allPosts, { pageSize: SITE.postsPerPage })
-}
-
-const { page } = Astro.props
-
-const postsByYear = groupPostsByYear(page.data)
+const allPosts = await getAllPosts()
+const postsByYear = groupPostsByYear(allPosts)
 const years = Object.keys(postsByYear).sort((a, b) => parseInt(b) - parseInt(a))
 ---
 
@@ -42,8 +29,10 @@ const years = Object.keys(postsByYear).sort((a, b) => parseInt(b) - parseInt(a))
     </div>
   </section>
 
-  <section class="flex grow flex-col gap-2">
-    <h2>Blog</h2>
+  <section class="flex flex-col gap-2">
+    <h2>
+      Blog <span class="text-muted-foreground/40">({allPosts.length})</span>
+    </h2>
 
     <div class="group/posts">
       {
@@ -62,11 +51,4 @@ const years = Object.keys(postsByYear).sort((a, b) => parseInt(b) - parseInt(a))
       }
     </div>
   </section>
-
-  <PaginationComponent
-    currentPage={page.currentPage}
-    totalPages={page.lastPage}
-    baseUrl="/blog/"
-    client:load
-  />
 </Layout>

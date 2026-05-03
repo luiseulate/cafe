@@ -27,14 +27,14 @@ import { Astronav, MenuIcon, MenuItems } from 'astro-navbar'
                   href={item.href}
                   class={cn(
                     buttonVariants({ variant: 'outline' }),
-                    'text-foreground/60 hover:text-foreground w-full capitalize transition-colors duration-300',
-                    'sm:h-auto sm:w-auto sm:border-0 sm:hover:bg-transparent',
+                    'text-foreground w-full capitalize transition-colors duration-300',
+                    'sm:text-foreground/60 sm:hover:text-foreground sm:h-auto sm:w-auto sm:border-0 sm:hover:bg-transparent',
                   )}
                 >
                   {item.icon && (
                     <Icon
                       name={item.icon}
-                      class="text-muted-foreground/20 size-3.5 sm:hidden"
+                      class="text-muted-foreground/40 size-3.5 sm:hidden"
                     />
                   )}
                   {item.label}

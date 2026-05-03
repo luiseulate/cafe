@@ -9,7 +9,11 @@ const years = Object.keys(postsByYear).sort((a, b) => Number(b) - Number(a))
 ---
 
 <section class="flex flex-col gap-2">
-  <h2>Blog</h2>
+  <h2>
+    Reciente <span class="text-muted-foreground/40"
+      >({SITE.featuredPostCount})</span
+    >
+  </h2>
 
   <div class="group/posts">
     {
