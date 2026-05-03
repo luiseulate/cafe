@@ -31,12 +31,12 @@ export default defineConfig({
     devImageService: 'sharp',
     isr: {
       exclude: [
-        '/api/now-listening',
         '/api/now-collection',
         '/api/now-gaming',
+        '/api/now-listening',
         '/api/now-reading',
-        '/api/now-watching',
         '/api/now-running',
+        '/api/now-watching',
       ],
     },
   }),
@@ -88,14 +88,6 @@ export default defineConfig({
         access: 'secret',
       }),
       LETTERBOXD_USER_ID: envField.string({
-        context: 'server',
-        access: 'secret',
-      }),
-      RA_USER_ID: envField.string({
-        context: 'server',
-        access: 'secret',
-      }),
-      RA_API_KEY: envField.string({
         context: 'server',
         access: 'secret',
       }),
