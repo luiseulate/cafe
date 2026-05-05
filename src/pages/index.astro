@@ -1,5 +1,6 @@
 ---
 import NowPosts from '@/components/bio/now-posts.astro'
+import Link from '@/components/link.astro'
 import PageHead from '@/components/page-head.astro'
 import Layout from '@/layouts/layout.astro'
 ---
@@ -12,14 +13,9 @@ import Layout from '@/layouts/layout.astro'
     <div class="min-w-full">
       <div class="prose">
         <p>
-          Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nullam quis
-          ligula lacinia, viverra nisl iaculis, maximus dui. Lorem ipsum dolor
-          sit amet, consectetur adipiscing elit.
-        </p>
-        <p>
-          Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nullam quis
-          ligula lacinia, viverra nisl iaculis, maximus dui. Lorem ipsum dolor
-          sit amet, consectetur adipiscing elit.
+          Me llamo Luis, este es el rincón digital, aquí encontrarás
+          publicaciones sobre temas que despiertan mi curiosidad. ¡Gracias por
+          visitar!
         </p>
       </div>
     </div>
@@ -31,11 +27,15 @@ import Layout from '@/layouts/layout.astro'
     <h2>Ahora</h2>
     <div class="min-w-full">
       <div class="prose">
-        <p>
-          Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nullam quis
-          ligula lacinia, viverra nisl iaculis, maximus dui. Lorem ipsum dolor
-          sit amet, consectetur adipiscing elit.
-        </p>
+        <ul>
+          <li>
+            Aprendiendo edición de video con DaVinci Resolve.
+          </li>
+          <li>
+            Descubriendo el mundo de la inteligencia artificial y sus aplicaciones.
+          </li>
+          <li>Estudiando oposiciones.</li>
+        </ul>
       </div>
     </div>
   </section>
@@ -44,7 +44,14 @@ import Layout from '@/layouts/layout.astro'
     <h2>Conectar</h2>
     <div class="min-w-full">
       <div class="prose">
-        <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit.</p>
+        <p>
+          Puedes ver algunos de mis videos en <Link
+            href="https://www.youtube.com/"
+            class="text-foreground"
+            external
+            underline>YouTube</Link
+          >.
+        </p>
       </div>
     </div>
   </section>

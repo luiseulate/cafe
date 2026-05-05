@@ -32,9 +32,14 @@ import { Image } from 'astro:assets'
     <div class="min-w-full">
       <div class="prose">
         <p>
-          Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nullam quis
-          ligula lacinia, viverra nisl iaculis, maximus dui. Lorem ipsum dolor
-          sit amet, consectetur adipiscing elit.
+          Este blog es mi excusa y mi herramienta para aprender a redactar posts
+          sobre lo que me interesa: desde reflexiones sobre videojuegos,
+          recomendaciones de libros o algún truco tecnológico.
+        </p>
+        <p>
+          Si quieres conocerme un poco más, aquí tienes un vistazo a mi
+          actividad online, la música que escucho, los videojuegos que juego o
+          las películas que veo.
         </p>
       </div>
     </div>
@@ -49,6 +54,17 @@ import { Image } from 'astro:assets'
       <NowReading client:load />
       <NowGaming client:load />
       <NowRunning client:load />
+    </div>
+  </section>
+
+  <section class="flex flex-col gap-y-4">
+    <div class="min-w-full">
+      <div class="prose">
+        <p>
+          Si tienes alguna recomendación no dudes en contactar conmigo a través
+          de las redes sociales.
+        </p>
+      </div>
     </div>
   </section>
 </Layout>
