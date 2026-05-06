@@ -1,0 +1,50 @@
+---
+import BlogCard from '@/components/blog-card.astro'
+import PageHead from '@/components/page-head.astro'
+import Layout from '@/layouts/layout.astro'
+import { getAllAlbums, groupAlbumsByYear } from '@/lib/data-utils'
+
+const allAlbums = await getAllAlbums()
+const albumsByYear = groupAlbumsByYear(allAlbums)
+const years = Object.keys(albumsByYear).sort(
+  (a, b) => parseInt(b) - parseInt(a),
+)
+---
+
+<Layout class="max-w-xl">
+  <PageHead slot="head" title="Albums" />
+
+  <section>
+    <div class="min-w-full">
+      <div class="prose">
+        <p>
+          Una colección de álbumes organizados por año. Fotografías de viajes,
+          momentos y lugares que merecen ser recordados.
+        </p>
+      </div>
+    </div>
+  </section>
+
+  <section class="flex flex-col gap-2">
+    <h2>
+      Albums <span class="text-muted-foreground/40">({allAlbums.length})</span>
+    </h2>
+
+    <div class="group/posts">
+      {
+        years.map((year) => (
+          <div class="relative overflow-hidden border-t">
+            <span class="text-muted-foreground pointer-events-none absolute top-3 text-sm tabular-nums select-none">
+              {year}
+            </span>
+            <div>
+              {albumsByYear[year].map((album) => (
+                <BlogCard entry={album} />
+              ))}
+            </div>
+          </div>
+        ))
+      }
+    </div>
+  </section>
+</Layout>

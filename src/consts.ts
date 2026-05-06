@@ -30,8 +30,8 @@ export const NAV_LINKS: SocialLink[] = [
     icon: 'lucide:gamepad-2',
   },
   {
-    href: '/fotos',
-    label: 'fotos',
+    href: '/albums',
+    label: 'albums',
     icon: 'lucide:aperture',
   },
 ]

@@ -249,3 +249,186 @@ export async function getTOCSections(postId: string): Promise<TOCSection[]> {
 
   return sections
 }
+
+export async function getAllAlbums(): Promise<CollectionEntry<'albums'>[]> {
+  const albums = await getCollection('albums')
+  return albums
+    .filter((album) => !album.data.draft && !isSubpost(album.id))
+    .sort((a, b) => b.data.date.valueOf() - a.data.date.valueOf())
+}
+
+export async function getAllAlbumsAndSubalbums(): Promise<
+  CollectionEntry<'albums'>[]
+> {
+  const albums = await getCollection('albums')
+  return albums
+    .filter((album) => !album.data.draft)
+    .sort((a, b) => b.data.date.valueOf() - a.data.date.valueOf())
+}
+
+export async function getAdjacentAlbums(currentId: string): Promise<{
+  newer: CollectionEntry<'albums'> | null
+  older: CollectionEntry<'albums'> | null
+  parent: CollectionEntry<'albums'> | null
+}> {
+  const allAlbums = await getAllAlbums()
+
+  if (isSubpost(currentId)) {
+    const parentId = getParentId(currentId)
+    const parent = allAlbums.find((album) => album.id === parentId) || null
+
+    const albums = await getCollection('albums')
+    const subalbums = albums
+      .filter(
+        (album) =>
+          isSubpost(album.id) &&
+          getParentId(album.id) === parentId &&
+          !album.data.draft,
+      )
+      .sort((a, b) => {
+        const dateDiff = a.data.date.valueOf() - b.data.date.valueOf()
+        if (dateDiff !== 0) return dateDiff
+        return (a.data.order ?? 0) - (b.data.order ?? 0)
+      })
+
+    const currentIndex = subalbums.findIndex((album) => album.id === currentId)
+    if (currentIndex === -1) {
+      return { newer: null, older: null, parent }
+    }
+
+    return {
+      newer:
+        currentIndex < subalbums.length - 1
+          ? subalbums[currentIndex + 1]
+          : null,
+      older: currentIndex > 0 ? subalbums[currentIndex - 1] : null,
+      parent,
+    }
+  }
+
+  const parentAlbums = allAlbums.filter((album) => !isSubpost(album.id))
+  const currentIndex = parentAlbums.findIndex((album) => album.id === currentId)
+
+  if (currentIndex === -1) {
+    return { newer: null, older: null, parent: null }
+  }
+
+  return {
+    newer: currentIndex > 0 ? parentAlbums[currentIndex - 1] : null,
+    older:
+      currentIndex < parentAlbums.length - 1
+        ? parentAlbums[currentIndex + 1]
+        : null,
+    parent: null,
+  }
+}
+
+export async function getSubalbumsForParent(
+  parentId: string,
+): Promise<CollectionEntry<'albums'>[]> {
+  const albums = await getCollection('albums')
+  return albums
+    .filter(
+      (album) =>
+        !album.data.draft &&
+        isSubpost(album.id) &&
+        getParentId(album.id) === parentId,
+    )
+    .sort((a, b) => {
+      const dateDiff = a.data.date.valueOf() - b.data.date.valueOf()
+      if (dateDiff !== 0) return dateDiff
+      return (a.data.order ?? 0) - (b.data.order ?? 0)
+    })
+}
+
+export function groupAlbumsByYear(
+  albums: CollectionEntry<'albums'>[],
+): Record<string, CollectionEntry<'albums'>[]> {
+  return albums.reduce(
+    (acc: Record<string, CollectionEntry<'albums'>[]>, album) => {
+      const year = album.data.date.getFullYear().toString()
+      ;(acc[year] ??= []).push(album)
+      return acc
+    },
+    {},
+  )
+}
+
+export async function hasSubalbums(albumId: string): Promise<boolean> {
+  const subalbums = await getSubalbumsForParent(albumId)
+  return subalbums.length > 0
+}
+
+export async function getAlbumById(
+  albumId: string,
+): Promise<CollectionEntry<'albums'> | null> {
+  const allAlbums = await getAllAlbumsAndSubalbums()
+  return allAlbums.find((album) => album.id === albumId) || null
+}
+
+export async function getSubalbumCount(parentId: string): Promise<number> {
+  const subalbums = await getSubalbumsForParent(parentId)
+  return subalbums.length
+}
+
+export async function getTOCSectionsForAlbum(
+  albumId: string,
+): Promise<TOCSection[]> {
+  const album = await getAlbumById(albumId)
+  if (!album) return []
+
+  const parentId = isSubpost(albumId) ? getParentId(albumId) : albumId
+  const parentAlbum = isSubpost(albumId) ? await getAlbumById(parentId) : album
+
+  if (!parentAlbum) return []
+
+  const sections: TOCSection[] = []
+
+  const { headings: parentHeadings } = await render(parentAlbum)
+  if (parentHeadings.length > 0) {
+    sections.push({
+      type: 'parent',
+      title: 'Contenidos',
+      headings: parentHeadings.map((heading) => ({
+        slug: heading.slug,
+        text: heading.text,
+        depth: heading.depth,
+      })),
+    })
+  }
+
+  const subalbums = await getSubalbumsForParent(parentId)
+  for (const subalbum of subalbums) {
+    const { headings: subalbumHeadings } = await render(subalbum)
+    if (subalbumHeadings.length > 0) {
+      sections.push({
+        type: 'subpost',
+        title: subalbum.data.title,
+        headings: subalbumHeadings.map((heading, index) => ({
+          slug: heading.slug,
+          text: heading.text,
+          depth: heading.depth,
+          isSubpostTitle: index === 0,
+        })),
+        subpostId: subalbum.id,
+      })
+    }
+  }
+
+  return sections
+}
+
+export async function getAlbumImages(albumId: string) {
+  let images = import.meta.glob<{ default: ImageMetadata }>(
+    '/src/content/albums/**/*.{jpeg,jpg,png,gif,webp}',
+  )
+
+  images = Object.fromEntries(
+    Object.entries(images).filter(([key]) => key.includes(albumId)),
+  )
+  const resolvedImages = await Promise.all(
+    Object.values(images).map((image) => image().then((mod) => mod.default)),
+  )
+  resolvedImages.sort(() => Math.random() - 0.5)
+  return resolvedImages
+}

@@ -1,0 +1,129 @@
+---
+import PostHead from '@/components/post-head.astro'
+import PostNavigation from '@/components/post-navigation.astro'
+import SubpostsHeader from '@/components/subposts-header.astro'
+import SubpostsSidebar from '@/components/subposts-sidebar.astro'
+import TOCSidebar from '@/components/toc-sidebar.astro'
+import Layout from '@/layouts/layout.astro'
+
+import {
+  getAdjacentAlbums,
+  getAllAlbumsAndSubalbums,
+  getAlbumImages,
+  getParentId,
+  getTOCSectionsForAlbum,
+  hasSubalbums,
+  isSubpost,
+} from '@/lib/data-utils'
+import { formatDateLong } from '@/lib/utils'
+import { render } from 'astro:content'
+import { Image } from 'astro:assets'
+
+export async function getStaticPaths() {
+  const albums = await getAllAlbumsAndSubalbums()
+  return albums.map((album) => ({
+    params: { id: album.id },
+    props: album,
+  }))
+}
+
+const post = Astro.props
+const currentPostId = Astro.params.id
+const { Content } = await render(post)
+
+const isCurrentSubpost = isSubpost(currentPostId)
+const navigation = await getAdjacentAlbums(currentPostId)
+
+const hasChildPosts = await hasSubalbums(currentPostId)
+
+const tocSections = await getTOCSectionsForAlbum(currentPostId)
+const images = await getAlbumImages(currentPostId)
+---
+
+<Layout>
+  <PostHead slot="head" post={post} />
+  {
+    (hasChildPosts || isCurrentSubpost) && (
+      <SubpostsHeader
+        slot="subposts-navigation"
+        parentId={isCurrentSubpost ? getParentId(currentPostId) : currentPostId}
+      />
+    )
+  }
+
+  <section
+    class="grid grid-cols-[minmax(0px,1fr)_min(calc(var(--container-xl)-2rem),100%)_minmax(0px,1fr)] gap-y-6"
+  >
+    <section class="col-start-2 flex flex-col gap-y-1">
+      <h1
+        class="scroll-mt-31 text-2xl leading-tight font-medium"
+        id="post-title"
+      >
+        {post.data.title}
+      </h1>
+
+      <span class="text-muted-foreground/60 text-sm"
+        >{formatDateLong(post.data.date)}</span
+      >
+    </section>
+
+    {
+      tocSections.length > 0 && (
+        <TOCSidebar sections={tocSections} currentPostId={currentPostId} />
+      )
+    }
+
+    <article class="prose col-start-2 max-w-none">
+      <Content />
+    </article>
+
+    {
+      images.length > 0 && (
+        <div class="col-start-2 columns-1 gap-2 sm:columns-2">
+          {images.map((image) => (
+            <Image
+              src={image}
+              alt={post.data.title}
+              class="mb-2 w-full break-inside-avoid rounded-md object-cover last:mb-0"
+              widths={[400, 800]}
+              sizes="(max-width: 640px) 50vw, 33vw"
+            />
+          ))}
+        </div>
+      )
+    }
+
+    {
+      (hasChildPosts || isCurrentSubpost) && (
+        <SubpostsSidebar
+          parentId={
+            isCurrentSubpost ? getParentId(currentPostId) : currentPostId
+          }
+          className="w-64"
+        />
+      )
+    }
+
+    <PostNavigation
+      newerPost={navigation.newer}
+      olderPost={navigation.older}
+      parentPost={isCurrentSubpost ? navigation.parent : undefined}
+      basePath="albums"
+    />
+  </section>
+</Layout>
+
+<script>
+  const ensureKatexStyles = () => {
+    if (!document.querySelector('.katex')) return
+    if (document.querySelector('link[href*="katex.min.css"]')) return
+
+    const link = document.createElement('link')
+    link.rel = 'stylesheet'
+    link.href = 'https://cdn.jsdelivr.net/npm/katex@0.16.22/dist/katex.min.css'
+    document.head.appendChild(link)
+  }
+
+  document.addEventListener('astro:page-load', ensureKatexStyles)
+  document.addEventListener('astro:after-swap', ensureKatexStyles)
+</script>

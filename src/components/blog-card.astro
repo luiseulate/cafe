@@ -3,7 +3,7 @@ import { formatDateShort } from '@/lib/utils'
 import type { CollectionEntry } from 'astro:content'
 
 interface Props {
-  entry: CollectionEntry<'blog'>
+  entry: CollectionEntry<'blog'> | CollectionEntry<'albums'>
 }
 
 const { entry } = Astro.props
