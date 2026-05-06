@@ -79,12 +79,12 @@ const images = await getAlbumImages(currentPostId)
 
     {
       images.length > 0 && (
-        <div class="col-start-2 columns-1 gap-2 sm:columns-2">
+        <div class="col-start-2 columns-1 gap-4 sm:columns-2 sm:gap-2">
           {images.map((image) => (
             <Image
               src={image}
               alt={post.data.title}
-              class="bg-primary/10 mb-2 w-full break-inside-avoid rounded-md object-cover last:mb-0"
+              class="bg-primary/10 mb-4 w-full break-inside-avoid rounded-md object-cover last:mb-0 sm:mb-2"
               widths={[400, 800]}
               sizes="(max-width: 640px) 50vw, 33vw"
             />
