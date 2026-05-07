@@ -10,7 +10,6 @@ export const SITE: Site = {
   birthday: new Date('1985-06-21'),
   locale: 'es-ES',
   featuredPostCount: 6,
-  postsPerPage: 12,
 }
 
 export const NAV_LINKS: SocialLink[] = [

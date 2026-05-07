@@ -7,7 +7,6 @@ export type Site = {
   birthday: Date
   locale: string
   featuredPostCount: number
-  postsPerPage: number
 }
 
 export type SocialLink = {

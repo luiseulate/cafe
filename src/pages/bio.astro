@@ -4,6 +4,7 @@ import NowListening from '@/components/bio/now-listening'
 import NowReading from '@/components/bio/now-reading'
 import NowRunning from '@/components/bio/now-running'
 import NowWatching from '@/components/bio/now-watching'
+import Link from '@/components/link.astro'
 import PageHead from '@/components/page-head.astro'
 import Birthday from '@/components/ui/birthday'
 import { SITE } from '@/consts'
@@ -32,15 +33,43 @@ import { Image } from 'astro:assets'
     <div class="min-w-full">
       <div class="prose">
         <p>
-          Este blog es mi excusa y mi herramienta para aprender a redactar posts
-          sobre lo que me interesa: desde reflexiones sobre videojuegos,
-          recomendaciones de libros o algún truco tecnológico.
+          ¡Hola! Llevo varios años escribiendo en este blog y lo uso como
+          espacio para compartir las cosas que aprendo y experimento.
         </p>
         <p>
-          Si quieres conocerme un poco más, aquí tienes un vistazo a mi
-          actividad online, la música que escucho, los videojuegos que juego o
-          las películas que veo.
+          Aunque ahora procuro salir más, de pequeño prácticamente todo mi
+          tiempo libre lo pasaba delante del ordenador. Era un gran aficionado a
+          los videojuegos — entre mis favoritos están Assassin's Creed 2, Anno
+          1800 y Left 4 Dead 2. Pasar tantas horas con el ordenador fue lo que
+          me llevó a interesarme por la informática y acabar trabajando como
+          desarrollador de software.
         </p>
+        <p>
+          Cuando me planteé buscar un nuevo hobby más activo, algo hizo clic con
+          el deporte al aire libre. No soy especialmente atlético de naturaleza,
+          pero el running y el senderismo me engancharon enseguida. Mi objetivo
+          actual es ir mejorando tiempos y explorar más rutas por Navarra y
+          alrededores.
+        </p>
+        <p>
+          Mis otras aficiones incluyen la lectura y trastear con el código de
+          este blog. También tengo una relación intermitente con el gimnasio e
+          intento poco a poco incorporar el running a mi rutina para mejorar mi
+          forma física en general.
+        </p>
+      </div>
+    </div>
+  </section>
+
+  <section class="flex flex-col gap-y-4">
+    <h2>Ahora</h2>
+    <div class="min-w-full">
+      <div class="prose">
+        <ul>
+          <li>Edición de video con DaVinci Resolve.</li>
+          <li>Inteligencia artificial y sus aplicaciones.</li>
+          <li>Oposiciones.</li>
+        </ul>
       </div>
     </div>
   </section>
@@ -58,11 +87,39 @@ import { Image } from 'astro:assets'
   </section>
 
   <section class="flex flex-col gap-y-4">
+    <h2>Sobre este blog</h2>
     <div class="min-w-full">
       <div class="prose">
         <p>
+          Empecé este blog como un blog de programación, con la idea de escribir
+          con regularidad para superar el miedo a publicar y no saber qué
+          contar. Con el tiempo fui pivotando hacia otros temas — videojuegos,
+          libros y cualquier cosa que me llame la atención.
+        </p>
+        <p>
+          Como trato temas muy variados, dedico bastante tiempo a pensar en el
+          diseño y la estructura del blog. Parte de la diversión de mantenerlo
+          es precisamente esa faceta de diseño, así que a veces procrastino la
+          escritura trasteando con el código.
+        </p>
+        <p>
           Si tienes alguna recomendación no dudes en contactar conmigo a través
           de las redes sociales.
+        </p>
+      </div>
+    </div>
+  </section>
+  <section class="flex flex-col gap-y-4">
+    <h2>Conectar</h2>
+    <div class="min-w-full">
+      <div class="prose">
+        <p>
+          Puedes ver algunos de mis videos en <Link
+            href="https://www.youtube.com/"
+            class="text-foreground"
+            external
+            underline>YouTube</Link
+          >.
         </p>
       </div>
     </div>
