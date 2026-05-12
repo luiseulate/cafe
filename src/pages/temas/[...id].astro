@@ -52,7 +52,10 @@ const years = Object.keys(postsByYear).sort((a, b) => parseInt(b) - parseInt(a))
   </section>
 
   <section class="flex flex-col gap-2">
-    <h2 class="first-letter:uppercase">{tag}</h2>
+    <h2 class="first-letter:uppercase">
+      {tag}
+      <span class="text-muted-foreground/40">({posts.length})</span>
+    </h2>
 
     <div class="group/posts">
       {
