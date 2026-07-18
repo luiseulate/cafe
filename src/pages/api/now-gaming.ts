@@ -31,6 +31,7 @@ interface AppDetailsEntry {
 }
 
 const CACHE_TTL_MS = 30_000 // 30 seconds
+const EXCLUDED_APP_ID = 431960
 
 interface CacheEntry {
   data: NowGamingData
@@ -117,7 +118,7 @@ async function fetchFromSteam(): Promise<NowGamingData> {
   const games: OwnedGame[] = ownedData.response.games ?? []
 
   const lastGame = games
-    .filter((g) => g.rtime_last_played > 0)
+    .filter((g) => g.rtime_last_played > 0 && g.appid !== EXCLUDED_APP_ID)
     .sort((a, b) => b.rtime_last_played - a.rtime_last_played)[0]
 
   if (!lastGame) {

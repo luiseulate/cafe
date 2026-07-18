@@ -35,7 +35,6 @@ export default defineConfig({
         '/api/now-gaming',
         '/api/now-listening',
         '/api/now-reading',
-        '/api/now-running',
         '/api/now-watching',
       ],
     },
@@ -88,18 +87,6 @@ export default defineConfig({
         access: 'secret',
       }),
       LETTERBOXD_USER_ID: envField.string({
-        context: 'server',
-        access: 'secret',
-      }),
-      STRAVA_CLIENT_ID: envField.string({
-        context: 'server',
-        access: 'secret',
-      }),
-      STRAVA_CLIENT_SECRET: envField.string({
-        context: 'server',
-        access: 'secret',
-      }),
-      STRAVA_REFRESH_TOKEN: envField.string({
         context: 'server',
         access: 'secret',
       }),
