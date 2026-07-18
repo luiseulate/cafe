@@ -1,11 +1,78 @@
 ---
 import Link from '@/components/link.astro'
+import { NAV_LINKS } from '@/consts'
 ---
 
-<div class="w-full border-t">
-  <footer class="mx-auto flex max-w-xl items-center justify-center p-4">
-    <p class="text-muted-foreground text-xs">
-      Hecho con ☕ y <Link href="/colofon" underline>Astro</Link>
-    </p>
-  </footer>
-</div>
+<footer class="bg-background/80 border-t backdrop-blur-md">
+  <div class="w-full">
+    <div class="mx-auto flex max-w-xl flex-col gap-6 px-4 py-12">
+      <div
+        class="grid grid-cols-1 gap-6 sm:grid-cols-2 lg:grid-cols-3 lg:gap-8"
+      >
+        <div>
+          <h4 class="text-foreground mb-3 text-sm">Menú</h4>
+          <nav class="flex flex-col gap-2">
+            {
+              NAV_LINKS.map((item) => (
+                <li class="contents">
+                  <Link
+                    href={item.href}
+                    class="text-foreground/60 hover:text-foreground w-full text-sm capitalize transition-colors duration-300"
+                  >
+                    {item.label}
+                  </Link>
+                </li>
+              ))
+            }
+          </nav>
+        </div>
+
+        <div>
+          <h4 class="text-foreground mb-3 text-sm">Conectar</h4>
+          <nav class="flex flex-col gap-2">
+            <Link
+              href="https://youtube.com/@luiseulate"
+              class="text-muted-foreground hover:text-primary text-sm transition-colors"
+              external
+            >
+              YouTube
+            </Link>
+            <Link
+              href="https://www.instagram.com/luiseulate"
+              class="text-muted-foreground hover:text-primary text-sm transition-colors"
+              external
+            >
+              Instagram
+            </Link>
+          </nav>
+        </div>
+
+        <div>
+          <h4 class="text-foreground mb-3 text-sm">Tech</h4>
+          <nav class="flex flex-col gap-2">
+            <Link
+              href="/uses"
+              class="text-muted-foreground hover:text-primary text-sm transition-colors"
+            >
+              Uses
+            </Link>
+            <Link
+              href="/colofón"
+              class="text-muted-foreground hover:text-primary text-sm transition-colors"
+            >
+              Colofón
+            </Link>
+          </nav>
+        </div>
+      </div>
+
+      <div class="bg-border h-px" aria-hidden="true"></div>
+
+      <p class="text-muted-foreground/80 text-center text-xs">
+        Hecho con ☕ y <Link href="https://astro.build" underline external
+          >Astro</Link
+        >
+      </p>
+    </div>
+  </div>
+</footer>

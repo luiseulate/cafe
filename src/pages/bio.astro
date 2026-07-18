@@ -29,38 +29,41 @@ import { Image } from 'astro:assets'
         <Birthday client:load birthday={SITE.birthday} />
       </div>
     </div>
-    <div class="min-w-full">
-      <div class="prose">
-        <p>
-          ¡Hola! Llevo varios años escribiendo en este blog y lo uso como
-          espacio para compartir las cosas que aprendo y experimento.
-        </p>
-        <p>
-          Aunque ahora procuro salir más, de pequeño prácticamente todo mi
-          tiempo libre lo pasaba delante del ordenador. Era un gran aficionado a
-          los videojuegos — entre mis favoritos están Assassin's Creed 2, Anno
-          1800 y Left 4 Dead 2. Pasar tantas horas con el ordenador fue lo que
-          me llevó a interesarme por la informática y acabar trabajando como
-          desarrollador de software.
-        </p>
-        <p>
-          Cuando me planteé buscar un nuevo hobby más activo, algo hizo clic con
-          el deporte al aire libre. No soy especialmente atlético de naturaleza,
-          pero el running y el senderismo me engancharon enseguida. Mi objetivo
-          actual es ir mejorando tiempos y explorar más rutas por Navarra y
-          alrededores.
-        </p>
-        <p>
-          Mis otras aficiones incluyen la lectura y trastear con el código de
-          este blog. También tengo una relación intermitente con el gimnasio e
-          intento poco a poco incorporar el running a mi rutina para mejorar mi
-          forma física en general.
-        </p>
-        <p>
-          Si quieres conocerme un poco más, aquí tienes un vistazo a mi
-          actividad online, la música que escucho, los videojuegos que juego o
-          las películas que veo.
-        </p>
+
+    <div class="flex flex-col gap-2">
+      <h2>👋</h2>
+      <div class="min-w-full">
+        <div class="prose">
+          <p>
+            ¡Hola! Llevo varios años escribiendo en este blog y lo uso como
+            espacio para compartir las cosas que aprendo y experimento.
+          </p>
+          <p>
+            Aunque ahora procuro salir más, de pequeño prácticamente todo mi
+            tiempo libre lo pasaba delante del ordenador. Era un gran aficionado
+            a los videojuegos — entre mis favoritos están Assassin's Creed 2,
+            Anno 1800 y Left 4 Dead 2. Pasar tantas horas con el ordenador fue
+            lo que me llevó a interesarme por la informática y acabar trabajando
+            como desarrollador de software.
+          </p>
+          <p>
+            Cuando me planteé buscar un nuevo hobby más activo, algo hizo clic
+            con el deporte al aire libre. No soy especialmente atlético de
+            naturaleza, pero el running y el senderismo me engancharon
+            enseguida. Mi objetivo actual es ir mejorando tiempos y explorar más
+            rutas por Navarra y alrededores.
+          </p>
+          <p>
+            Mis otras aficiones incluyen la lectura y trastear con el código de
+            este blog. También tengo una relación intermitente con el gimnasio e
+            intento poco a poco incorporar el running a mi rutina para mejorar
+            mi forma física en general.
+          </p>
+          <p>
+            Si quieres conocerme un poco más, aquí tienes las canciones, los
+            videojuegos, los libros o las películas más recientes.
+          </p>
+        </div>
       </div>
     </div>
   </section>
@@ -76,16 +79,21 @@ import { Image } from 'astro:assets'
     </div>
   </section>
 
-  <section class="flex flex-col gap-y-4">
+  <section class="flex flex-col gap-y-2">
     <h2>Conectar</h2>
     <div class="min-w-full">
       <div class="prose">
         <p>
           Puedes ver algunos de mis videos en <Link
-            href="https://www.youtube.com/@luiseulate"
+            href="https://youtube.com/@luiseulate"
             class="text-foreground"
             external
             underline>YouTube</Link
+          > o seguirme en <Link
+            href="https://www.instagram.com/luiseulate"
+            class="text-foreground"
+            external
+            underline>Instagram</Link
           >.
         </p>
       </div>

@@ -1,10 +1,10 @@
 import type { SocialLink, Site, GameIDs } from '@/types'
 
 export const SITE: Site = {
-  title: 'astro-cafe',
+  title: 'luis-cafe',
   description:
-    'astro-cafe es un tema construido con Astro, Tailwind y shadcn/ui.',
-  href: 'https://astro-cafe.vercel.app',
+    'luis-cafe es un tema construido con Astro, Tailwind y shadcn/ui.',
+  href: 'https://luis.cafe',
   author: 'Luis',
   avatar: 'https://avatars.githubusercontent.com/luiseulate',
   birthday: new Date('1985-06-21'),
