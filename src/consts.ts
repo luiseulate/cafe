@@ -1,9 +1,9 @@
 import type { SocialLink, Site, GameIDs } from '@/types'
 
 export const SITE: Site = {
-  title: 'luis-cafe',
+  title: 'luis.cafe',
   description:
-    'luis-cafe es un tema construido con Astro, Tailwind y shadcn/ui.',
+    'luis.cafe es un tema construido con Astro, Tailwind y shadcn/ui.',
   href: 'https://luis.cafe',
   author: 'Luis',
   avatar: 'https://avatars.githubusercontent.com/luiseulate',

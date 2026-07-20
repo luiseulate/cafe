@@ -1,78 +1,76 @@
 ---
 import Link from '@/components/link.astro'
-import { NAV_LINKS } from '@/consts'
+import { NAV_LINKS, SITE } from '@/consts'
 ---
 
 <footer class="bg-background/80 border-t backdrop-blur-md">
-  <div class="w-full">
-    <div class="mx-auto flex max-w-xl flex-col gap-6 px-4 py-12">
-      <div
-        class="grid grid-cols-1 gap-6 sm:grid-cols-2 lg:grid-cols-3 lg:gap-8"
-      >
-        <div>
-          <h4 class="text-foreground mb-3 text-sm">Menú</h4>
-          <nav class="flex flex-col gap-2">
-            {
-              NAV_LINKS.map((item) => (
-                <li class="contents">
-                  <Link
-                    href={item.href}
-                    class="text-foreground/60 hover:text-foreground w-full text-sm capitalize transition-colors duration-300"
-                  >
-                    {item.label}
-                  </Link>
-                </li>
-              ))
-            }
-          </nav>
-        </div>
-
-        <div>
-          <h4 class="text-foreground mb-3 text-sm">Conectar</h4>
-          <nav class="flex flex-col gap-2">
-            <Link
-              href="https://youtube.com/@luiseulate"
-              class="text-muted-foreground hover:text-primary text-sm transition-colors"
-              external
-            >
-              YouTube
-            </Link>
-            <Link
-              href="https://www.instagram.com/luiseulate"
-              class="text-muted-foreground hover:text-primary text-sm transition-colors"
-              external
-            >
-              Instagram
-            </Link>
-          </nav>
-        </div>
-
-        <div>
-          <h4 class="text-foreground mb-3 text-sm">Tech</h4>
-          <nav class="flex flex-col gap-2">
-            <Link
-              href="/uses"
-              class="text-muted-foreground hover:text-primary text-sm transition-colors"
-            >
-              Uses
-            </Link>
-            <Link
-              href="/colofón"
-              class="text-muted-foreground hover:text-primary text-sm transition-colors"
-            >
-              Colofón
-            </Link>
-          </nav>
-        </div>
+  <div class="mx-auto flex max-w-xl flex-col px-4 py-12">
+    <div class="grid grid-cols-1 gap-8 sm:grid-cols-3">
+      <div>
+        <h4 class="text-foreground mb-3 text-sm">Menú</h4>
+        <nav class="flex flex-col gap-2">
+          {
+            NAV_LINKS.map((item) => (
+              <Link
+                href={item.href}
+                class="text-foreground/60 hover:text-foreground w-full text-sm capitalize transition-colors duration-300"
+              >
+                {item.label}
+              </Link>
+            ))
+          }
+        </nav>
       </div>
 
-      <div class="bg-border h-px" aria-hidden="true"></div>
+      <div>
+        <h4 class="text-foreground mb-3 text-sm">Tech</h4>
+        <nav class="flex flex-col gap-2">
+          <Link
+            href="/uses"
+            class="text-foreground/60 hover:text-foreground text-sm transition-colors"
+          >
+            Uses
+          </Link>
+          <Link
+            href="/colofón"
+            class="text-foreground/60 hover:text-foreground text-sm transition-colors"
+          >
+            Colofón
+          </Link>
+        </nav>
+      </div>
 
-      <p class="text-muted-foreground/80 text-center text-xs">
-        Hecho con ☕ y <Link href="https://astro.build" underline external
-          >Astro</Link
-        >
-      </p>
+      <div>
+        <h4 class="text-foreground mb-3 text-sm">Social</h4>
+        <nav class="flex flex-col gap-2">
+          <Link
+            href="https://youtube.com/@luiseulate"
+            class="text-foreground/60 hover:text-foreground text-sm transition-colors"
+            external
+          >
+            YouTube
+          </Link>
+          <Link
+            href="https://www.instagram.com/luiseulate"
+            class="text-foreground/60 hover:text-foreground text-sm transition-colors"
+            external
+          >
+            Instagram
+          </Link>
+        </nav>
+      </div>
+    </div>
+  </div>
+
+  <div class="mx-auto flex max-w-xl flex-col p-4">
+    <div
+      class="text-foreground/40 flex flex-col items-center gap-2 text-xs sm:flex-row sm:justify-between"
+    >
+      <div class="text-center sm:text-left">
+        &copy; {new Date().getFullYear()}
+        {SITE.title}. All rights reserved.
+      </div>
+      <span> Hecho con ☕ y 🤍</span>
     </div>
   </div>
 </footer>
