@@ -1,76 +1,60 @@
 ---
 import Link from '@/components/link.astro'
-import { NAV_LINKS, SITE } from '@/consts'
+import { Separator } from '@/components/ui/separator'
+import { Icon } from 'astro-icon/components'
+import { getSecret } from 'astro:env/server'
+
+const commitSha = getSecret('VERCEL_GIT_COMMIT_SHA')?.slice(0, 7) ?? '🤷‍♂️'
 ---
 
 <footer class="bg-background/40 border-border/60 border-t backdrop-blur-xl">
-  <div class="mx-auto flex max-w-xl flex-col px-4 py-12">
-    <div class="grid grid-cols-1 gap-8 sm:grid-cols-3">
-      <div>
-        <h4 class="text-foreground mb-3 text-sm">Menú</h4>
-        <nav class="flex flex-col gap-2">
-          {
-            NAV_LINKS.map((item) => (
-              <Link
-                href={item.href}
-                class="text-foreground/60 hover:text-foreground w-full text-sm capitalize transition-colors duration-300"
-              >
-                {item.label}
-              </Link>
-            ))
-          }
-        </nav>
-      </div>
-
-      <div>
-        <h4 class="text-foreground mb-3 text-sm">Tech</h4>
-        <nav class="flex flex-col gap-2">
-          <Link
-            href="/uses"
-            class="text-foreground/60 hover:text-foreground text-sm transition-colors"
-          >
-            Uses
-          </Link>
-          <Link
-            href="/colofón"
-            class="text-foreground/60 hover:text-foreground text-sm transition-colors"
-          >
-            Colofón
-          </Link>
-        </nav>
-      </div>
-
-      <div>
-        <h4 class="text-foreground mb-3 text-sm">Social</h4>
-        <nav class="flex flex-col gap-2">
-          <Link
-            href="https://youtube.com/@luiseulate"
-            class="text-foreground/60 hover:text-foreground text-sm transition-colors"
-            external
-          >
-            YouTube
-          </Link>
-          <Link
-            href="https://www.instagram.com/luiseulate"
-            class="text-foreground/60 hover:text-foreground text-sm transition-colors"
-            external
-          >
-            Instagram
-          </Link>
-        </nav>
+  <div class="mx-auto flex max-w-xl flex-col gap-12 p-4 pt-8">
+    <div class="flex justify-center sm:justify-start">
+      <div class="flex items-center gap-4">
+        <div
+          class="border-border/60 bg-background text-primary flex h-12 w-12 items-center justify-center rounded-lg border"
+        >
+          <Icon name="lucide:sprout" class="size-5" />
+        </div>
+        <div class="flex flex-col items-start text-left">
+          <h3 class="text-foreground text-sm">Creado desde la verde Navarra</h3>
+          <span class="text-foreground/40 text-xs">
+            Última actualización:
+            <Link
+              href="https://github.com/luiseulate/cafe"
+              class="text-foreground/60 hover:text-foreground transition-colors"
+              external
+            >
+              {commitSha}
+            </Link>
+          </span>
+        </div>
       </div>
     </div>
   </div>
 
   <div class="mx-auto flex max-w-xl flex-col p-4">
     <div
-      class="text-foreground/40 flex flex-col items-center gap-2 text-xs sm:flex-row sm:justify-between"
+      class="text-foreground/60 flex flex-col items-center gap-2 text-xs sm:flex-row sm:justify-between"
     >
-      <div class="text-center sm:text-left">
-        &copy; {new Date().getFullYear()}
-        {SITE.title}. All rights reserved.
-      </div>
-      <span> Hecho con ☕ y 🤍</span>
+      <nav class="flex flex-wrap items-center gap-2">
+        <Link
+          href="/uses"
+          class="text-foreground/60 hover:text-foreground transition-colors"
+          underline
+        >
+          Uses
+        </Link>
+        <Separator orientation="vertical" className="h-4!" />
+        <Link
+          href="/colofón"
+          class="text-foreground/60 hover:text-foreground transition-colors"
+          underline
+        >
+          Colofón
+        </Link>
+      </nav>
+      <span class="text-foreground/60">Hecho con ☕ y 🤍</span>
     </div>
   </div>
 </footer>
