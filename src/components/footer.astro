@@ -23,6 +23,7 @@ const commitSha = getSecret('VERCEL_GIT_COMMIT_SHA')?.slice(0, 7) ?? '🤷‍♂
             <Link
               href="https://github.com/luiseulate/cafe"
               class="text-foreground/60 hover:text-foreground transition-colors"
+              underline
               external
             >
               {commitSha}
