@@ -13,10 +13,8 @@ function GameCard({ game }: { game: NowCollectionData }) {
     <div className="relative ml-12 flex items-center justify-between gap-x-4 border-b py-3 last:border-b-0">
       <div className="flex flex-wrap items-center gap-x-2 text-sm">
         <span>{game.name}</span>
-        {game.developers.length > 0 && (
-          <span className="text-muted-foreground/40">
-            {game.developers.join(', ')}
-          </span>
+        {game.developer && (
+          <span className="text-muted-foreground/40">{game.developer}</span>
         )}
       </div>
       <span className="text-muted-foreground/40 shrink-0 self-start text-sm tabular-nums">
