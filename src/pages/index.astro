@@ -1,19 +1,44 @@
 ---
-import NowPosts from '@/components/bio/now-posts.astro'
+import NowGaming from '@/components/home/now-gaming'
+import NowListening from '@/components/home/now-listening'
+import NowPosts from '@/components/home/now-posts.astro'
+import NowReading from '@/components/home/now-reading'
+import NowWatching from '@/components/home/now-watching'
+import Link from '@/components/link.astro'
 import PageHead from '@/components/page-head.astro'
+import Birthday from '@/components/ui/birthday'
+import { SITE } from '@/consts'
 import Layout from '@/layouts/layout.astro'
+import { Image } from 'astro:assets'
 ---
 
 <Layout class="max-w-xl">
   <PageHead slot="head" title="Inicio" />
 
-  <section class="flex flex-col gap-y-4">
-    <h2>It's-a-me!</h2>
+  <section
+    class="bg-background/40 border-border/60 flex flex-col gap-y-6 rounded-lg border p-4 backdrop-blur-xl"
+  >
+    <div class="flex grow flex-wrap items-center gap-4">
+      <Image
+        src={SITE.avatar}
+        alt={SITE.author}
+        width={80}
+        height={80}
+        class="bg-primary/10 pointer-events-none rounded-md object-cover select-none"
+      />
+
+      <div class="flex flex-col gap-0.5">
+        <p class="font-medium">{SITE.author}</p>
+        <Birthday client:load birthday={SITE.birthday} />
+      </div>
+    </div>
+
     <div class="min-w-full">
       <div class="prose">
         <p>
-          ¡Bienvenido a mi rincón de internet! Escribo sobre videojuegos,
-          música, libros u otros temas.
+          ¡Hola! Este es mi rincón en internet. Aquí comparto contenido sobre
+          videojuegos, música, libros u otras aficiones como el senderismo y la
+          montaña.
         </p>
       </div>
     </div>
@@ -21,12 +46,49 @@ import Layout from '@/layouts/layout.astro'
 
   <NowPosts />
 
-  <section>
+  <section
+    class="bg-background/40 border-border/60 rounded-lg border p-4 backdrop-blur-xl"
+  >
     <div class="min-w-full">
       <div class="prose">
         <p>
-          Si tienes alguna recomendación no dudes en contactar conmigo a través
-          de las redes sociales.
+          Conóceme un pelín más a través de la música que escucho, mi colección
+          de videojuegos o los libros y películas más recientes. Siéntete libre
+          de leer lo que quieras o de recomendar algo que me pueda gustar.
+        </p>
+      </div>
+    </div>
+  </section>
+
+  <section class="flex flex-col gap-2">
+    <h2>Log</h2>
+
+    <div class="group/posts">
+      <NowListening client:load />
+      <NowWatching client:load />
+      <NowReading client:load />
+      <NowGaming client:load />
+    </div>
+  </section>
+
+  <section
+    class="bg-background/40 border-border/60 rounded-lg border p-4 backdrop-blur-xl"
+  >
+    <div class="min-w-full">
+      <div class="prose">
+        <p>
+          Puedes seguirme en <Link
+            href="https://youtube.com/@luiseulate"
+            class="text-foreground"
+            external
+            underline>YouTube</Link
+          > o <Link
+            href="https://www.instagram.com/luiseulate"
+            class="text-foreground"
+            external
+            underline>Instagram</Link
+          >, donde verás algunos de mis vídeos y fotos sobre montaña y
+          naturaleza.
         </p>
       </div>
     </div>

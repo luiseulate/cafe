@@ -1,7 +1,7 @@
 ---
 import Link from '@/components/link.astro'
 import { buttonVariants } from '@/components/ui/button'
-import { NAV_LINKS } from '@/consts'
+import { NAV_LINKS, SITE } from '@/consts'
 import { cn } from '@/lib/utils'
 import { Icon } from 'astro-icon/components'
 import { Astronav, MenuIcon, MenuItems } from 'astro-navbar'
@@ -12,14 +12,22 @@ import { Astronav, MenuIcon, MenuItems } from 'astro-navbar'
     <div
       class="mx-auto flex max-w-xl flex-wrap items-center justify-between gap-4 p-4"
     >
-      <Link href="/" class="shrink-0">
-        <Icon name="lucide:coffee" class="size-5" />
+      <Link
+        href="/"
+        class="group relative inline-flex shrink-0 items-center gap-2"
+      >
+        <Icon name="lucide:coffee" class="size-5 shrink-0" />
+        <span
+          class="pointer-events-none text-sm font-semibold opacity-100 transition-all duration-700 ease-out sm:absolute sm:top-1/2 sm:left-full sm:ml-2 sm:-translate-y-1/2 sm:opacity-0 sm:blur-sm sm:group-hover:opacity-100 sm:group-hover:blur-none"
+        >
+          {SITE.title}
+        </span>
       </Link>
       <MenuIcon class="size-5 cursor-pointer sm:hidden" />
       <MenuItems
         class="hidden w-full sm:flex sm:w-auto sm:items-center sm:text-sm"
       >
-        <ul class="grid grid-cols-2 gap-2 sm:contents">
+        <ul class="grid grid-cols-1 gap-2 sm:contents">
           {
             NAV_LINKS.map((item) => (
               <li class="sm:contents">
@@ -27,7 +35,7 @@ import { Astronav, MenuIcon, MenuItems } from 'astro-navbar'
                   href={item.href}
                   class={cn(
                     buttonVariants({ variant: 'outline' }),
-                    'text-foreground w-full capitalize transition-colors duration-300',
+                    'bg-background/40 border-border/60 hover:bg-background/60 w-full capitalize backdrop-blur-xl transition-colors duration-300',
                     'sm:text-foreground/60 sm:hover:text-foreground sm:h-auto sm:w-auto sm:border-0 sm:hover:bg-transparent',
                   )}
                 >

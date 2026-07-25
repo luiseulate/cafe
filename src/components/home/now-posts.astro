@@ -1,7 +1,11 @@
 ---
 import BlogCard from '@/components/blog-card.astro'
+import Link from '@/components/link.astro'
+import { buttonVariants } from '@/components/ui/button'
 import { SITE } from '@/consts'
 import { getRecentPosts, groupPostsByYear } from '@/lib/data-utils'
+import { cn } from '@/lib/utils'
+import { Icon } from 'astro-icon/components'
 
 const posts = await getRecentPosts(SITE.featuredPostCount)
 const postsByYear = groupPostsByYear(posts)
@@ -9,11 +13,26 @@ const years = Object.keys(postsByYear).sort((a, b) => Number(b) - Number(a))
 ---
 
 <section class="flex flex-col gap-2">
-  <h2>
-    Artículos recientes <span class="text-muted-foreground/40"
-      >({SITE.featuredPostCount})</span
+  <div class="flex flex-wrap items-center justify-between gap-2">
+    <h2>
+      Artículos más recientes <span class="text-muted-foreground/40"
+        >({SITE.featuredPostCount})</span
+      >
+    </h2>
+    <Link
+      href="/blog"
+      class={cn(
+        buttonVariants({ variant: 'outline' }),
+        'flex items-center gap-1.5 group bg-background/40 border-border/60 hover:bg-background/60 backdrop-blur-xl',
+      )}
     >
-  </h2>
+      Ver más
+      <Icon
+        name="lucide:arrow-right"
+        class="size-4 transition-transform duration-300 group-hover:translate-x-1"
+      />
+    </Link>
+  </div>
 
   <div class="group/posts">
     {

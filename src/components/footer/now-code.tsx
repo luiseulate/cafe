@@ -23,7 +23,7 @@ function CodeCard({ state }: { state: State }) {
 
   return (
     <span className="text-muted-foreground/40 text-xs">
-      Última actualización: {formattedDate}
+      Actualizado a {formattedDate}
     </span>
   )
 }
