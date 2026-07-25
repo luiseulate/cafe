@@ -41,11 +41,13 @@ const years = Object.keys(postsByYear).sort((a, b) => parseInt(b) - parseInt(a))
     <div class="min-w-full">
       <div class="prose">
         <p>
-          Puedes ver otros visitando la página de <Link
+          Colección de artículos que he escrito y que están relacionados con
+          <span class="italic">{tag}</span>. Puedes ver otros en la página de <Link
             href="/temas"
             class="text-foreground"
             underline>temas</Link
-          >.
+          > o ver todos en la página principal del
+          <Link href="/blog" class="text-foreground" underline>blog</Link>.
         </p>
       </div>
     </div>
