@@ -15,7 +15,7 @@ const years = Object.keys(postsByYear).sort((a, b) => Number(b) - Number(a))
 <section class="flex flex-col gap-2">
   <div class="flex flex-wrap items-center justify-between gap-2">
     <h2>
-      Artículos más recientes <span class="text-muted-foreground/40"
+      Más recientes <span class="text-muted-foreground/40"
         >({SITE.featuredPostCount})</span
       >
     </h2>
@@ -23,7 +23,7 @@ const years = Object.keys(postsByYear).sort((a, b) => Number(b) - Number(a))
       href="/blog"
       class={cn(
         buttonVariants({ variant: 'outline' }),
-        'flex items-center gap-1.5 group bg-background/40 border-border/60 hover:bg-background/60 backdrop-blur-xl',
+        'flex items-center gap-1.5 group bg-background/40 hover:bg-background/60 backdrop-blur-xl',
       )}
     >
       Ver más

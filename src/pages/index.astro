@@ -16,7 +16,7 @@ import { Image } from 'astro:assets'
   <PageHead slot="head" title="Inicio" />
 
   <section
-    class="bg-background/40 border-border/60 flex flex-col gap-y-6 rounded-lg border p-4 backdrop-blur-xl"
+    class="bg-background/40 flex flex-col gap-y-6 rounded-lg border p-4 backdrop-blur-xl"
   >
     <div class="flex grow flex-wrap items-center gap-4">
       <Image
@@ -46,9 +46,7 @@ import { Image } from 'astro:assets'
 
   <NowPosts />
 
-  <section
-    class="bg-background/40 border-border/60 rounded-lg border p-4 backdrop-blur-xl"
-  >
+  <section class="bg-background/40 rounded-lg border p-4 backdrop-blur-xl">
     <div class="min-w-full">
       <div class="prose">
         <p>
@@ -71,13 +69,11 @@ import { Image } from 'astro:assets'
     </div>
   </section>
 
-  <section
-    class="bg-background/40 border-border/60 rounded-lg border p-4 backdrop-blur-xl"
-  >
+  <section class="bg-background/40 rounded-lg border p-4 backdrop-blur-xl">
     <div class="min-w-full">
       <div class="prose">
         <p>
-          Puedes seguirme en <Link
+          En <Link
             href="https://youtube.com/@luiseulate"
             class="text-foreground"
             external
@@ -87,8 +83,7 @@ import { Image } from 'astro:assets'
             class="text-foreground"
             external
             underline>Instagram</Link
-          >, donde verás algunos de mis vídeos y fotos sobre montaña y
-          naturaleza.
+          > puedes ver algunos de mis vídeos y fotos sobre montaña y naturaleza.
         </p>
       </div>
     </div>
