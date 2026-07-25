@@ -7,7 +7,7 @@ export const prerender = false
 export interface NowCollectionData {
   id: number
   name: string
-  developer: string | null
+  developers: string[]
   releaseDate: string | null
 }
 
@@ -85,11 +85,15 @@ async function fetchFromIgdb(): Promise<NowCollectionData[]> {
 
   return games
     .map((game) => {
-      const devCompany = game.involved_companies?.find((c) => c.developer)
+      const developers = (game.involved_companies ?? [])
+        .filter((company) => company.developer)
+        .map((company) => company.company.name)
+        .filter(Boolean)
+
       return {
         id: game.id,
         name: game.name,
-        developer: devCompany?.company.name ?? null,
+        developers,
         releaseDate: game.first_release_date
           ? new Date(game.first_release_date * 1000).toISOString()
           : null,
