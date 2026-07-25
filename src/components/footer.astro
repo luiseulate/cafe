@@ -5,8 +5,10 @@ import { Separator } from '@/components/ui/separator'
 import { Icon } from 'astro-icon/components'
 ---
 
-<footer class="bg-background/40 border-t backdrop-blur-xl">
-  <div class="mx-auto flex max-w-xl flex-col gap-12 p-4 pt-8">
+<footer
+  class="bg-background/40 flex w-full flex-col gap-4 border-t backdrop-blur-xl"
+>
+  <div class="mx-auto flex w-full max-w-xl grow flex-col px-4 pt-12">
     <div class="flex flex-col items-center gap-4 sm:items-start">
       <div
         class="bg-background/40 flex h-10 w-10 shrink-0 items-center justify-center rounded-lg border backdrop-blur-xl"
@@ -24,9 +26,9 @@ import { Icon } from 'astro-icon/components'
     </div>
   </div>
 
-  <div class="mx-auto flex max-w-xl flex-col p-4">
+  <div class="mx-auto flex w-full max-w-xl flex-col px-4 pb-12">
     <div
-      class="text-foreground/60 flex flex-col items-center gap-2 text-xs sm:flex-row sm:justify-between"
+      class="text-foreground/60 flex flex-col items-center gap-4 text-xs sm:flex-row sm:justify-between"
     >
       <nav class="flex flex-wrap items-center gap-2">
         <Link
