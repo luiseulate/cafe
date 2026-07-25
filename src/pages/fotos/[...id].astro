@@ -3,20 +3,16 @@ import PostHead from '@/components/post-head.astro'
 import PostNavigation from '@/components/post-navigation.astro'
 import Layout from '@/layouts/layout.astro'
 
-import {
-  getAdjacentAlbums,
-  getAllAlbums,
-  getAlbumImages,
-} from '@/lib/data-utils'
+import { getAdjacentFotos, getAllFotos, getFotoImages } from '@/lib/data-utils'
 import { formatDateLong } from '@/lib/utils'
 import { render } from 'astro:content'
 import { Image } from 'astro:assets'
 
 export async function getStaticPaths() {
-  const albums = await getAllAlbums()
-  return albums.map((album) => ({
-    params: { id: album.id },
-    props: album,
+  const fotos = await getAllFotos()
+  return fotos.map((foto) => ({
+    params: { id: foto.id },
+    props: foto,
   }))
 }
 
@@ -24,9 +20,9 @@ const post = Astro.props
 const currentPostId = Astro.params.id
 const { Content } = await render(post)
 
-const navigation = await getAdjacentAlbums(currentPostId)
+const navigation = await getAdjacentFotos(currentPostId)
 
-const images = await getAlbumImages(currentPostId)
+const images = await getFotoImages(currentPostId)
 ---
 
 <Layout>
@@ -73,7 +69,7 @@ const images = await getAlbumImages(currentPostId)
     <PostNavigation
       newerPost={navigation.newer}
       olderPost={navigation.older}
-      basePath="albums"
+      basePath="fotos"
     />
   </section>
 </Layout>

@@ -2,17 +2,15 @@
 import BlogCard from '@/components/blog-card.astro'
 import PageHead from '@/components/page-head.astro'
 import Layout from '@/layouts/layout.astro'
-import { getAllAlbums, groupAlbumsByYear } from '@/lib/data-utils'
+import { getAllFotos, groupFotosByYear } from '@/lib/data-utils'
 
-const allAlbums = await getAllAlbums()
-const albumsByYear = groupAlbumsByYear(allAlbums)
-const years = Object.keys(albumsByYear).sort(
-  (a, b) => parseInt(b) - parseInt(a),
-)
+const allFotos = await getAllFotos()
+const fotosByYear = groupFotosByYear(allFotos)
+const years = Object.keys(fotosByYear).sort((a, b) => parseInt(b) - parseInt(a))
 ---
 
 <Layout class="max-w-xl">
-  <PageHead slot="head" title="Albums" />
+  <PageHead slot="head" title="Fotos" />
 
   <section>
     <div class="min-w-full">
@@ -27,7 +25,7 @@ const years = Object.keys(albumsByYear).sort(
 
   <section class="flex flex-col gap-2">
     <h2>
-      Albums <span class="text-muted-foreground/40">({allAlbums.length})</span>
+      Fotos <span class="text-muted-foreground/40">({allFotos.length})</span>
     </h2>
 
     <div class="group/posts">
@@ -38,8 +36,8 @@ const years = Object.keys(albumsByYear).sort(
               {year}
             </span>
             <div>
-              {albumsByYear[year].map((album) => (
-                <BlogCard entry={album} />
+              {fotosByYear[year].map((foto) => (
+                <BlogCard entry={foto} />
               ))}
             </div>
           </div>

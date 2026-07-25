@@ -250,51 +250,51 @@ export async function getTOCSections(postId: string): Promise<TOCSection[]> {
   return sections
 }
 
-export async function getAllAlbums(): Promise<CollectionEntry<'albums'>[]> {
-  const albums = await getCollection('albums')
-  return albums
-    .filter((album) => !album.data.draft)
+export async function getAllFotos(): Promise<CollectionEntry<'fotos'>[]> {
+  const fotos = await getCollection('fotos')
+  return fotos
+    .filter((foto) => !foto.data.draft)
     .sort((a, b) => b.data.date.valueOf() - a.data.date.valueOf())
 }
 
-export async function getAdjacentAlbums(currentId: string): Promise<{
-  newer: CollectionEntry<'albums'> | null
-  older: CollectionEntry<'albums'> | null
+export async function getAdjacentFotos(currentId: string): Promise<{
+  newer: CollectionEntry<'fotos'> | null
+  older: CollectionEntry<'fotos'> | null
 }> {
-  const allAlbums = await getAllAlbums()
-  const currentIndex = allAlbums.findIndex((album) => album.id === currentId)
+  const allFotos = await getAllFotos()
+  const currentIndex = allFotos.findIndex((foto) => foto.id === currentId)
 
   if (currentIndex === -1) {
     return { newer: null, older: null }
   }
 
   return {
-    newer: currentIndex > 0 ? allAlbums[currentIndex - 1] : null,
+    newer: currentIndex > 0 ? allFotos[currentIndex - 1] : null,
     older:
-      currentIndex < allAlbums.length - 1 ? allAlbums[currentIndex + 1] : null,
+      currentIndex < allFotos.length - 1 ? allFotos[currentIndex + 1] : null,
   }
 }
 
-export function groupAlbumsByYear(
-  albums: CollectionEntry<'albums'>[],
-): Record<string, CollectionEntry<'albums'>[]> {
-  return albums.reduce(
-    (acc: Record<string, CollectionEntry<'albums'>[]>, album) => {
-      const year = album.data.date.getFullYear().toString()
-      ;(acc[year] ??= []).push(album)
+export function groupFotosByYear(
+  fotos: CollectionEntry<'fotos'>[],
+): Record<string, CollectionEntry<'fotos'>[]> {
+  return fotos.reduce(
+    (acc: Record<string, CollectionEntry<'fotos'>[]>, foto) => {
+      const year = foto.data.date.getFullYear().toString()
+      ;(acc[year] ??= []).push(foto)
       return acc
     },
     {},
   )
 }
 
-export async function getAlbumImages(albumId: string) {
+export async function getFotoImages(fotoId: string) {
   let images = import.meta.glob<{ default: ImageMetadata }>(
-    '/src/content/albums/**/*.{jpeg,jpg,png,gif,webp}',
+    '/src/content/fotos/**/*.{jpeg,jpg,png,gif,webp}',
   )
 
   images = Object.fromEntries(
-    Object.entries(images).filter(([key]) => key.includes(albumId)),
+    Object.entries(images).filter(([key]) => key.includes(fotoId)),
   )
   return Promise.all(
     Object.values(images).map((image) => image().then((mod) => mod.default)),
