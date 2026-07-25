@@ -1,10 +1,8 @@
 ---
+import NowCode from '@/components/footer/now-code'
 import Link from '@/components/link.astro'
 import { Separator } from '@/components/ui/separator'
 import { Icon } from 'astro-icon/components'
-import { getSecret } from 'astro:env/server'
-
-const commitSha = getSecret('VERCEL_GIT_COMMIT_SHA')?.slice(0, 7) ?? '🤷‍♂️'
 ---
 
 <footer class="bg-background/40 border-border/60 border-t backdrop-blur-xl">
@@ -16,19 +14,9 @@ const commitSha = getSecret('VERCEL_GIT_COMMIT_SHA')?.slice(0, 7) ?? '🤷‍♂
         >
           <Icon name="lucide:sprout" class="size-5" />
         </div>
-        <div class="flex flex-col items-start text-left">
+        <div class="flex flex-col gap-0.5">
           <h3 class="text-foreground text-sm">Creado desde la verde Navarra</h3>
-          <span class="text-foreground/40 text-xs">
-            Última actualización:
-            <Link
-              href="https://github.com/luiseulate/cafe"
-              class="text-foreground/60 hover:text-foreground transition-colors"
-              underline
-              external
-            >
-              {commitSha}
-            </Link>
-          </span>
+          <NowCode client:load />
         </div>
       </div>
     </div>
@@ -55,7 +43,7 @@ const commitSha = getSecret('VERCEL_GIT_COMMIT_SHA')?.slice(0, 7) ?? '🤷‍♂
           Colofón
         </Link>
       </nav>
-      <span class="text-foreground/60">Hecho con ☕ y 🤍</span>
+      <span class="text-foreground/60">Hecho con 🤍 + ☕</span>
     </div>
   </div>
 </footer>

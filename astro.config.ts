@@ -31,6 +31,7 @@ export default defineConfig({
     devImageService: 'sharp',
     isr: {
       exclude: [
+        '/api/now-code',
         '/api/now-collection',
         '/api/now-gaming',
         '/api/now-listening',
