@@ -14,6 +14,11 @@ export const SITE: Site = {
 
 export const NAV_LINKS: SocialLink[] = [
   {
+    href: '/',
+    label: 'inicio',
+    icon: 'lucide:home',
+  },
+  {
     href: '/blog',
     label: 'blog',
     icon: 'lucide:library-big',
