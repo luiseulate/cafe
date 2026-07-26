@@ -1,6 +1,6 @@
 # luis.cafe
 
-Sitio personal construido con Astro, Tailwind CSS y shadcn/ui. Basado en el tema [astro-erudite](https://github.com/jktrn/astro-erudite).
+Sitio personal construido con Astro, Tailwind CSS y shadcn/ui.
 
 ## ✨ Qué incluye
 
@@ -53,6 +53,10 @@ LETTERBOXD_USER_ID
 pnpm build
 ```
 
-## 📄 Licencia
+## � Créditos
+
+Basado en el tema [astro-erudite](https://github.com/jktrn/astro-erudite).
+
+## �📄 Licencia
 
 [MIT](LICENSE)
