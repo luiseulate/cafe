@@ -20,7 +20,7 @@ import tailwindcss from '@tailwindcss/vite'
 import vercel from '@astrojs/vercel'
 
 export default defineConfig({
-  site: 'https://cafe.vercel.app',
+  site: 'https://luis.cafe',
   integrations: [mdx(), react(), sitemap(), icon()],
   output: 'static',
   adapter: vercel({

@@ -70,7 +70,7 @@ export default function Birthday({ birthday }: BirthdayInfoProps) {
 
   if (isLoading) {
     return (
-      <div className="flex flex-col gap-y-1">
+      <div className="flex flex-col gap-y-0.5">
         <Skeleton className="h-5 w-53" />
         <Skeleton className="h-[19px] w-[96px]" />
       </div>
@@ -78,7 +78,7 @@ export default function Birthday({ birthday }: BirthdayInfoProps) {
   }
 
   return (
-    <div className="flex flex-col gap-y-1">
+    <div className="flex flex-col gap-y-0.5">
       <div className="text-foreground/80 flex flex-wrap items-center gap-2 text-sm">
         <span className="tabular-nums">Lv. {age}</span>
         <Separator orientation="vertical" className="h-4!" />

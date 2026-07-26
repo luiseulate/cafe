@@ -1,4 +1,4 @@
-# astro-cafe
+# luis.cafe
 
 Sitio personal construido con Astro, Tailwind CSS y shadcn/ui.
 
