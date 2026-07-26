@@ -57,6 +57,6 @@ pnpm build
 
 Basado en el tema [astro-erudite](https://github.com/jktrn/astro-erudite).
 
-## ✅ Licencia
+## 📣 Licencia
 
 [MIT](LICENSE)
