@@ -6,7 +6,7 @@ Sitio personal construido con Astro, Tailwind CSS y shadcn/ui.
 
 - Blog con MDX y soporte para contenido enriquecido
 - Sección de "now" en tiempo real para música, juegos, libros y películas
-- Páginas para artículos, temas, proyectos y una biografía personal
+- Páginas para artículos, temas, videojuegos y fotos
 - RSS, sitemap y navegación fluida con view transitions
 
 ## 🛠️ Stack
@@ -22,6 +22,7 @@ Sitio personal construido con Astro, Tailwind CSS y shadcn/ui.
 
 - `src/content/blog/` → entradas del blog
 - `src/content/projects/` → proyectos
+- `src/content/fotos/` → fotos
 - `src/pages/api/` → endpoints en tiempo real
 - `src/components/` → UI y bloques del sitio
 
