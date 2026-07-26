@@ -21,10 +21,11 @@ const { class: className } = Astro.props
     <slot name="head" />
   </Head>
   <body
-    class="flex h-fit min-h-screen flex-col gap-y-12 bg-[url('/gradient.svg')] bg-top bg-no-repeat font-sans"
-    transition:persist
+    class="flex min-h-svh flex-col gap-y-12 bg-[url('/gradient.svg')] bg-top bg-no-repeat font-sans"
   >
-    <header class="divide-y xl:divide-none">
+    <header
+      class="bg-background/50 sticky top-0 z-50 divide-y backdrop-blur-sm xl:divide-none"
+    >
       <Header />
       <slot name="subposts-navigation" />
     </header>

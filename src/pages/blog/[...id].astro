@@ -8,7 +8,6 @@ import TOCSidebar from '@/components/toc-sidebar.astro'
 import { badgeVariants } from '@/components/ui/badge'
 import Layout from '@/layouts/layout.astro'
 import Link from '@/components/link.astro'
-
 import {
   getAdjacentPosts,
   getAllPostsAndSubposts,
@@ -31,12 +30,9 @@ export async function getStaticPaths() {
 const post = Astro.props
 const currentPostId = Astro.params.id
 const { Content } = await render(post)
-
 const isCurrentSubpost = isSubpost(currentPostId)
 const navigation = await getAdjacentPosts(currentPostId)
-
 const hasChildPosts = await hasSubposts(currentPostId)
-
 const tocSections = await getTOCSections(currentPostId)
 ---
 

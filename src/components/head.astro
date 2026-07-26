@@ -1,7 +1,6 @@
 ---
 import { SITE } from '@/consts'
 import LoadingIndicator from 'astro-loading-indicator/component'
-import { ClientRouter } from 'astro:transitions'
 import Favicons from './favicons.astro'
 ---
 
@@ -35,7 +34,6 @@ import Favicons from './favicons.astro'
   />
 
   <Favicons />
-  <ClientRouter />
   <LoadingIndicator
     color="var(--primary)"
     animationDuration={500}
