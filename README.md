@@ -1,6 +1,6 @@
 # luis.cafe
 
-Sitio personal construido con Astro, Tailwind CSS y shadcn/ui.
+Sitio personal construido con Astro, Tailwind CSS y shadcn/ui. Basado en el tema [astro-erudite](https://github.com/jktrn/astro-erudite).
 
 ## ✨ Qué incluye
 
