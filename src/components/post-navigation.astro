@@ -18,14 +18,14 @@ const isSubpost = !!parentPost
     href={olderPost ? `/${basePath}/${olderPost.id}` : '#'}
     class={cn(
       buttonVariants({ variant: 'outline' }),
-      'rounded-lg group flex items-center justify-start size-full',
+      'rounded-lg group flex items-center justify-start size-full bg-background/40 hover:bg-background/60 backdrop-blur-xl',
       !olderPost && 'pointer-events-none opacity-50 cursor-not-allowed',
     )}
     aria-disabled={!olderPost}
   >
     <Icon
       name="lucide:arrow-left"
-      class="mr-2 size-4 transition-transform group-hover:-translate-x-1"
+      class="mr-2 size-4 transition-transform duration-300 group-hover:-translate-x-1"
     />
     <div class="flex flex-col items-start overflow-hidden text-wrap">
       <span class="text-muted-foreground text-left text-xs">
@@ -48,13 +48,13 @@ const isSubpost = !!parentPost
         href={parentPost ? `/${basePath}/${parentPost.id}` : '#'}
         class={cn(
           buttonVariants({ variant: 'outline' }),
-          'group flex size-full items-center justify-center rounded-lg',
+          'group bg-background/40 hover:bg-background/60 flex size-full items-center justify-center rounded-lg backdrop-blur-xl',
           !parentPost && 'pointer-events-none cursor-not-allowed opacity-50',
         )}
       >
         <Icon
           name="lucide:corner-left-up"
-          class="mr-2 size-4 transition-transform group-hover:-translate-y-1"
+          class="mr-2 size-4 transition-transform duration-300 group-hover:-translate-y-1"
         />
         <div class="flex flex-col items-center overflow-hidden text-wrap">
           <span class="text-muted-foreground text-center text-xs">
@@ -72,7 +72,7 @@ const isSubpost = !!parentPost
     href={newerPost ? `/${basePath}/${newerPost.id}` : '#'}
     class={cn(
       buttonVariants({ variant: 'outline' }),
-      'rounded-lg group flex items-center justify-end size-full',
+      'rounded-lg group flex items-center justify-end size-full bg-background/40 hover:bg-background/60 backdrop-blur-xl',
       !newerPost && 'pointer-events-none opacity-50 cursor-not-allowed',
     )}
     aria-disabled={!newerPost}
@@ -92,7 +92,7 @@ const isSubpost = !!parentPost
     </div>
     <Icon
       name="lucide:arrow-right"
-      class="ml-2 size-4 transition-transform group-hover:translate-x-1"
+      class="ml-2 size-4 transition-transform duration-300 group-hover:translate-x-1"
     />
   </Link>
 </nav>
