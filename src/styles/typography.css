@@ -135,8 +135,16 @@
       @apply mx-auto my-6;
     }
 
+    :where(figure > p, figure > p > img):not(:where(.not-prose, .not-prose *)) {
+      @apply my-0;
+    }
+
+    :where(figure > figcaption):not(:where(.not-prose, .not-prose *)) {
+      @apply text-muted-foreground/60 pt-2.5 text-center text-xs font-medium italic;
+    }
+
     :where(img):not(:where([class~='not-prose'], [class~='not-prose'] *)) {
-      @apply rounded-xl object-cover object-center;
+      @apply bg-primary/10 w-full rounded-xl object-cover;
     }
 
     :where(.expressive-code details):not(
