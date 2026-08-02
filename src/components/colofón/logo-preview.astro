@@ -1,22 +1,9 @@
 ---
-import { cn } from '@/lib/utils'
 import { Icon } from 'astro-icon/components'
 ---
 
 <div
-  class={cn(
-    'sm:grid-cols-2 grid grid-cols-1 place-items-center items-center',
-    'border-divider border-collapse border border-dashed',
-  )}
+  class="bg-background/40 inline-flex w-fit items-center justify-center rounded-lg border p-4 backdrop-blur-xl"
 >
-  <div
-    class="bg-background/40 flex w-full flex-col items-center justify-center border border-dashed p-3.5 backdrop-blur-xl"
-  >
-    <Icon name="lucide:coffee" class="size-6 shrink-0" />
-  </div>
-  <div
-    class="bg-background/40 flex w-full flex-col items-center justify-center border border-dashed p-3.5 backdrop-blur-xl"
-  >
-    <Icon name="lucide:coffee" class="size-6 shrink-0" />
-  </div>
+  <Icon name="lucide:coffee" class="size-6 shrink-0" />
 </div>

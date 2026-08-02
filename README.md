@@ -1,39 +1,38 @@
-# luis.cafe
+## luis.cafe
 
-Sitio personal construido con Astro, Tailwind CSS y shadcn/ui.
+Sitio personal construido con Astro, Tailwind CSS y shadcn/ui
 
-## ✨ Qué incluye
+### ✨ Incluye
 
 - Blog con MDX y soporte para contenido enriquecido
-- Sección de "now" en tiempo real para música, juegos, libros y películas
+- Sección en tiempo real para música, juegos, libros y películas
 - Páginas para artículos, temas, videojuegos y fotos
-- RSS, sitemap y navegación fluida con view transitions
+- RSS y sitemap
 
-## 🛠️ Stack
+### 🛠️ Stack
 
-- Astro 6
+- Astro 7
 - Tailwind CSS 4
 - shadcn/ui + Radix UI
 - MDX + Expressive Code
 - Lucide Icons
 - Vercel con ISR
 
-## 📁 Estructura rápida
+### 📁 Estructura rápida
 
 - `src/content/blog/` → entradas del blog
-- `src/content/projects/` → proyectos
 - `src/content/fotos/` → fotos
 - `src/pages/api/` → endpoints en tiempo real
 - `src/components/` → UI y bloques del sitio
 
-## ⚙️ Desarrollo
+### ⚙️ Desarrollo
 
 ```bash
 pnpm install
 pnpm dev
 ```
 
-## 🔐 Variables de entorno
+### 🔐 Variables de entorno
 
 Crea un archivo `.env` con:
 
@@ -45,19 +44,13 @@ STEAM_API_KEY=
 IGDB_CLIENT_ID=
 IGDB_CLIENT_SECRET=
 GOODREADS_USER_ID=
-LETTERBOXD_USER_ID
+LETTERBOXD_USER_ID=
 ```
 
-## ✅ Verificación
+### 🫶 Créditos
 
-```bash
-pnpm build
-```
+Basado en el tema [astro-erudite](https://github.com/jktrn/astro-erudite)
 
-## 🫶 Créditos
-
-Basado en el tema [astro-erudite](https://github.com/jktrn/astro-erudite).
-
-## 📣 Licencia
+### 📣 Licencia
 
 [MIT](LICENSE)
