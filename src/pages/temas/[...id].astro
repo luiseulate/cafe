@@ -40,13 +40,13 @@ const years = Object.keys(postsByYear).sort((a, b) => parseInt(b) - parseInt(a))
     <div class="min-w-full">
       <div class="prose">
         <p>
-          Colección de artículos que he escrito y que están relacionados con
-          <span class="italic">{tag}</span>. Puedes ver otros en la página de <Link
-            href="/temas"
+          Puedes ver otros <Link href="/temas" class="text-foreground" underline
+            >temas</Link
+          > o todos los artículos en la página principal del <Link
+            href="/blog"
             class="text-foreground"
-            underline>temas</Link
-          > o ver todos en la página principal del
-          <Link href="/blog" class="text-foreground" underline>blog</Link>.
+            underline>blog</Link
+          >.
         </p>
       </div>
     </div>
@@ -54,7 +54,7 @@ const years = Object.keys(postsByYear).sort((a, b) => parseInt(b) - parseInt(a))
 
   <section class="flex flex-col gap-2">
     <h2 class="first-letter:uppercase">
-      {tag}
+      {tag}{' '}
       <span class="text-muted-foreground/40">({posts.length})</span>
     </h2>
 
