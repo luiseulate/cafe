@@ -1,3 +1,5 @@
+import type { SvgComponent } from 'astro/types'
+
 export type Site = {
   title: string
   description: string
@@ -13,6 +15,12 @@ export type SocialLink = {
   href: string
   label: string
   icon?: string
+}
+
+export type Stack = {
+  href: string
+  label: string
+  icon: SvgComponent
 }
 
 export type IconMap = {

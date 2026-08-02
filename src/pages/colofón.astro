@@ -1,6 +1,12 @@
 ---
+import Colors from '@/components/colofón/design-colors.astro'
+import Logo from '@/components/colofón/logo-preview.astro'
+import StackIcons from '@/components/colofón/stack-icons.astro'
+
+import Typography from '@/components/colofón/typography-preview.astro'
 import Link from '@/components/link.astro'
 import PageHead from '@/components/page-head.astro'
+import { STACK_ICONS } from '@/consts'
 import Layout from '@/layouts/layout.astro'
 ---
 
@@ -26,12 +32,76 @@ import Layout from '@/layouts/layout.astro'
             class="text-foreground"
             external
             underline>shadcn/ui</Link
-          >. Basado en el tema <Link
+          >, basado en el tema <Link
             href="https://github.com/jktrn/astro-erudite"
             class="text-foreground"
             underline
             external>astro-erudite</Link
           >.
+        </p>
+        <p>
+          El tema está alojado en Vercel y si te interesa, no dudes en explorar
+          el código en <Link
+            href="https://github.com/luiseulate/cafe"
+            class="text-foreground"
+            underline
+            external>GitHub</Link
+          >.
+        </p>
+      </div>
+    </div>
+  </section>
+  <StackIcons links={STACK_ICONS} />
+  <section>
+    <div class="min-w-full">
+      <div class="prose">
+        <p>
+          Para la tipografía del sitio utilizo la fuente variable Geist como
+          familia sans y Geist Mono para el texto monoespaciado (fragmentos de
+          código).
+        </p>
+      </div>
+    </div>
+  </section>
+  <Typography />
+  <section>
+    <div class="min-w-full">
+      <div class="prose">
+        <p>
+          La paleta de colores de la marca está basada en el estándar de
+          Tailwind en versión OKLCH. El diseño combina inspiración de varias
+          personas y sitios web, adaptado a mi gusto personal.
+        </p>
+      </div>
+    </div>
+  </section>
+  <Colors />
+  <section>
+    <div class="min-w-full">
+      <div class="prose">
+        <p>
+          El logotipo está creado con el icono de café de <Link
+            href="https://lucide.dev/icons/coffee"
+            class="text-foreground"
+            underline
+            external>Lucide Icons</Link
+          >.
+        </p>
+      </div>
+    </div>
+  </section>
+  <Logo />
+  <section>
+    <div class="min-w-full">
+      <div class="prose">
+        <p>
+          Este sitio genera 0,02 g de CO2 cada vez que alguien visita esta
+          página, según <Link
+            href="https://www.websitecarbon.com/"
+            class="text-foreground"
+            underline
+            external>Website Carbon Calculator</Link
+          >, obteniendo una calificación de carbono A+ 🌳.
         </p>
       </div>
     </div>

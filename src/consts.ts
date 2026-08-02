@@ -1,4 +1,10 @@
-import type { SocialLink, Site, GameIDs } from '@/types'
+import type { SocialLink, Site, Stack, GameIDs } from '@/types'
+import Astro from '@/assets/icons/brand-astro.svg'
+import GitHub from '@/assets/icons/brand-github.svg'
+import MDX from '@/assets/icons/brand-mdx.svg'
+import shadcn from '@/assets/icons/brand-shadcn.svg'
+import Tailwind from '@/assets/icons/brand-tailwind.svg'
+import Vercel from '@/assets/icons/brand-vercel.svg'
 
 export const SITE: Site = {
   title: 'luis.cafe',
@@ -33,6 +39,15 @@ export const NAV_LINKS: SocialLink[] = [
     label: 'fotos',
     icon: 'lucide:aperture',
   },
+]
+
+export const STACK_ICONS: Stack[] = [
+  { href: 'https://astro.build/', label: 'Astro', icon: Astro },
+  { href: 'https://github.com/', label: 'GitHub', icon: GitHub },
+  { href: 'https://mdxjs.com/', label: 'MDX', icon: MDX },
+  { href: 'https://ui.shadcn.com/', label: 'shadcn/ui', icon: shadcn },
+  { href: 'https://tailwindcss.com/', label: 'Tailwind CSS', icon: Tailwind },
+  { href: 'https://vercel.com/', label: 'Vercel', icon: Vercel },
 ]
 
 export const IGDB_GAMES: GameIDs[] = [

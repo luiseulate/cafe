@@ -1,0 +1,28 @@
+---
+import Link from '@/components/link.astro'
+import type { Stack } from '@/types'
+
+type Props = { links: Stack[] }
+
+const { links } = Astro.props
+---
+
+<ul
+  class="relative grid list-none grid-flow-dense grid-cols-2 items-center justify-center gap-y-8 overflow-hidden bg-[radial-gradient(var(--color-primary)_1px,transparent_1px)] bg-size-[1rem_1rem] bg-repeat px-4 py-8 sm:grid-cols-3 sm:bg-size-[1.5rem_1.5rem] lg:bg-size-[1.25rem_1.25rem]"
+>
+  {
+    links.map(({ href, label, icon: Icon }) => (
+      <li class="bg-background/40 z-1 m-auto flex h-18 w-18 flex-row items-center justify-center rounded-lg p-2 backdrop-blur-xl">
+        <Link
+          class="transition-transform duration-300 hover:scale-110 focus:scale-110"
+          href={href}
+          aria-label={label}
+          title={label}
+          external
+        >
+          <Icon class="h-6 w-6" aria-hidden="true" />
+        </Link>
+      </li>
+    ))
+  }
+</ul>
