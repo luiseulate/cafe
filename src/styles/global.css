@@ -46,6 +46,6 @@
 
 @layer components {
   .color-square {
-    @apply flex aspect-square h-13.5 w-full flex-col items-center justify-center text-sm font-medium select-none;
+    @apply flex aspect-square w-full flex-col items-center justify-center text-sm font-medium select-none;
   }
 }

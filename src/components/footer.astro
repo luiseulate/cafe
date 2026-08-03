@@ -28,27 +28,23 @@ import { Icon } from 'astro-icon/components'
 
   <div class="mx-auto flex w-full max-w-xl flex-col px-4 pb-12">
     <div
-      class="text-foreground/60 flex items-center justify-center gap-2 text-xs sm:justify-between"
+      class="text-foreground/60 flex items-center justify-center gap-2 text-xs sm:justify-start"
     >
-      <nav class="flex items-center gap-2">
-        <Link
-          href="/uses"
-          class="text-foreground/60 hover:text-foreground transition-colors"
-          underline
-        >
-          Uses
-        </Link>
-        <Separator orientation="vertical" className="h-4!" />
-        <Link
-          href="/colofón"
-          class="text-foreground/60 hover:text-foreground transition-colors"
-          underline
-        >
-          Colofón
-        </Link>
-      </nav>
-      <Separator orientation="vertical" className="block h-4! sm:hidden" />
-      <span class="text-foreground/60">Con 🤍 + ☕</span>
+      <Link
+        href="/uses"
+        class="text-foreground/60 hover:text-foreground transition-colors"
+        underline
+      >
+        Uses
+      </Link>
+      <Separator orientation="vertical" className="h-4!" />
+      <Link
+        href="/colofón"
+        class="text-foreground/60 hover:text-foreground transition-colors"
+        underline
+      >
+        Colofón
+      </Link>
     </div>
   </div>
 </footer>
