@@ -1,6 +1,12 @@
 import type { APIRoute } from 'astro'
 
 const getRobotsTxt = (sitemapURL: URL) => `
+User-agent: ia_archiver
+Disallow: /
+
+User-agent: archive.org_bot
+Disallow: /
+
 User-agent: *
 Allow: /
 
