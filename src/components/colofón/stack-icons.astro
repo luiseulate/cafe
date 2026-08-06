@@ -8,15 +8,15 @@ const { links } = Astro.props
 ---
 
 <ul
-  class="group relative grid list-none grid-flow-dense grid-cols-4 items-center justify-center gap-y-4 overflow-hidden px-2 py-4 sm:gap-y-8 sm:px-4 sm:py-8"
+  class="relative grid list-none grid-flow-dense grid-cols-4 items-center justify-center gap-y-4 overflow-hidden px-2 py-4 sm:gap-y-8 sm:px-4 sm:py-8"
 >
   <div
-    class="pointer-events-none absolute inset-0 bg-[radial-gradient(var(--color-primary)_1px,transparent_1px)] bg-size-[1rem_1rem] bg-repeat opacity-50 transition-opacity duration-300 group-hover:opacity-100 sm:bg-size-[1.5rem_1.5rem] sm:opacity-100 sm:group-hover:opacity-50 lg:bg-size-[1.25rem_1.25rem]"
+    class="pointer-events-none absolute inset-0 bg-[radial-gradient(var(--color-primary)_1px,transparent_1px)] bg-size-[1rem_1rem] bg-repeat sm:bg-size-[1.5rem_1.5rem] lg:bg-size-[1.25rem_1.25rem]"
   >
   </div>
   {
     links.map(({ href, label, icon: Icon }) => (
-      <li class="bg-background/40 relative z-10 m-auto flex w-fit flex-row items-center justify-center rounded-lg border p-4 backdrop-blur-xl">
+      <li class="bg-background/40 relative z-10 m-auto flex w-fit flex-row items-center justify-center rounded-lg p-4 backdrop-blur-3xl">
         <Link
           class="transition-transform duration-300 hover:scale-110 focus:scale-110"
           href={href}
