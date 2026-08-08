@@ -1,5 +1,6 @@
 ---
 import PageHead from '@/components/page-head.astro'
+import TechStack from '@/components/tech/tech-stack.tsx'
 import Layout from '@/layouts/layout.astro'
 ---
 
@@ -9,8 +10,12 @@ import Layout from '@/layouts/layout.astro'
   <section>
     <div class="min-w-full">
       <div class="prose">
-        <p>Próximamente...</p>
+        <p>
+          A continuación indico qué aplicaciones utilizo en mi día a día, qué
+          música escucho o qué utilizo para editar foto y video.
+        </p>
       </div>
     </div>
   </section>
+  <TechStack client:load />
 </Layout>
