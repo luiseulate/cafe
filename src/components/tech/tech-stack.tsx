@@ -63,7 +63,7 @@ const tabs = [
 const TechStack = () => {
   return (
     <Tabs
-      className="flex w-full flex-col items-start gap-4"
+      className="flex w-full flex-col items-center gap-4"
       defaultValue={tabs[0].title}
       orientation="vertical"
     >
