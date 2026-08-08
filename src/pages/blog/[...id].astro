@@ -7,6 +7,7 @@ import { cn } from '@/lib/utils'
 import TOCSidebar from '@/components/toc-sidebar.astro'
 import { badgeVariants } from '@/components/ui/badge'
 import Layout from '@/layouts/layout.astro'
+import { Image } from 'astro:assets'
 import Link from '@/components/link.astro'
 import {
   getAdjacentPosts,
@@ -50,6 +51,16 @@ const tocSections = await getTOCSections(currentPostId)
   <section
     class="grid grid-cols-[minmax(0px,1fr)_min(calc(var(--container-xl)-2rem),100%)_minmax(0px,1fr)] gap-y-6"
   >
+    {
+      post.data.image && (
+        <Image
+          src={post.data.image}
+          alt={post.data.title}
+          class="absolute top-0 left-1/2 -translate-x-1/2 mask-y-from-70% mask-y-to-90% opacity-5"
+        />
+      )
+    }
+
     <section class="col-start-2 flex flex-col gap-y-1">
       <h1
         class="scroll-mt-31 text-2xl leading-tight font-medium text-pretty"
