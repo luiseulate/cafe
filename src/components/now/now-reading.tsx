@@ -1,5 +1,5 @@
 import { useState, useEffect } from 'react'
-import { BookAnimation } from '@/components/icon-animations'
+import { BookAnimation } from '@/components/ui/now-icons'
 import type { NowReadingData } from '@/pages/api/now-reading'
 import { formatDateShort } from '@/lib/utils'
 

@@ -8,7 +8,7 @@ import {
   VercelIcon,
   ReactIcon,
   TypescriptIcon,
-} from '@/components/ui/icons'
+} from '@/components/ui/brand-icons'
 
 export const SITE: Site = {
   title: 'luis.cafe',
