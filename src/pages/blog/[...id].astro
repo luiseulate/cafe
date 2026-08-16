@@ -53,7 +53,7 @@ const tocSections = await getTOCSections(currentPostId)
       <Image
         src={post.data.image}
         alt={post.data.title}
-        class="absolute top-0 left-1/2 -translate-x-1/2 mask-b-from-30% mask-b-to-100% opacity-40 sm:mask-b-from-30% sm:mask-b-to-50% sm:opacity-10"
+        class="absolute top-0 left-1/2 -z-50 -translate-x-1/2 mask-b-from-30% mask-b-to-100% opacity-40 sm:mask-b-from-30% sm:mask-b-to-50% sm:opacity-10"
       />
     )
   }
@@ -61,7 +61,7 @@ const tocSections = await getTOCSections(currentPostId)
   <section
     class="grid grid-cols-[minmax(0px,1fr)_min(calc(var(--container-xl)-2rem),100%)_minmax(0px,1fr)] gap-y-6"
   >
-    <section class="z-50 col-start-2 flex flex-col gap-y-1">
+    <section class="col-start-2 flex flex-col gap-y-1">
       <h1
         class="scroll-mt-31 text-2xl leading-tight font-medium text-pretty"
         id="post-title"
