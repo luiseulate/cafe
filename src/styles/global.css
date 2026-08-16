@@ -73,4 +73,13 @@
   .color-square {
     @apply flex aspect-square w-full flex-col items-center justify-center text-sm font-medium select-none;
   }
+
+  .hy-gallery {
+    @apply mx-0!;
+    --hy-gallery-bg: color-mix(
+      in srgb,
+      var(--primary) 10%,
+      transparent
+    ) !important;
+  }
 }

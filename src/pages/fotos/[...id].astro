@@ -2,7 +2,7 @@
 import PostHead from '@/components/post-head.astro'
 import PostNavigation from '@/components/post-navigation.astro'
 import Layout from '@/layouts/layout.astro'
-import { getAdjacentFotos, getAllFotos, getFotoImages } from '@/lib/data-utils'
+import { getAdjacentFotos, getAllFotos } from '@/lib/data-utils'
 import { formatDateLong } from '@/lib/utils'
 import { render } from 'astro:content'
 import { Image } from 'astro:assets'
@@ -19,11 +19,20 @@ const post = Astro.props
 const currentPostId = Astro.params.id
 const { Content } = await render(post)
 const navigation = await getAdjacentFotos(currentPostId)
-const images = await getFotoImages(currentPostId)
 ---
 
 <Layout>
   <PostHead slot="head" post={post} />
+
+  {
+    post.data.image && (
+      <Image
+        src={post.data.image}
+        alt={post.data.title}
+        class="absolute top-0 left-1/2 -z-50 -translate-x-1/2 mask-b-from-30% mask-b-to-100% opacity-40 sm:mask-b-from-30% sm:mask-b-to-50% sm:opacity-10"
+      />
+    )
+  }
 
   <section
     class="grid grid-cols-[minmax(0px,1fr)_min(calc(var(--container-xl)-2rem),100%)_minmax(0px,1fr)] gap-y-6"
@@ -44,24 +53,6 @@ const images = await getFotoImages(currentPostId)
     <article class="prose col-start-2 max-w-none">
       <Content />
     </article>
-
-    {
-      images.length > 0 && (
-        <div class="col-start-2 max-w-none columns-1 gap-[2px] sm:columns-2">
-          {images.map((image) => (
-            <div class="mb-[2px] break-inside-avoid last:mb-0">
-              <Image
-                src={image}
-                alt={post.data.title}
-                class="bg-primary/10 w-full object-cover"
-                widths={[400, 800, 1200]}
-                sizes="(max-width: 640px) 100vw, (max-width: 1024px) 50vw, 33vw"
-              />
-            </div>
-          ))}
-        </div>
-      )
-    }
 
     <PostNavigation
       newerPost={navigation.newer}

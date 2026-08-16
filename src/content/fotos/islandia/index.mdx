@@ -3,8 +3,33 @@ title: 'Islandia'
 description: 'Fiordos, glaciares y cielos que no se olvidan'
 date: 2026-04-14
 tags: ['viajes', 'fotografía', 'naturaleza']
-image: './banner.jpg'
+image: './banner.png'
 authors: ['luis']
 ---
 
+import { Gallery } from '@hoangyell/gallery'
+import img1 from './1.jpg'
+import img2 from './2.jpg'
+import img3 from './3.jpg'
+import img4 from './4.jpg'
+import img5 from './5.jpg'
+import img6 from './6.jpg'
+import img7 from './7.jpg'
+import img8 from './8.jpg'
+
 Fui a Islandia sin saber muy bien qué esperar. Había visto fotos, claro, pero ninguna me había preparado para la escala real de las cosas: el silencio entre montañas, el olor a azufre mezclado con aire limpio, la luz que no desaparece del todo ni a medianoche.
+
+<Gallery
+  items={[
+    { src: img1.src, alt: 'Paisaje de Islandia 1' },
+    { src: img2.src, alt: 'Paisaje de Islandia 2' },
+    { src: img3.src, alt: 'Paisaje de Islandia 3' },
+    { src: img4.src, alt: 'Paisaje de Islandia 4' },
+    { src: img5.src, alt: 'Paisaje de Islandia 5' },
+    { src: img6.src, alt: 'Paisaje de Islandia 6' },
+    { src: img7.src, alt: 'Paisaje de Islandia 7' },
+    { src: img8.src, alt: 'Paisaje de Islandia 8' },
+  ]}
+  rows={5}
+  fit="cover"
+/>

@@ -143,8 +143,10 @@
       @apply text-muted-foreground/60 pt-2.5 text-center text-xs font-medium italic;
     }
 
-    :where(img):not(:where([class~='not-prose'], [class~='not-prose'] *)) {
-      @apply bg-primary/10 w-full rounded-xl object-cover;
+    :where(img):not(
+      :where(.not-prose, .not-prose *, .hy-gallery, .hy-gallery *)
+    ) {
+      @apply bg-primary/10 w-full rounded-lg object-cover;
     }
 
     :where(.expressive-code details):not(

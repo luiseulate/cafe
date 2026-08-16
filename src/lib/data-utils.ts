@@ -278,16 +278,3 @@ export function groupFotosByYear(
     {},
   )
 }
-
-export async function getFotoImages(fotoId: string) {
-  let images = import.meta.glob<{ default: ImageMetadata }>(
-    '/src/content/fotos/**/*.{jpeg,jpg,png,gif,webp}',
-  )
-
-  images = Object.fromEntries(
-    Object.entries(images).filter(([key]) => key.includes(fotoId)),
-  )
-  return Promise.all(
-    Object.values(images).map((image) => image().then((mod) => mod.default)),
-  )
-}
