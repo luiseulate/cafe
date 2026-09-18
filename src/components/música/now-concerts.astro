@@ -1,0 +1,37 @@
+---
+import ConcertCard from '@/components/música/concert-card.astro'
+import { concerts, type Concert } from '@/lib/data-utils'
+
+const concertsByYear = concerts.reduce<Record<string, Concert[]>>(
+  (acc, concert) => {
+    const year = concert.date.slice(0, 4)
+    ;(acc[year] ??= []).push(concert)
+    return acc
+  },
+  {},
+)
+const years = Object.keys(concertsByYear).sort((a, b) => Number(b) - Number(a))
+---
+
+<section class="flex flex-col gap-2">
+  <h2>
+    Conciertos <span class="text-muted-foreground/40">({concerts.length})</span>
+  </h2>
+
+  <div class="group/concerts">
+    {
+      years.map((year) => (
+        <div class="relative overflow-hidden border-t">
+          <span class="text-muted-foreground pointer-events-none absolute top-3 text-sm tabular-nums select-none">
+            {year}
+          </span>
+          <div>
+            {concertsByYear[year].map((concert) => (
+              <ConcertCard concert={concert} />
+            ))}
+          </div>
+        </div>
+      ))
+    }
+  </div>
+</section>

@@ -1,0 +1,81 @@
+---
+import Link from '@/components/link.astro'
+import { concertDate, type Concert } from '@/lib/data-utils'
+import { formatDateShort } from '@/lib/utils'
+import { Icon } from 'astro-icon/components'
+
+interface Props {
+  concert: Concert
+}
+
+const { concert } = Astro.props
+
+const formatArtists = (concert: Concert) =>
+  concert.artists
+    .map((artist, index) => {
+      const name = artist.acronymPrefix
+        ? artist.name.replace(artist.acronymPrefix, '')
+        : artist.name
+      const displayName = artist.acronymPrefix
+        ? `${artist.acronymPrefix}${name}`
+        : name
+      const separator =
+        index > 0 && concert.artists[index - 1]?.b2bWithNext
+          ? ' b2b '
+          : index > 0
+            ? ', '
+            : ''
+      return `${separator}${displayName}`
+    })
+    .join('')
+---
+
+<div
+  class="relative ml-12 border-b py-3 transition-[opacity,border-color] duration-500 group-hover/concerts:opacity-40 last:border-b-0 hover:opacity-100!"
+>
+  <div
+    class="flex flex-wrap items-center justify-between gap-x-2 gap-y-1 text-sm"
+  >
+    <span>{formatArtists(concert)}</span>
+    <time
+      datetime={concert.date}
+      class="text-muted-foreground/40 shrink-0 self-start text-sm tabular-nums"
+    >
+      {formatDateShort(concertDate(concert.date))}
+    </time>
+  </div>
+
+  <div
+    class="text-muted-foreground/80 mt-1 flex flex-col items-start gap-1 text-sm"
+  >
+    {
+      concert.event && (
+        <div class="flex items-center gap-2">
+          <Icon name="lucide:ticket" class="size-3.5 shrink-0" />
+          <span>{concert.event}</span>
+        </div>
+      )
+    }
+    <div class="flex items-center gap-2">
+      <Icon name="lucide:map-pin" class="size-3.5 shrink-0" />
+      <Link href={concert.venue.url} external class="hover:text-foreground">
+        {concert.venue.name}, {concert.venue.city}
+      </Link>
+    </div>
+    <div class="flex items-center gap-2">
+      <Icon name="lucide:tags" class="size-3.5 shrink-0" />
+      <span>{concert.genres.join(', ')}</span>
+    </div>
+    <div class="flex items-center gap-2">
+      <Icon name="lucide:external-link" class="size-3.5 shrink-0" />
+      <Link
+        href={concert.source.url}
+        external
+        class="hover:text-foreground"
+        aria-label={`Fuente: ${concert.source.label}`}
+      >
+        {concert.source.label}
+      </Link>
+    </div>
+  </div>
+</div>
