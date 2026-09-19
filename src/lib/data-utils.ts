@@ -1,5 +1,4 @@
 import { getCollection, render, type CollectionEntry } from 'astro:content'
-import concertData from '@/data/concerts.json'
 
 export async function getAllPosts(): Promise<CollectionEntry<'blog'>[]> {
   const posts = await getCollection('blog')
@@ -298,9 +297,18 @@ export type Concert = {
 export function groupConcertsByYear(
   concerts: Concert[],
 ): Record<string, Concert[]> {
-  return concerts.reduce((acc: Record<string, Concert[]>, concert) => {
-    const year = concert.date.slice(0, 4)
-    ;(acc[year] ??= []).push(concert)
-    return acc
-  }, {})
+  const concertsByYear = concerts.reduce(
+    (acc: Record<string, Concert[]>, concert) => {
+      const year = concert.date.slice(0, 4)
+      ;(acc[year] ??= []).push(concert)
+      return acc
+    },
+    {},
+  )
+
+  Object.values(concertsByYear).forEach((yearConcerts) => {
+    yearConcerts.sort((a, b) => Date.parse(b.date) - Date.parse(a.date))
+  })
+
+  return concertsByYear
 }
