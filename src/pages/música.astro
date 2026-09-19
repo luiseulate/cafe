@@ -2,10 +2,6 @@
 import NowConcerts from '@/components/música/now-concerts.astro'
 import PageHead from '@/components/page-head.astro'
 import Layout from '@/layouts/layout.astro'
-
-import { concerts, summarizeConcerts } from '@/lib/data-utils'
-
-const stats = summarizeConcerts(concerts)
 ---
 
 <Layout class="max-w-xl">
@@ -14,13 +10,7 @@ const stats = summarizeConcerts(concerts)
   <section>
     <div class="min-w-full">
       <div class="prose">
-        <p>
-          Esta es una lista de los {stats.shows} conciertos a los que he asistido.
-          Hasta ahora, he visto {stats.artistAppearances} actuaciones de artistas
-          <span class="text-muted-foreground/40"
-            >(de las cuales {stats.artists} corresponden a artistas únicos)</span
-          > en {stats.venues} salas de {stats.cities} ciudades.
-        </p>
+        <p>Esta es una lista de los conciertos a los que he asistido.</p>
       </div>
     </div>
   </section>

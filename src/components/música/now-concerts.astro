@@ -1,16 +1,13 @@
 ---
 import ConcertCard from '@/components/música/concert-card.astro'
-import { concerts, type Concert } from '@/lib/data-utils'
+import concertData from '@/data/concerts.json'
+import { type Concert, groupConcertsByYear } from '@/lib/data-utils'
 
-const concertsByYear = concerts.reduce<Record<string, Concert[]>>(
-  (acc, concert) => {
-    const year = concert.date.slice(0, 4)
-    ;(acc[year] ??= []).push(concert)
-    return acc
-  },
-  {},
+const concerts = concertData as Concert[]
+const concertsByYear = groupConcertsByYear(concerts)
+const years = Object.keys(concertsByYear).sort(
+  (a, b) => parseInt(b) - parseInt(a),
 )
-const years = Object.keys(concertsByYear).sort((a, b) => Number(b) - Number(a))
 ---
 
 <section class="flex flex-col gap-2">

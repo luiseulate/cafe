@@ -1,6 +1,6 @@
 ---
 import Link from '@/components/link.astro'
-import { concertDate, type Concert } from '@/lib/data-utils'
+import { type Concert } from '@/lib/data-utils'
 import { formatDateShort } from '@/lib/utils'
 import { Icon } from 'astro-icon/components'
 
@@ -9,44 +9,25 @@ interface Props {
 }
 
 const { concert } = Astro.props
-
-const formatArtists = (concert: Concert) =>
-  concert.artists
-    .map((artist, index) => {
-      const name = artist.acronymPrefix
-        ? artist.name.replace(artist.acronymPrefix, '')
-        : artist.name
-      const displayName = artist.acronymPrefix
-        ? `${artist.acronymPrefix}${name}`
-        : name
-      const separator =
-        index > 0 && concert.artists[index - 1]?.b2bWithNext
-          ? ' b2b '
-          : index > 0
-            ? ', '
-            : ''
-      return `${separator}${displayName}`
-    })
-    .join('')
 ---
 
 <div
   class="relative ml-12 border-b py-3 transition-[opacity,border-color] duration-500 group-hover/concerts:opacity-40 last:border-b-0 hover:opacity-100!"
 >
   <div
-    class="flex flex-wrap items-center justify-between gap-x-2 gap-y-1 text-sm"
+    class="flex flex-wrap items-center justify-between gap-x-4 gap-y-1 text-sm"
   >
-    <span>{formatArtists(concert)}</span>
+    <span>{concert.artists.join(', ')}</span>
     <time
       datetime={concert.date}
       class="text-muted-foreground/40 shrink-0 self-start text-sm tabular-nums"
     >
-      {formatDateShort(concertDate(concert.date))}
+      {formatDateShort(concert.date)}
     </time>
   </div>
 
   <div
-    class="text-muted-foreground/80 mt-1 flex flex-col items-start gap-1 text-sm"
+    class="text-muted-foreground/80 mt-1.5 flex flex-col items-start gap-0.5 text-sm"
   >
     {
       concert.event && (
@@ -58,13 +39,15 @@ const formatArtists = (concert: Concert) =>
     }
     <div class="flex items-center gap-2">
       <Icon name="lucide:map-pin" class="size-3.5 shrink-0" />
-      <Link href={concert.venue.url} external class="hover:text-foreground">
+      <span>
         {concert.venue.name}, {concert.venue.city}
-      </Link>
+      </span>
     </div>
     <div class="flex items-center gap-2">
       <Icon name="lucide:tags" class="size-3.5 shrink-0" />
-      <span>{concert.genres.join(', ')}</span>
+      <span>
+        {concert.genres.join(', ')}
+      </span>
     </div>
     <div class="flex items-center gap-2">
       <Icon name="lucide:external-link" class="size-3.5 shrink-0" />
