@@ -6,7 +6,7 @@
     "artists": ["Zetak"],
     "venue": {
       "name": "Navarra Arena",
-      "city": "Pamplona"
+      "city": "Pamplona-Iruña"
     },
     "source": {
       "label": "Setlist",
@@ -20,7 +20,7 @@
     "artists": ["Manowar", "Doro", "Freedom Call"],
     "venue": {
       "name": "Navarra Arena",
-      "city": "Pamplona"
+      "city": "Pamplona-Iruñea"
     },
     "source": {
       "label": "Setlist",
@@ -39,6 +39,255 @@
     "source": {
       "label": "Post",
       "url": "https://www.elaltojalon.es/texto-diario/mostrar/5238417/exito-diversion-arbufest-musica-gastronomia-ambiente-inmejorable"
+    }
+  },
+  {
+    "date": "2025-04-11",
+    "genres": ["folk", "country", "electronic", "pop"],
+    "artists": ["Jo & SwissKnife", "Discodelia"],
+    "venue": {
+      "name": "Sala Zentral",
+      "city": "Pamplona-Iruñea"
+    },
+    "source": {
+      "label": "Video",
+      "url": "https://youtu.be/oQgq1SK0s90"
+    }
+  },
+  {
+    "date": "2025-05-29",
+    "event": "Iruña Rock 2025",
+    "genres": ["punk", "rock", "metal", "ska", "reggae", "hip-hop"],
+    "artists": [
+      "Leopardo",
+      "Juantxo Skalari & La Rude Band",
+      "The Baboon Show",
+      "Koma",
+      "Lendakaris Muertos",
+      "Biznaga",
+      "La Furia",
+      "Ezpalak",
+      "Dupla",
+      "Sons of Aguirre & Scila",
+      "Iseo & Dodosound",
+      "Riot Propaganda",
+      "La Mala Pékora"
+    ],
+    "venue": {
+      "name": "Ciudadela de Pamplona",
+      "city": "Pamplona-Iruñea"
+    },
+    "source": {
+      "label": "Video",
+      "url": "https://youtu.be/mGFpRWIADsM"
+    }
+  },
+  {
+    "date": "2025-07-05",
+    "event": "Back to the Beggining (Streaming)",
+    "genres": [
+      "heavy metal",
+      "thrash metal",
+      "hard rock",
+      "progressive metal",
+      "groove metal",
+      "grunge"
+    ],
+    "artists": [
+      "Mastodon",
+      "Rival Sons",
+      "Anthrax",
+      "Halestorm",
+      "Lamb of God",
+      "Alice in Chains",
+      "Gojira",
+      "Pantera",
+      "Tool",
+      "Slayer",
+      "Guns N' Roses",
+      "Metallica",
+      "Ozzy Osbourne",
+      "Black Sabbath"
+    ],
+    "venue": {
+      "name": "Villa Park",
+      "city": "Birmingham"
+    },
+    "source": {
+      "label": "Setlist",
+      "url": "https://www.setlist.fm/setlist/ozzy-osbourne/2025/villa-park-birmingham-england-3b5ac8cc.html"
+    }
+  },
+  {
+    "date": "2025-07-08",
+    "event": "San Fermín 2025",
+    "genres": ["pop", "rock", "garage rock", "indie", "alternative"],
+    "artists": ["Kokoshca", "The Mystery Lights"],
+    "venue": {
+      "name": "Plaza de la Compañía",
+      "city": "Pamplona-Iruñea"
+    },
+    "source": {
+      "label": "Video",
+      "url": "https://youtu.be/jkiNa_14gcI"
+    }
+  },
+  {
+    "date": "2025-07-23",
+    "event": "Jazzaldia 2025",
+    "genres": ["jazz", "folk", "cumbia", "afrobeat", "pop", "world music"],
+    "artists": ["Jamie Cullum", "Minyo Crusaders"],
+    "venue": {
+      "name": "Playa de la Zurriola",
+      "city": "Donostia-San Sebastián"
+    },
+    "source": {
+      "label": "Vídeo",
+      "url": "https://youtu.be/8CUn2FVsRG8"
+    }
+  },
+  {
+    "date": "2026-01-03",
+    "event": "Presentación 'Denboraren orbainak'",
+    "genres": [
+      "heavy metal",
+      "hard rock",
+      "thrash metal",
+      "stoner rock",
+      "rock",
+      "metal"
+    ],
+    "artists": ["Latzen", "Kuartz"],
+    "venue": {
+      "name": "Sala Tótem",
+      "city": "Villava / Atarrabia"
+    },
+    "source": {
+      "label": "Video",
+      "url": "https://youtu.be/mt3OqWi8akA"
+    }
+  },
+  {
+    "date": "2026-02-13",
+    "event": "Gira 35º Aniversario 'Jaiotze Basatia'",
+    "genres": [
+      "heavy metal",
+      "thrash metal",
+      "speed metal",
+      "power metal",
+      "rock",
+      "metal"
+    ],
+    "artists": ["Su Ta Gar"],
+    "venue": {
+      "name": "Sala Totem Aretoa",
+      "city": "Villava / Atarrabia"
+    },
+    "source": {
+      "label": "Video",
+      "url": "https://youtu.be/65DoIGBk0Mo"
+    }
+  },
+  {
+    "date": "2026-02-21",
+    "event": "No Te Mofest (Acto 3)",
+    "genres": [
+      "comedy rock",
+      "punk rock",
+      "heavy metal",
+      "parody",
+      "satirical rock",
+      "rock"
+    ],
+    "artists": [
+      "Gigatrón",
+      "Mamá Ladilla",
+      "Juan Abarca",
+      "Hey Hematoma",
+      "Skimales",
+      "El Chivi"
+    ],
+    "venue": {
+      "name": "Sala Andén 56",
+      "city": "Burgos"
+    }
+  },
+  {
+    "date": "2026-07-29",
+    "event": "SMC: Salas de Música en la Calle 2026",
+    "genres": [
+      "heavy metal",
+      "hardcore",
+      "metalcore",
+      "thrash metal",
+      "rock",
+      "metal"
+    ],
+    "artists": ["The Blackening"],
+    "venue": {
+      "name": "El Bosquecillo",
+      "city": "Pamplona-Iruñea"
+    }
+  },
+  {
+    "date": "2026-08-05",
+    "event": "Route Resurrection 2026",
+    "genres": [
+      "melodic death metal",
+      "metalcore",
+      "black metal",
+      "post-black metal",
+      "rock",
+      "metal"
+    ],
+    "artists": ["In Flames", "Gaerea", "Employed To Serve"],
+    "venue": {
+      "name": "Sala Tótem",
+      "city": "Villava / Atarrabia"
+    },
+    "source": {
+      "label": "Route Resurrection",
+      "url": "https://www.resurrectionfest.es"
+    }
+  },
+  {
+    "date": "2026-09-05",
+    "event": "VIII Beltza Weekend",
+    "genres": ["soul", "northern soul", "r&b", "ska", "rocksteady", "reggae"],
+    "artists": [
+      "Principles of Joy",
+      "Steffen Morrison",
+      "Memi Sillah & The Jeggaes"
+    ],
+    "venue": {
+      "name": "Sala Zentral",
+      "city": "Pamplona-Iruñea"
+    }
+  },
+  {
+    "date": "2026-09-11",
+    "event": "Baifest 2026",
+    "genres": [
+      "rock",
+      "blues rock",
+      "bluegrass",
+      "folk rock",
+      "punk rock",
+      "country rock"
+    ],
+    "artists": [
+      "The Half Nelsons",
+      "La Banda del Desagüe",
+      "Blck",
+      "William",
+      "Mertxe Turner",
+      "Montana Stomp",
+      "Moonshine Wagon",
+      "Muxutrock"
+    ],
+    "venue": {
+      "name": "Lago de Barañáin",
+      "city": "Barañáin"
     }
   }
 ]

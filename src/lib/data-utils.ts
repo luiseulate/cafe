@@ -289,7 +289,7 @@ export type Concert = {
     name: string
     city: string
   }
-  source: {
+  source?: {
     label: string
     url: string
   }

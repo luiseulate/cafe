@@ -49,16 +49,21 @@ const { concert } = Astro.props
         {concert.genres.join(', ')}
       </span>
     </div>
-    <div class="flex items-center gap-2">
-      <Icon name="lucide:external-link" class="size-3.5 shrink-0" />
-      <Link
-        href={concert.source.url}
-        external
-        class="hover:text-foreground"
-        aria-label={`Fuente: ${concert.source.label}`}
-      >
-        {concert.source.label}
-      </Link>
-    </div>
+    {
+      concert.source && (
+        <div class="flex items-center gap-2">
+          <Icon name="lucide:external-link" class="size-3.5 shrink-0" />
+
+          <Link
+            href={concert.source.url}
+            external
+            class="hover:text-foreground"
+            aria-label={`Fuente: ${concert.source.label}`}
+          >
+            {concert.source.label}
+          </Link>
+        </div>
+      )
+    }
   </div>
 </div>
