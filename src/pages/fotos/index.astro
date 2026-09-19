@@ -32,7 +32,7 @@ const years = Object.keys(fotosByYear).sort((a, b) => parseInt(b) - parseInt(a))
       {
         years.map((year) => (
           <div class="relative overflow-hidden border-t">
-            <span class="text-muted-foreground pointer-events-none absolute top-3 text-sm tabular-nums select-none">
+            <span class="text-muted-foreground/80 pointer-events-none absolute top-3 text-sm tabular-nums select-none">
               {year}
             </span>
             <div>

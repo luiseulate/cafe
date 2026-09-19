@@ -45,11 +45,13 @@ const navigation = await getAdjacentFotos(currentPostId)
         {post.data.title}
       </h1>
 
-      <span class="text-muted-foreground/60 text-sm"
+      <span class="text-muted-foreground/40 text-sm"
         >{formatDateLong(post.data.date)}</span
       >
 
-      <span class="text-muted-foreground text-sm">{post.data.description}</span>
+      <span class="text-muted-foreground/80 text-sm"
+        >{post.data.description}</span
+      >
     </section>
 
     {

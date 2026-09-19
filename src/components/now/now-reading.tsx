@@ -72,7 +72,7 @@ export default function NowReading() {
 
   return (
     <div className="relative overflow-hidden border-t">
-      <span className="text-muted-foreground pointer-events-none absolute top-3.5 select-none">
+      <span className="text-muted-foreground/80 pointer-events-none absolute top-3.5 select-none">
         <BookAnimation playing={isReading} />
       </span>
       <ReadingCard state={state} />

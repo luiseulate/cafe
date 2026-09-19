@@ -59,7 +59,7 @@ function GameList({ state }: { state: State }) {
     <>
       {years.map((year) => (
         <div key={year} className={wrapper}>
-          <span className="text-muted-foreground pointer-events-none absolute top-3 text-sm tabular-nums select-none">
+          <span className="text-muted-foreground/80 pointer-events-none absolute top-3 text-sm tabular-nums select-none">
             {year}
           </span>
           <div>
