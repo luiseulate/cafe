@@ -282,7 +282,6 @@ export function groupFotosByYear(
 export type Concert = {
   date: string
   event?: string
-  genres: string[]
   artists: string[]
   venue: {
     name: string

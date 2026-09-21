@@ -43,12 +43,6 @@ const { concert } = Astro.props
         {concert.venue.name}, {concert.venue.city}
       </span>
     </div>
-    <div class="flex items-center gap-2">
-      <Icon name="lucide:tags" class="size-3.5 shrink-0" />
-      <span>
-        {concert.genres.join(', ')}
-      </span>
-    </div>
     {
       concert.source && (
         <div class="flex items-center gap-2">

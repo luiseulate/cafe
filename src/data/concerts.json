@@ -2,7 +2,6 @@
   {
     "date": "2025-01-03",
     "event": "Mitaroa",
-    "genres": ["pop", "electronic", "basque", "euskara"],
     "artists": ["Zetak"],
     "venue": {
       "name": "Navarra Arena",
@@ -16,7 +15,6 @@
   {
     "date": "2025-03-08",
     "event": "Kingdom of Rock 2025",
-    "genres": ["heavy metal", "power metal"],
     "artists": ["Manowar", "Doro", "Freedom Call"],
     "venue": {
       "name": "Navarra Arena",
@@ -30,7 +28,6 @@
   {
     "date": "2025-03-29",
     "event": "Arbufest Primavera Session",
-    "genres": ["flamenco", "chill-out", "jam-session"],
     "artists": ["El Bengalí", "Laura Urbieta", "Jam Session"],
     "venue": {
       "name": "Arbufest",
@@ -43,7 +40,6 @@
   },
   {
     "date": "2025-04-11",
-    "genres": ["folk", "country", "electronic", "pop"],
     "artists": ["Jo & SwissKnife", "Discodelia"],
     "venue": {
       "name": "Sala Zentral",
@@ -57,7 +53,6 @@
   {
     "date": "2025-05-29",
     "event": "Iruña Rock 2025",
-    "genres": ["punk", "rock", "metal", "ska", "reggae", "hip-hop"],
     "artists": [
       "Leopardo",
       "Juantxo Skalari & La Rude Band",
@@ -85,14 +80,6 @@
   {
     "date": "2025-07-05",
     "event": "Back to the Beggining (Streaming)",
-    "genres": [
-      "heavy metal",
-      "thrash metal",
-      "hard rock",
-      "progressive metal",
-      "groove metal",
-      "grunge"
-    ],
     "artists": [
       "Mastodon",
       "Rival Sons",
@@ -121,7 +108,6 @@
   {
     "date": "2025-07-08",
     "event": "San Fermín 2025",
-    "genres": ["pop", "rock", "garage rock", "indie", "alternative"],
     "artists": ["Kokoshca", "The Mystery Lights"],
     "venue": {
       "name": "Plaza de la Compañía",
@@ -135,7 +121,6 @@
   {
     "date": "2025-07-23",
     "event": "Jazzaldia 2025",
-    "genres": ["jazz", "folk", "cumbia", "afrobeat", "pop", "world music"],
     "artists": ["Jamie Cullum", "Minyo Crusaders"],
     "venue": {
       "name": "Playa de la Zurriola",
@@ -149,14 +134,6 @@
   {
     "date": "2026-01-03",
     "event": "Presentación 'Denboraren orbainak'",
-    "genres": [
-      "heavy metal",
-      "hard rock",
-      "thrash metal",
-      "stoner rock",
-      "rock",
-      "metal"
-    ],
     "artists": ["Latzen", "Kuartz"],
     "venue": {
       "name": "Sala Tótem",
@@ -170,14 +147,6 @@
   {
     "date": "2026-02-13",
     "event": "Gira 35º Aniversario 'Jaiotze Basatia'",
-    "genres": [
-      "heavy metal",
-      "thrash metal",
-      "speed metal",
-      "power metal",
-      "rock",
-      "metal"
-    ],
     "artists": ["Su Ta Gar"],
     "venue": {
       "name": "Sala Totem Aretoa",
@@ -191,14 +160,6 @@
   {
     "date": "2026-02-21",
     "event": "No Te Mofest (Acto 3)",
-    "genres": [
-      "comedy rock",
-      "punk rock",
-      "heavy metal",
-      "parody",
-      "satirical rock",
-      "rock"
-    ],
     "artists": [
       "Gigatrón",
       "Mamá Ladilla",
@@ -215,14 +176,6 @@
   {
     "date": "2026-07-29",
     "event": "SMC: Salas de Música en la Calle 2026",
-    "genres": [
-      "heavy metal",
-      "hardcore",
-      "metalcore",
-      "thrash metal",
-      "rock",
-      "metal"
-    ],
     "artists": ["The Blackening"],
     "venue": {
       "name": "El Bosquecillo",
@@ -232,14 +185,6 @@
   {
     "date": "2026-08-05",
     "event": "Route Resurrection 2026",
-    "genres": [
-      "melodic death metal",
-      "metalcore",
-      "black metal",
-      "post-black metal",
-      "rock",
-      "metal"
-    ],
     "artists": ["In Flames", "Gaerea", "Employed To Serve"],
     "venue": {
       "name": "Sala Tótem",
@@ -253,7 +198,6 @@
   {
     "date": "2026-09-05",
     "event": "VIII Beltza Weekend",
-    "genres": ["soul", "northern soul", "r&b", "ska", "rocksteady", "reggae"],
     "artists": [
       "Principles of Joy",
       "Steffen Morrison",
@@ -267,14 +211,6 @@
   {
     "date": "2026-09-11",
     "event": "Baifest 2026",
-    "genres": [
-      "rock",
-      "blues rock",
-      "bluegrass",
-      "folk rock",
-      "punk rock",
-      "country rock"
-    ],
     "artists": [
       "The Half Nelsons",
       "La Banda del Desagüe",
