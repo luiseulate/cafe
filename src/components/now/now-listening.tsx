@@ -33,7 +33,7 @@ function MusicCard({ state }: { state: State }) {
 
   return (
     <div className={wrapper}>
-      <div className="flex flex-wrap items-center gap-x-2 text-sm">
+      <div className="flex flex-wrap items-center gap-x-2 gap-y-1 text-sm">
         <span>{track}</span>
         <span className="text-muted-foreground/80">{artist}</span>
       </div>

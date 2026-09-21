@@ -11,7 +11,7 @@ type State =
 function GameCard({ game }: { game: NowCollectionData }) {
   return (
     <div className="relative ml-12 flex items-center justify-between gap-x-4 border-b py-3 last:border-b-0">
-      <div className="flex flex-wrap items-center gap-x-2 text-sm">
+      <div className="flex flex-wrap items-center gap-x-2 gap-y-1 text-sm">
         <span>{game.name}</span>
         {game.developer && (
           <span className="text-muted-foreground/80">{game.developer}</span>
