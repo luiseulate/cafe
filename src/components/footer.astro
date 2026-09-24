@@ -1,15 +1,14 @@
 ---
 import Link from '@/components/link.astro'
 import NowCode from '@/components/now/now-code'
-import { Separator } from '@/components/ui/separator'
 import { Icon } from 'astro-icon/components'
 ---
 
-<footer class="flex w-full flex-col gap-6 border-t backdrop-blur-xl">
+<footer class="flex w-full flex-col gap-6 border-t">
   <div class="mx-auto flex w-full max-w-xl grow flex-col px-4 pt-12">
     <div class="flex flex-col items-center gap-4 sm:items-start">
       <div
-        class="flex h-10 w-10 shrink-0 items-center justify-center rounded-lg border backdrop-blur-xl"
+        class="flex h-10 w-10 shrink-0 items-center justify-center rounded-lg border"
       >
         <Icon name="lucide:sprout" class="size-4" />
       </div>
@@ -26,16 +25,8 @@ import { Icon } from 'astro-icon/components'
 
   <div class="mx-auto flex w-full max-w-xl flex-col px-4 pb-12">
     <div
-      class="text-foreground/60 flex items-center justify-center gap-2 text-xs sm:justify-start"
+      class="text-foreground/60 flex items-center justify-center text-xs sm:justify-start"
     >
-      <Link
-        href="/tech"
-        class="text-foreground/60 hover:text-foreground transition-colors"
-        underline
-      >
-        Tech
-      </Link>
-      <Separator orientation="vertical" className="h-4!" />
       <Link
         href="/colofón"
         class="text-foreground/60 hover:text-foreground transition-colors"
