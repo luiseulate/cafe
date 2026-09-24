@@ -6,7 +6,7 @@ import Layout from '@/layouts/layout.astro'
 import { getSortedTags } from '@/lib/data-utils'
 import { cn } from '@/lib/utils'
 
-const sortedTags = await getSortedTags()
+const tags = await getSortedTags()
 ---
 
 <Layout class="max-w-xl">
@@ -26,21 +26,28 @@ const sortedTags = await getSortedTags()
     </div>
   </section>
 
-  <section>
-    <div class="flex flex-wrap gap-2">
+  <section class="flex flex-col gap-2">
+    <h2>
+      Temas <span class="text-muted-foreground/40">({tags.length})</span>
+    </h2>
+    <div class="flex flex-wrap gap-2 border-t py-3">
       {
-        sortedTags.map(({ tag, count }) => (
-          <Link
-            href={`/temas/${tag}`}
-            class={cn(
-              badgeVariants({ variant: 'muted' }),
-              'origin-center hover:scale-105',
-            )}
-          >
-            <span class="first-letter:uppercase">{tag}</span>
-            <span class="text-muted-foreground">({count})</span>
-          </Link>
-        ))
+        tags.length === 0 ? (
+          <p class="text-muted-foreground text-sm">No hay temas para mostrar</p>
+        ) : (
+          tags.map(({ tag, count }) => (
+            <Link
+              href={`/temas/${tag}`}
+              class={cn(
+                badgeVariants({ variant: 'muted' }),
+                'origin-center hover:scale-105',
+              )}
+            >
+              <span class="first-letter:uppercase">{tag}</span>
+              <span class="text-muted-foreground">({count})</span>
+            </Link>
+          ))
+        )
       }
     </div>
   </section>
