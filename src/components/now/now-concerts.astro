@@ -1,0 +1,40 @@
+---
+import ConcertCard from '@/components/concert-card.astro'
+import concertData from '@/data/concerts.json'
+import { type Concert, groupConcertsByYear } from '@/lib/data-utils'
+
+const concerts = concertData as Concert[]
+const concertsByYear = groupConcertsByYear(concerts)
+const years = Object.keys(concertsByYear).sort(
+  (a, b) => parseInt(b) - parseInt(a),
+)
+---
+
+<section class="flex flex-col gap-2">
+  <h2>
+    Conciertos <span class="text-muted-foreground/40">({concerts.length})</span>
+  </h2>
+
+  <div class="group/posts">
+    {
+      concerts.length === 0 ? (
+        <p class="text-muted-foreground border-t py-3 text-sm">
+          No hay conciertos para mostrar
+        </p>
+      ) : (
+        years.map((year) => (
+          <div class="relative overflow-hidden border-t">
+            <span class="text-muted-foreground/80 pointer-events-none absolute top-3 text-sm tabular-nums select-none">
+              {year}
+            </span>
+            <div>
+              {concertsByYear[year].map((concert) => (
+                <ConcertCard concert={concert} />
+              ))}
+            </div>
+          </div>
+        ))
+      )
+    }
+  </div>
+</section>

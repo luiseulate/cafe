@@ -36,18 +36,24 @@ const years = Object.keys(postsByYear).sort((a, b) => Number(b) - Number(a))
 
   <div class="group/posts">
     {
-      years.map((year) => (
-        <div class="relative overflow-hidden border-t">
-          <span class="text-muted-foreground/80 pointer-events-none absolute top-3 text-sm tabular-nums select-none">
-            {year}
-          </span>
-          <div>
-            {postsByYear[year].map((post) => (
-              <BlogCard entry={post} />
-            ))}
+      posts.length === 0 ? (
+        <p class="text-muted-foreground border-t py-3 text-sm">
+          No hay posts para mostrar
+        </p>
+      ) : (
+        years.map((year) => (
+          <div class="relative overflow-hidden border-t">
+            <span class="text-muted-foreground/80 pointer-events-none absolute top-3 text-sm tabular-nums select-none">
+              {year}
+            </span>
+            <div>
+              {postsByYear[year].map((post) => (
+                <BlogCard entry={post} />
+              ))}
+            </div>
           </div>
-        </div>
-      ))
+        ))
+      )
     }
   </div>
 </section>

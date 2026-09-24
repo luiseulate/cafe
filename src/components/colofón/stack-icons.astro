@@ -1,5 +1,4 @@
 ---
-import Link from '@/components/link.astro'
 import type { Stack } from '@/types'
 
 type Props = { links: Stack[] }
@@ -15,17 +14,13 @@ const { links } = Astro.props
   >
   </div>
   {
-    links.map(({ href, label, icon: Icon }) => (
-      <li class="bg-background relative z-10 m-auto flex w-fit flex-row items-center justify-center rounded-full p-4">
-        <Link
-          class="transition-transform duration-300 hover:scale-110 focus:scale-110"
-          href={href}
-          aria-label={label}
-          title={label}
-          external
-        >
-          <Icon aria-hidden="true" />
-        </Link>
+    links.map(({ label, icon: Icon }) => (
+      <li
+        aria-label={label}
+        class="bg-background relative z-10 m-auto flex w-fit flex-row items-center justify-center rounded-full p-4"
+      >
+        <Icon aria-hidden="true" />
+        <span class="sr-only">{label}</span>
       </li>
     ))
   }

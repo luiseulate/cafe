@@ -18,7 +18,6 @@ export type SocialLink = {
 }
 
 export type Stack = {
-  href: string
   label: string
   icon: SvgComponent
 }

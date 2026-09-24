@@ -14,7 +14,9 @@ function CodeCard({ state }: { state: State }) {
 
   if (state.status === 'error' || !state.data) {
     return (
-      <span className="text-muted-foreground/40 text-xs">No hay datos</span>
+      <span className="text-muted-foreground/40 text-xs">
+        No hay datos para mostrar
+      </span>
     )
   }
 
