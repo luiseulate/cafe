@@ -6,7 +6,7 @@ export const prerender = false
 export interface NowGamingData {
   isPlaying: boolean
   game: string
-  developer: string | null
+  playtimeForever: number | null
   playedAt: string | null
 }
 
@@ -17,17 +17,9 @@ interface PlayerSummary {
 
 interface OwnedGame {
   appid: number
+  name?: string
+  playtime_forever?: number
   rtime_last_played: number
-}
-
-interface AppDetailsData {
-  name: string
-  developers?: string[]
-}
-
-interface AppDetailsEntry {
-  success: boolean
-  data?: AppDetailsData
 }
 
 const CACHE_TTL_MS = 30_000 // 30 seconds
@@ -44,60 +36,7 @@ function isCacheValid(): boolean {
   return cache !== null && Date.now() - cache.timestamp < CACHE_TTL_MS
 }
 
-async function getGameDetails(
-  appId: string | number,
-): Promise<{ name: string | null; developer: string | null }> {
-  const url = new URL('https://store.steampowered.com/api/appdetails')
-  url.searchParams.set('appids', String(appId))
-  url.searchParams.set('cc', 'es')
-  url.searchParams.set('l', 'spanish')
-
-  const response = await fetch(url.toString(), {
-    headers: { 'User-Agent': 'astro-cafe' },
-    signal: AbortSignal.timeout(5_000),
-  })
-  if (!response.ok) return { name: null, developer: null }
-  const data: Record<string, AppDetailsEntry> = await response.json()
-  const entry = data[String(appId)]
-  if (!entry?.success || !entry.data) return { name: null, developer: null }
-  return {
-    name: entry.data.name ?? null,
-    developer: entry.data.developers?.[0] ?? null,
-  }
-}
-
 async function fetchFromSteam(): Promise<NowGamingData> {
-  const summaryUrl = new URL(
-    'https://api.steampowered.com/ISteamUser/GetPlayerSummaries/v0002/',
-  )
-  summaryUrl.searchParams.set('key', STEAM_API_KEY)
-  summaryUrl.searchParams.set('steamids', STEAM_ID)
-
-  const summaryRes = await fetch(summaryUrl.toString(), {
-    headers: { 'User-Agent': 'astro-cafe' },
-    signal: AbortSignal.timeout(5_000),
-  })
-  if (!summaryRes.ok) {
-    throw new Error(`Steam summaries HTTP ${summaryRes.status}`)
-  }
-
-  const summaryData = await summaryRes.json()
-  const player: PlayerSummary = summaryData.response.players[0]
-
-  if (!player) {
-    return { isPlaying: false, game: '', developer: null, playedAt: null }
-  }
-
-  if (player.gameid) {
-    const { name, developer } = await getGameDetails(player.gameid)
-    return {
-      isPlaying: true,
-      game: name ?? '',
-      developer,
-      playedAt: null,
-    }
-  }
-
   const ownedUrl = new URL(
     'https://api.steampowered.com/IPlayerService/GetOwnedGames/v0001/',
   )
@@ -117,22 +56,52 @@ async function fetchFromSteam(): Promise<NowGamingData> {
   const ownedData = await ownedRes.json()
   const games: OwnedGame[] = ownedData.response.games ?? []
 
+  const summaryUrl = new URL(
+    'https://api.steampowered.com/ISteamUser/GetPlayerSummaries/v0002/',
+  )
+  summaryUrl.searchParams.set('key', STEAM_API_KEY)
+  summaryUrl.searchParams.set('steamids', STEAM_ID)
+
+  const summaryRes = await fetch(summaryUrl.toString(), {
+    headers: { 'User-Agent': 'astro-cafe' },
+    signal: AbortSignal.timeout(5_000),
+  })
+  if (!summaryRes.ok) {
+    throw new Error(`Steam summaries HTTP ${summaryRes.status}`)
+  }
+
+  const summaryData = await summaryRes.json()
+  const player: PlayerSummary | undefined = summaryData.response.players?.[0]
+
+  const currentGame = player?.gameid
+    ? games.find((game) => game.appid === Number(player.gameid))
+    : undefined
+
   const lastGame = games
-    .filter((g) => g.rtime_last_played > 0 && g.appid !== EXCLUDED_APP_ID)
+    .filter(
+      (game) => game.rtime_last_played > 0 && game.appid !== EXCLUDED_APP_ID,
+    )
     .sort((a, b) => b.rtime_last_played - a.rtime_last_played)[0]
 
-  if (!lastGame) {
-    return { isPlaying: false, game: '', developer: null, playedAt: null }
+  if (currentGame) {
+    return {
+      isPlaying: true,
+      game: currentGame.name ?? '',
+      playtimeForever: currentGame.playtime_forever ?? null,
+      playedAt: null,
+    }
   }
 
-  const { name, developer } = await getGameDetails(lastGame.appid)
-
-  return {
-    isPlaying: false,
-    game: name ?? '',
-    developer,
-    playedAt: new Date(lastGame.rtime_last_played * 1000).toISOString(),
+  if (lastGame) {
+    return {
+      isPlaying: false,
+      game: lastGame.name ?? '',
+      playtimeForever: lastGame.playtime_forever ?? null,
+      playedAt: new Date(lastGame.rtime_last_played * 1000).toISOString(),
+    }
   }
+
+  return { isPlaying: false, game: '', playtimeForever: null, playedAt: null }
 }
 
 function jsonResponse(
